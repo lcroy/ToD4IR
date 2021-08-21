@@ -1,4 +1,4 @@
-# STEToD - Small Talk Enhanced Task-Oriented Dialogue System
+# ToB4IR - Task-Oriented Bot for Industrial Robots
 
 ## Introduction
 
