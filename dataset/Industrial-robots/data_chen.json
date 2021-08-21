@@ -1,0 +1,410 @@
+{
+  "DL00001.json": {
+        "goal": {
+            "assembly": false,
+            "delivery": true
+        },
+        "log": [
+            {
+                "text": "I have a package here. I want you to help me to deliver it to the building #Fib14.",
+                "metadata": {}
+            },
+            {
+                "text": "okay , do you have a specific location you want me to deliver the object?",
+                "metadata": {
+                    "assembly": {
+                        "DB_request": {
+                            "producttype": ""
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "",
+                                "quantity": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "holeonPCB": "",
+                                "deadline": ""
+                            },
+                            "type": ""
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area":"#Fib14",
+                                "destination": "not mentioned"
+                            },
+                            "opt": {
+                                "leaveat": "not mentioned",
+                                "sender": "not mentioned",
+                                "recipient": "not mentioned"
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": "not mentioned"
+                            },
+                            "opt": {
+                                "color": "not mentioned",
+                                "size": "not mentioned"
+                            },
+                            "type": "delivery"
+                        }
+                    }
+                }
+            },
+            {
+                "text": "Yes, it is warehouse.",
+                "metadata": {}
+            },
+            {
+                "text": "i found location warehouse in the building #Fib14. What do you want me to deliver?",
+                "metadata": {
+                    "assembly": {
+                        "DB_request": {
+                            "producttype": ""
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "",
+                                "quantity": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "holeonPCB": "",
+                                "deadline": ""
+                            },
+                            "type": ""
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area":"#Fib14",
+                                "destination": "warehouse"
+                            },
+                            "opt": {
+                                "leaveat": "not mentioned",
+                                "sender": "not mentioned",
+                                "recipient": "not mentioned"
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": "not mentioned"
+                            },
+                            "opt": {
+                                "color": "not mentioned",
+                                "size": "not mentioned"
+                            },
+                            "type": "delivery"
+                        }
+                    }
+                }
+            },
+            {
+                "text": "It is a box",
+                "metadata": {}
+            },
+            {
+                "text": "Sure, I will delivery the box to the warehouse. Do you want me to execute the mission now?",
+                "metadata": {
+                    "assembly": {
+                        "DB_request": {
+                            "producttype": ""
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "",
+                                "quantity": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "holeonPCB": "",
+                                "deadline": ""
+                            },
+                            "type": ""
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area":"#Fib14",
+                                "destination": "warehouse"
+                            },
+                            "opt": {
+                                "leaveat": "not mentioned",
+                                "sender": "not mentioned",
+                                "recipient": "not mentioned"
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": "box"
+                            },
+                            "opt": {
+                                "color": "not mentioned",
+                                "size": "not mentioned"
+                            },
+                            "type": "delivery"
+                        }
+                    }
+                }
+            },
+            {
+                "text": "yes, that will be great. Thanks.",
+                "metadata": {}
+            },
+            {
+                "text": "Sure, thank you for using our services.",
+                "metadata": {
+                    "assembly": {
+                        "DB_request": {
+                            "producttype": ""
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "",
+                                "quantity": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "holeonPCB": "",
+                                "deadline": ""
+                            },
+                            "type": ""
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area":"#Fib14",
+                                "destination": "warehouse"
+                            },
+                            "opt": {
+                                "leaveat": "not mentioned",
+                                "sender": "not mentioned",
+                                "recipient": "not mentioned"
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": "box"
+                            },
+                            "opt": {
+                                "color": "not mentioned",
+                                "size": "not mentioned"
+                            },
+                            "type": "delivery"
+                        }
+                    }
+                }
+            }
+        ]
+    },
+  "DL00002.json": {
+        "goal": {
+            "assembly": true,
+            "delivery": false
+        },
+        "log": [
+            {
+                "text": "I need you to help me with some assembly tasks.",
+                "metadata": {}
+            },
+            {
+                "text": "okay , what kind of product you want to assemble?",
+                "metadata": {
+                    "assembly": {
+                        "DB_request": {
+                            "producttype": "not mentioned"
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "not mentioned",
+                                "quantity": "not mentioned"
+                            },
+                            "opt": {
+                                "color": "not mentioned",
+                                "holeonPCB": "not mentioned",
+                                "deadline": "not mentioned"
+                            },
+                            "type": "assembly"
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area":"",
+                                "destination": ""
+                            },
+                            "opt": {
+                                "leaveat": "",
+                                "sender": "",
+                                "recipient": ""
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "size": ""
+                            },
+                            "type": ""
+                        }
+                    }
+                }
+            },
+            {
+                "text": "Do you know how to assemble phones?",
+                "metadata": {}
+            },
+            {
+                "text": "Yes, I can do phone assembly. How many you want me to assemble?",
+                "metadata": {
+                    "assembly": {
+                        "DB_request": {
+                            "producttype": "phone"
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "phone",
+                                "quantity": "not mentioned"
+                            },
+                            "opt": {
+                                "color": "not mentioned",
+                                "holeonPCB": "not mentioned",
+                                "deadline": "not mentioned"
+                            },
+                            "type": "assembly"
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area":"",
+                                "destination": ""
+                            },
+                            "opt": {
+                                "leaveat": "",
+                                "sender": "",
+                                "recipient": ""
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "size": ""
+                            },
+                            "type": ""
+                        }
+                    }
+                }
+            },
+            {
+                "text": "Great, please assemble 5 white phones.",
+                "metadata": {}
+            },
+            {
+                "text": "Sure, I will assemble 5 white phones for you.",
+                "metadata": {
+                    "assembly": {
+                        "DB_request": {
+                            "producttype": "phone"
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "phone",
+                                "quantity": "5"
+                            },
+                            "opt": {
+                                "color": "white",
+                                "holeonPCB": "not mentioned",
+                                "deadline": "not mentioned"
+                            },
+                            "type": "assembly"
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area":"",
+                                "destination": ""
+                            },
+                            "opt": {
+                                "leaveat": "",
+                                "sender": "",
+                                "recipient": ""
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "size": ""
+                            },
+                            "type": ""
+                        }
+                    }
+                }
+            },
+            {
+                "text": "Thank you for your help.",
+                "metadata": {}
+            },
+            {
+                "text": "Sure, you are welcome.",
+                "metadata": {
+                    "assembly": {
+                        "DB_request": {
+                            "producttype": "phone"
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "phone",
+                                "quantity": "5"
+                            },
+                            "opt": {
+                                "color": "white",
+                                "holeonPCB": "not mentioned",
+                                "deadline": "not mentioned"
+                            },
+                            "type": "assembly"
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area":"",
+                                "destination": ""
+                            },
+                            "opt": {
+                                "leaveat": "",
+                                "sender": "",
+                                "recipient": ""
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "size": ""
+                            },
+                            "type": ""
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}
