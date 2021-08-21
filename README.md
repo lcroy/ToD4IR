@@ -29,4 +29,4 @@ The belief state have three sections: semi, record and recorded. Semi refers to 
 domain. Record refers to recording operators' activities for a particular task. It includes slots which 
 need to be updated to the system database, for example, task name, employee's name, timestamp. It helps
 to track the manufacturing tasks. Recorded is a sub-list of record dictionary with information about 
-the recorded entity (once the redording has been made).
+the recorded entity (once the recording has been made).
