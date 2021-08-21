@@ -1,0 +1,6 @@
+transformers==2.7
+spicy
+boto3
+ipdb
+tqdm
+simplejson
