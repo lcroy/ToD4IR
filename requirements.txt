@@ -2,5 +2,4 @@ transformers==2.7.1
 spicy
 boto3
 ipdb
-tqdm
 simplejson
