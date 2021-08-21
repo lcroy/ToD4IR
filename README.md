@@ -27,6 +27,6 @@ Each dialogue consists of a goal, multiple user and system utterances as well as
 
 The belief state have three sections: semi, record and recorded. Semi refers to slots from a particular 
 domain. Record refers to recording operators' activities for a particular task. It includes slots which 
-need to be used to update the system database, for example, task name, employee's name, timestamp. It helps
-to tracking the manufacturing task. Recorded is a sub-list of record dictionary with information about 
+need to be updated to the system database, for example, task name, employee's name, timestamp. It helps
+to track the manufacturing tasks. Recorded is a sub-list of record dictionary with information about 
 the recorded entity (once the redording has been made).
