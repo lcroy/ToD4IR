@@ -14,7 +14,7 @@ We propose xxx We show xxx
 Industrial Robots Domain Wizard-of-Oz dataset (IRWOZ), a fully-labeled dialogue dataset of human-human conversations spanning 
 over xxx domains and topics. At a size of xxx dialogues, it aims to provide simulated dialogues between
 shop floor worker and industrial robots to support language-assisted Human Robot Interaction (HRI) in 
-industrial setup. To the best of our knowledge, T2IR is the first annotated task-oriented corpora for 
+industrial setup. To the best of our knowledge, IRWOZ is the first annotated task-oriented corpora for 
 manufacturing domain.
 
 ### Data Structure
