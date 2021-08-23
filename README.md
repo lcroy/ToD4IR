@@ -20,7 +20,7 @@ manufacturing domain.
 ### Data Structure
 There are xxx single-domain dialogues and xxx multi-domain dialogues consisting of at least x up to x domains. 
 
-To maintain a high scalability, T2IR is constructed by following data structure of the most popular 
+To maintain a high scalability, IRWOZ is constructed by following data structure of the most popular 
 Multi-Domain Wizard-of-Oz dataset ([MultiWOZ](https://github.com/budzianowski/multiwoz)). 
 Each dialogue consists of a goal, multiple user and system utterances as well as a belief state. 
 
