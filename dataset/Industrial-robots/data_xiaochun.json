@@ -14,10 +14,7 @@
                 "metadata": {
                     "assembly": {
                         "DB_request": {
-                            "req": {
-                                "producttype": ""
-                            },
-                            "opt": {}
+                            "producttype": ""
                         },
                         "T_inform": {
                             "req": {
@@ -39,7 +36,7 @@
                                 "destination": "not mentioned"
                             },
                             "opt": {
-                                "leaveat": "not mentioned",
+
                                 "sender": "not mentioned",
                                 "recipient": "not mentioned"
                             }
@@ -66,10 +63,7 @@
                 "metadata": {
                     "assembly": {
                         "DB_request": {
-                            "req": {
-                                "producttype": ""
-                            },
-                            "opt": {}
+                            "producttype": ""
                         },
                         "T_inform": {
                             "req": {
@@ -91,7 +85,7 @@
                                 "destination": "warehouse"
                             },
                             "opt": {
-                                "leaveat": "not mentioned",
+
                                 "sender": "not mentioned",
                                 "recipient": "not mentioned"
                             }
@@ -118,10 +112,7 @@
                 "metadata": {
                     "assembly": {
                         "DB_request": {
-                            "req": {
-                                "producttype": ""
-                            },
-                            "opt": {}
+                            "producttype": ""
                         },
                         "T_inform": {
                             "req": {
@@ -143,7 +134,7 @@
                                 "destination": "warehouse"
                             },
                             "opt": {
-                                "leaveat": "not mentioned",
+
                                 "sender": "not mentioned",
                                 "recipient": "not mentioned"
                             }
@@ -170,10 +161,7 @@
                 "metadata": {
                     "assembly": {
                         "DB_request": {
-                            "req": {
-                                "producttype": ""
-                            },
-                            "opt": {}
+                            "producttype": ""
                         },
                         "T_inform": {
                             "req": {
@@ -195,7 +183,7 @@
                                 "destination": "warehouse"
                             },
                             "opt": {
-                                "leaveat": "not mentioned",
+
                                 "sender": "not mentioned",
                                 "recipient": "not mentioned"
                             }
@@ -230,10 +218,7 @@
                 "metadata": {
                     "assembly": {
                         "DB_request": {
-                            "req": {
-                                "producttype": "not mentioned"
-                            },
-                            "opt": {}
+                            "producttype": "not mentioned"
                         },
                         "T_inform": {
                             "req": {
@@ -255,7 +240,6 @@
                                 "destination": ""
                             },
                             "opt": {
-                                "leaveat": "",
                                 "sender": "",
                                 "recipient": ""
                             }
@@ -282,10 +266,7 @@
                 "metadata": {
                     "assembly": {
                         "DB_request": {
-                            "req": {
-                                "producttype": "not mentioned"
-                            },
-                            "opt": {}
+                            "producttype": "phone"
                         },
                         "T_inform": {
                             "req": {
@@ -307,7 +288,7 @@
                                 "destination": ""
                             },
                             "opt": {
-                                "leaveat": "",
+
                                 "sender": "",
                                 "recipient": ""
                             }
@@ -334,10 +315,7 @@
                 "metadata": {
                     "assembly": {
                         "DB_request": {
-                            "req": {
-                                "producttype": "phone"
-                            },
-                            "opt": {}
+                            "producttype": "phone"
                         },
                         "T_inform": {
                             "req": {
@@ -359,7 +337,7 @@
                                 "destination": ""
                             },
                             "opt": {
-                                "leaveat": "",
+
                                 "sender": "",
                                 "recipient": ""
                             }
@@ -386,10 +364,7 @@
                 "metadata": {
                     "assembly": {
                         "DB_request": {
-                            "req": {
-                                "producttype": "phone"
-                            },
-                            "opt": {}
+                            "producttype": "phone"
                         },
                         "T_inform": {
                             "req": {
@@ -411,7 +386,7 @@
                                 "destination": ""
                             },
                             "opt": {
-                                "leaveat": "",
+
                                 "sender": "",
                                 "recipient": ""
                             }
