@@ -12,13 +12,13 @@ We propose xxx We show xxx
 
 ## IRWOZ
 Industrial Robots Domain Wizard-of-Oz dataset (IRWOZ), a fully-labeled dialogue dataset of human-human conversations spanning 
-over xxx domains and topics. At a size of xxx dialogues, it aims to provide simulated dialogues between
+over two domains (Robot Assembly, Robot Delivery). At a size of xxx dialogues, it aims to provide simulated dialogues between
 shop floor worker and industrial robots to support language-assisted Human Robot Interaction (HRI) in 
 industrial setup. To the best of our knowledge, IRWOZ is the first annotated task-oriented corpora for 
 manufacturing domain.
 
 ### Data Structure
-There are xxx single-domain dialogues and xxx multi-domain dialogues consisting of at least x up to x domains. 
+There are two single-domain dialogues and xxx multi-domain dialogues consisting of at least x up to x domains. 
 
 To maintain a high scalability, IRWOZ is constructed by following data structure of the most popular 
 Multi-Domain Wizard-of-Oz dataset ([MultiWOZ](https://github.com/budzianowski/multiwoz)). 
