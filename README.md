@@ -10,8 +10,8 @@ environment.
 
 We propose xxx We show xxx
 
-## T2IR
-Talk To Industrial Robot (T2IR), a fully-labeled dialogue dataset of human-human conversations spanning 
+## IRWOZ
+Industrial Robots Domain Wizard-of-Oz dataset (IRWOZ), a fully-labeled dialogue dataset of human-human conversations spanning 
 over xxx domains and topics. At a size of xxx dialogues, it aims to provide simulated dialogues between
 shop floor worker and industrial robots to support language-assisted Human Robot Interaction (HRI) in 
 industrial setup. To the best of our knowledge, T2IR is the first annotated task-oriented corpora for 
