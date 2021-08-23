@@ -14,7 +14,10 @@
                 "metadata": {
                     "assembly": {
                         "DB_request": {
-                            "producttype": ""
+                            "req": {
+                                "producttype": ""
+                            },
+                            "opt": {}
                         },
                         "T_inform": {
                             "req": {
@@ -63,7 +66,10 @@
                 "metadata": {
                     "assembly": {
                         "DB_request": {
-                            "producttype": ""
+                            "req": {
+                                "producttype": ""
+                            },
+                            "opt": {}
                         },
                         "T_inform": {
                             "req": {
@@ -112,7 +118,10 @@
                 "metadata": {
                     "assembly": {
                         "DB_request": {
-                            "producttype": ""
+                            "req": {
+                                "producttype": ""
+                            },
+                            "opt": {}
                         },
                         "T_inform": {
                             "req": {
@@ -161,7 +170,10 @@
                 "metadata": {
                     "assembly": {
                         "DB_request": {
-                            "producttype": ""
+                            "req": {
+                                "producttype": ""
+                            },
+                            "opt": {}
                         },
                         "T_inform": {
                             "req": {
@@ -218,7 +230,10 @@
                 "metadata": {
                     "assembly": {
                         "DB_request": {
-                            "producttype": "not mentioned"
+                            "req": {
+                                "producttype": "not mentioned"
+                            },
+                            "opt": {}
                         },
                         "T_inform": {
                             "req": {
@@ -267,7 +282,10 @@
                 "metadata": {
                     "assembly": {
                         "DB_request": {
-                            "producttype": "phone"
+                            "req": {
+                                "producttype": "not mentioned"
+                            },
+                            "opt": {}
                         },
                         "T_inform": {
                             "req": {
@@ -316,7 +334,10 @@
                 "metadata": {
                     "assembly": {
                         "DB_request": {
-                            "producttype": "phone"
+                            "req": {
+                                "producttype": "phone"
+                            },
+                            "opt": {}
                         },
                         "T_inform": {
                             "req": {
@@ -365,7 +386,10 @@
                 "metadata": {
                     "assembly": {
                         "DB_request": {
-                            "producttype": "phone"
+                            "req": {
+                                "producttype": "phone"
+                            },
+                            "opt": {}
                         },
                         "T_inform": {
                             "req": {
