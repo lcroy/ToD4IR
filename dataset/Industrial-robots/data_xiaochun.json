@@ -6,7 +6,7 @@
         },
         "log": [
             {
-                "text": "I have a package here. I want you to help me to deliver it to the building #Fib14.",
+                "text": "I have a package here. I want you to help me to deliver it to the lab.",
                 "metadata": {}
             },
             {
@@ -14,7 +14,10 @@
                 "metadata": {
                     "assembly": {
                         "DB_request": {
-                            "producttype": ""
+                            "req": {
+                                "producttype": ""
+                            },
+                            "opt": {}
                         },
                         "T_inform": {
                             "req": {
@@ -32,11 +35,10 @@
                     "delivery": {
                         "DB_request": {
                             "req": {
-                                "area":"#Fib14",
+                                "area":"lab",
                                 "destination": "not mentioned"
                             },
                             "opt": {
-
                                 "sender": "not mentioned",
                                 "recipient": "not mentioned"
                             }
@@ -59,11 +61,14 @@
                 "metadata": {}
             },
             {
-                "text": "i found location warehouse in the building #Fib14. What do you want me to deliver?",
+                "text": "i found location warehouse in the building lab. What do you want me to deliver?",
                 "metadata": {
                     "assembly": {
                         "DB_request": {
-                            "producttype": ""
+                            "req": {
+                                "producttype": ""
+                            },
+                            "opt": {}
                         },
                         "T_inform": {
                             "req": {
@@ -81,11 +86,10 @@
                     "delivery": {
                         "DB_request": {
                             "req": {
-                                "area":"#Fib14",
+                                "area":"lab",
                                 "destination": "warehouse"
                             },
                             "opt": {
-
                                 "sender": "not mentioned",
                                 "recipient": "not mentioned"
                             }
@@ -112,7 +116,10 @@
                 "metadata": {
                     "assembly": {
                         "DB_request": {
-                            "producttype": ""
+                            "req": {
+                                "producttype": ""
+                            },
+                            "opt": {}
                         },
                         "T_inform": {
                             "req": {
@@ -130,11 +137,10 @@
                     "delivery": {
                         "DB_request": {
                             "req": {
-                                "area":"#Fib14",
+                                "area":"lab",
                                 "destination": "warehouse"
                             },
                             "opt": {
-
                                 "sender": "not mentioned",
                                 "recipient": "not mentioned"
                             }
@@ -161,7 +167,10 @@
                 "metadata": {
                     "assembly": {
                         "DB_request": {
-                            "producttype": ""
+                            "req": {
+                                "producttype": ""
+                            },
+                            "opt": {}
                         },
                         "T_inform": {
                             "req": {
@@ -179,11 +188,10 @@
                     "delivery": {
                         "DB_request": {
                             "req": {
-                                "area":"#Fib14",
+                                "area":"lab",
                                 "destination": "warehouse"
                             },
                             "opt": {
-
                                 "sender": "not mentioned",
                                 "recipient": "not mentioned"
                             }
@@ -218,7 +226,10 @@
                 "metadata": {
                     "assembly": {
                         "DB_request": {
-                            "producttype": "not mentioned"
+                            "req": {
+                                "producttype": "not mentioned"
+                            },
+                            "opt": {}
                         },
                         "T_inform": {
                             "req": {
@@ -266,7 +277,10 @@
                 "metadata": {
                     "assembly": {
                         "DB_request": {
-                            "producttype": "phone"
+                            "req": {
+                                "producttype": "phone"
+                            },
+                            "opt": {}
                         },
                         "T_inform": {
                             "req": {
@@ -288,7 +302,6 @@
                                 "destination": ""
                             },
                             "opt": {
-
                                 "sender": "",
                                 "recipient": ""
                             }
@@ -315,7 +328,10 @@
                 "metadata": {
                     "assembly": {
                         "DB_request": {
-                            "producttype": "phone"
+                            "req": {
+                                "producttype": "phone"
+                            },
+                            "opt": {}
                         },
                         "T_inform": {
                             "req": {
@@ -337,7 +353,6 @@
                                 "destination": ""
                             },
                             "opt": {
-
                                 "sender": "",
                                 "recipient": ""
                             }
@@ -364,7 +379,10 @@
                 "metadata": {
                     "assembly": {
                         "DB_request": {
-                            "producttype": "phone"
+                            "req": {
+                                "producttype": "phone"
+                            },
+                            "opt": {}
                         },
                         "T_inform": {
                             "req": {
@@ -386,7 +404,6 @@
                                 "destination": ""
                             },
                             "opt": {
-
                                 "sender": "",
                                 "recipient": ""
                             }
