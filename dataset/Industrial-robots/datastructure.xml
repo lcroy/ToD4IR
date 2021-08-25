@@ -3,10 +3,8 @@ Training belief prediction
 <|endoftext|>
 	<|context|>
 		<|user|>
-		<|t_system|>
-		<|a_system|>
-		<|r_system|>
-		<|e_system|>
+		<|system|>
+		<|s_system|>
 	<|endofcontext|>
 	<|belief|>
 		<|DB_request_req|>
@@ -21,10 +19,8 @@ Training response (T + S) generation
  <|endoftext|>
 	<|context|>
 		<|user|>
-		<|t_system|>
-		<|a_system|>
-		<|r_system|>
-		<|e_system|>
+		<|system|>
+		<|s_system|>
 	<|endofcontext|>
 	<|belief|>
 		<|DB_request_req|>
@@ -39,10 +35,8 @@ Training response (T + S) generation
  <|endoftext|>
 	<|context|>
 		<|user|> hello, I want you to deliver the box to office at lab.
-		<|t_system|> sorry, I can not find the [location]. Can you tell me again?
-		<|a_system|> wow, there are so many packages I delivered to lab today.
-		<|r_system|> null
-		<|e_system|> null
+		<|system|> sorry, I can not find the [location]. Can you tell me again?
+		<|s_system|> wow, there are so many packages I delivered to lab today.
 	<|endofcontext|> 
 	<|belief|>
 		<|DB_request_req|> delivery area=lab location=office
@@ -50,5 +44,5 @@ Training response (T + S) generation
 		<|DB_request_opt|> null 
 		<|T_inform_opt|> null
 	<|endofbelief|>
-	<|searchresult|> delivery area=found location=null object=box
+	<|search_result|> delivery area=detected location=undetected object=box
 <|endoftext|>

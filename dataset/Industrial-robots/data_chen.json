@@ -1,17 +1,15 @@
 {
   "DL00001.json": {
-        "goal": {
+        "domain": {
             "assembly": false,
             "delivery": true
         },
-        "log": [
+        "turn": [
             {
-                "text": "I have a package here. I want you to help me to deliver it to the lab.",
-                "metadata": {}
-            },
-            {
-                "text": "okay , do you have a specific location you want me to deliver the object?",
-                "metadata": {
+                "user": "I have a package here. I want you to help me to deliver it to the lab.",
+                "system": "yes, do you have a specific location you want me to deliver the object?",
+                "s_system": "well, take you time and let me know when you ready.",
+                "slots": {
                     "assembly": {
                         "DB_request": {
                             "req": {
@@ -54,15 +52,18 @@
                             "type": "delivery"
                         }
                     }
+                },
+                "search_result": {
+                    "area":"detected",
+                    "location": "undetected",
+                    "object": "none"
                 }
             },
             {
-                "text": "Yes, it is warehouse.",
-                "metadata": {}
-            },
-            {
-                "text": "i found location warehouse in the building lab. What do you want me to deliver?",
-                "metadata": {
+                "user": "Yes, it is warehouse.",
+                "system": "i found location warehouse in the building lab. What do you want me to deliver?",
+                "s_system": "You know I am very good at delivery.",
+                "slots": {
                     "assembly": {
                         "DB_request": {
                             "req": {
@@ -105,15 +106,18 @@
                             "type": "delivery"
                         }
                     }
+                },
+                "search_result": {
+                    "area":"detected",
+                    "location": "detected",
+                    "object": "none"
                 }
             },
             {
-                "text": "It is a box",
-                "metadata": {}
-            },
-            {
-                "text": "Sure, I will delivery the box to the warehouse. Do you want me to execute the mission now?",
-                "metadata": {
+                "user": "It is a box",
+                "system": "Sure, I will delivery the box to the warehouse. Do you want me to execute the mission now?",
+                "s_system": "It is going to be a busy day. But I like it.",
+                "slot": {
                     "assembly": {
                         "DB_request": {
                             "req": {
@@ -156,15 +160,18 @@
                             "type": "delivery"
                         }
                     }
+                },
+                "search_result": {
+                    "area":"detected",
+                    "location": "detected",
+                    "object": "box"
                 }
             },
             {
-                "text": "yes, that will be great. Thanks.",
-                "metadata": {}
-            },
-            {
-                "text": "Sure, thank you for using our services.",
-                "metadata": {
+                "user": "yes, that will be great. Thanks.",
+                "system": "Sure, thank you for using our services.",
+                "s_system": "I hope you have a nice day.",
+                "slots": {
                     "assembly": {
                         "DB_request": {
                             "req": {
@@ -207,23 +214,26 @@
                             "type": "delivery"
                         }
                     }
+                },
+                "search_result": {
+                    "area":"detected",
+                    "location": "detected",
+                    "object": "box"
                 }
             }
         ]
     },
   "DL00002.json": {
-        "goal": {
+        "domain": {
             "assembly": true,
             "delivery": false
         },
-        "log": [
+        "turn": [
             {
-                "text": "I need you to help me with some assembly tasks.",
-                "metadata": {}
-            },
-            {
-                "text": "okay , what kind of product you want to assemble?",
-                "metadata": {
+                "user": "I need you to help me with some assembly tasks.",
+                "system": "okay , what kind of product you want to assemble?",
+                "s_system": "You know, I am a professional worker.",
+                "slots": {
                     "assembly": {
                         "DB_request": {
                             "req": {
@@ -266,15 +276,18 @@
                             "type": ""
                         }
                     }
+                },
+                "search_result": {
+                    "producttype":"none",
+                    "product": "none",
+                    "quantity": "none"
                 }
             },
             {
-                "text": "Do you know how to assemble phones?",
-                "metadata": {}
-            },
-            {
-                "text": "Yes, I can do phone assembly. How many you want me to assemble?",
-                "metadata": {
+                "user": "Do you know how to assemble phones?",
+                "system": "Yes, I can do phone assembly. How many you want me to assemble?",
+                "s_system": "I will help you with that.",
+                "slots": {
                     "assembly": {
                         "DB_request": {
                             "req": {
@@ -317,15 +330,18 @@
                             "type": ""
                         }
                     }
+                },
+                "search_result": {
+                    "producttype":"detected",
+                    "product": "detected",
+                    "quantity": "none"
                 }
             },
             {
-                "text": "Great, please assemble 5 white phones.",
-                "metadata": {}
-            },
-            {
-                "text": "Sure, I will assemble 5 white phones for you.",
-                "metadata": {
+                "user": "Great, please assemble 5 white phones.",
+                "system": "Sure, I will assemble 5 white phones for you.",
+                "s_system": "Wow, I can see this color is getting popular.",
+                "slots": {
                     "assembly": {
                         "DB_request": {
                             "req": {
@@ -368,15 +384,18 @@
                             "type": ""
                         }
                     }
+                },
+                "search_result": {
+                    "producttype":"detected",
+                    "product": "detected",
+                    "quantity": "detected"
                 }
             },
             {
-                "text": "Thank you for your help.",
-                "metadata": {}
-            },
-            {
-                "text": "Sure, you are welcome.",
-                "metadata": {
+                "user": "Thank you for your help.",
+                "system": "Sure, you are welcome.",
+                "s_system": "I am always here.",
+                "slots": {
                     "assembly": {
                         "DB_request": {
                             "req": {
@@ -419,6 +438,11 @@
                             "type": ""
                         }
                     }
+                },
+                "search_result": {
+                    "producttype":"detected",
+                    "product": "detected",
+                    "quantity": "detected"
                 }
             }
         ]
