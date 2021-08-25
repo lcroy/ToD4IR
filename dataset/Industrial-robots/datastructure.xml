@@ -1,0 +1,54 @@
+
+Training belief prediction 
+<|endoftext|>
+	<|context|>
+		<|user|>
+		<|t_system|>
+		<|a_system|>
+		<|r_system|>
+		<|e_system|>
+	<|endofcontext|>
+	<|belief|>
+		<|DB_request_req|>
+		<|T_inform_req|>
+		<|DB_request_opt|>
+		<|T_inform_opt|>
+	<|endofbelief|>
+<|endoftext|>
+
+
+Training response (T + S) generation
+ <|endoftext|>
+	<|context|>
+		<|user|>
+		<|t_system|>
+		<|a_system|>
+		<|r_system|>
+		<|e_system|>
+	<|endofcontext|>
+	<|belief|>
+		<|DB_request_req|>
+		<|T_inform_req|>
+		<|DB_request_opt|>
+		<|T_inform_opt|>
+	<|endofbelief|>
+	<|searchresult|>
+<|endoftext|>
+
+
+ <|endoftext|>
+	<|context|>
+		<|user|> hello, I want you to deliver the box to office at lab.
+		<|t_system|> sorry, I can not find the [location]. Can you tell me again?
+		<|a_system|> wow, there are so many packages I delivered to lab today.
+		<|r_system|> null
+		<|e_system|> null
+	<|endofcontext|> 
+	<|belief|>
+		<|DB_request_req|> delivery area=lab location=office
+		<|T_inform_req|> delivery object=box
+		<|DB_request_opt|> null 
+		<|T_inform_opt|> null
+	<|endofbelief|>
+	<|searchresult|> delivery area=found location=null object=box
+<|endoftext|>
