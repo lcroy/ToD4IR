@@ -1,16 +1,16 @@
 {
-  "DL00001.json": {
+  "DL00101.json": {
         "goal": {
             "assembly": false,
             "delivery": true
         },
         "log": [
             {
-                "text": "I have a package here. I want you to help me to deliver it to the building #Fib14.",
+                "text": "Here is my package. Could you please deliver it to the building.",
                 "metadata": {}
             },
             {
-                "text": "okay , do you have a specific location you want me to deliver the object?",
+                "text": "Sure, which building will you want to deliver it?",
                 "metadata": {
                     "assembly": {
                         "DB_request": {
@@ -32,7 +32,7 @@
                     "delivery": {
                         "DB_request": {
                             "req": {
-                                "area":"#Fib14",
+                                "area":"not mentioned",
                                 "destination": "not mentioned"
                             },
                             "opt": {
@@ -55,11 +55,11 @@
                 }
             },
             {
-                "text": "Yes, it is warehouse.",
+                "text": "#Fib16, please.",
                 "metadata": {}
             },
             {
-                "text": "i found location warehouse in the building #Fib14. What do you want me to deliver?",
+                "text": "Ok, could you let me know the special location of the building #Fib16, please?",
                 "metadata": {
                     "assembly": {
                         "DB_request": {
@@ -81,8 +81,8 @@
                     "delivery": {
                         "DB_request": {
                             "req": {
-                                "area":"#Fib14",
-                                "destination": "warehouse"
+                                "area":"#Fib16",
+                                "destination": "not mentioned"
                             },
                             "opt": {
 
@@ -104,11 +104,11 @@
                 }
             },
             {
-                "text": "It is a box",
+                "text": "It's 311 meeting room.",
                 "metadata": {}
             },
             {
-                "text": "Sure, I will delivery the box to the warehouse. Do you want me to execute the mission now?",
+                "text": "OK, I'll delivery it to the 311 meeting room. Do you want me to execute the mission now?",
                 "metadata": {
                     "assembly": {
                         "DB_request": {
@@ -130,8 +130,8 @@
                     "delivery": {
                         "DB_request": {
                             "req": {
-                                "area":"#Fib14",
-                                "destination": "warehouse"
+                                "area":"#Fib16",
+                                "destination": "311 meeting room"
                             },
                             "opt": {
 
@@ -141,7 +141,7 @@
                         },
                         "T_inform": {
                             "req": {
-                                "object": "box"
+                                "object": "not mentioned"
                             },
                             "opt": {
                                 "color": "not mentioned",
@@ -153,11 +153,11 @@
                 }
             },
             {
-                "text": "yes, that will be great. Thanks.",
+                "text": "yes, that'll be good. Many thanks.",
                 "metadata": {}
             },
             {
-                "text": "Sure, thank you for using our services.",
+                "text": "Thank you for using our services.",
                 "metadata": {
                     "assembly": {
                         "DB_request": {
