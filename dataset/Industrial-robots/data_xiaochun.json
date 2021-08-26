@@ -164,7 +164,7 @@
                 "search_result": {
                     "area":"detected",
                     "location": "detected",
-                    "object": "box"
+                    "object": "none"
                 }
             },
             {
@@ -218,8 +218,8 @@
                 "search_result": {
                     "area":"detected",
                     "location": "detected",
-                    "object": "box",
-                    "recipient": "Tom"
+                    "recipient": "Tom",
+                    "object": "none"
                 }
             }
         ]
