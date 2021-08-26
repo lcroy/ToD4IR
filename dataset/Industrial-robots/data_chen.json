@@ -117,7 +117,7 @@
                 "user": "It is a box",
                 "system": "Sure, I will delivery the box to the warehouse. Do you want me to execute the mission now?",
                 "s_system": "It is going to be a busy day. But I like it.",
-                "slot": {
+                "slots": {
                     "assembly": {
                         "DB_request": {
                             "req": {
