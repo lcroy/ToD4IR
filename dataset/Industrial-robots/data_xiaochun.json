@@ -1,17 +1,15 @@
 {
-  "DL00001.json": {
-        "goal": {
+  "DL00101.json": {
+        "domain": {
             "assembly": false,
             "delivery": true
         },
-        "log": [
+        "turn": [
             {
-                "text": "I have a package here. I want you to help me to deliver it to the lab.",
-                "metadata": {}
-            },
-            {
-                "text": "okay , do you have a specific location you want me to deliver the object?",
-                "metadata": {
+                "user": "Could you deliver the box for me please?",
+                "system": "sure, where do you want to deliver it?",
+                "s_system": "",
+                "slots": {
                     "assembly": {
                         "DB_request": {
                             "req": {
@@ -35,7 +33,7 @@
                     "delivery": {
                         "DB_request": {
                             "req": {
-                                "area":"lab",
+                                "area":"not mentioned",
                                 "destination": "not mentioned"
                             },
                             "opt": {
@@ -45,7 +43,7 @@
                         },
                         "T_inform": {
                             "req": {
-                                "object": "not mentioned"
+                                "object": "box"
                             },
                             "opt": {
                                 "color": "not mentioned",
@@ -54,15 +52,18 @@
                             "type": "delivery"
                         }
                     }
+                },
+                "search_result": {
+                    "area":"undetected",
+                    "location": "undetected",
+                    "object": "none"
                 }
             },
             {
-                "text": "Yes, it is warehouse.",
-                "metadata": {}
-            },
-            {
-                "text": "i found location warehouse in the building lab. What do you want me to deliver?",
-                "metadata": {
+                "user": "Yes, it is office in the lab.",
+                "system": "OK, i found location office in the  lab.",
+                "s_system": "I'm so happy！",
+                "slots": {
                     "assembly": {
                         "DB_request": {
                             "req": {
@@ -87,58 +88,7 @@
                         "DB_request": {
                             "req": {
                                 "area":"lab",
-                                "destination": "warehouse"
-                            },
-                            "opt": {
-                                "sender": "not mentioned",
-                                "recipient": "not mentioned"
-                            }
-                        },
-                        "T_inform": {
-                            "req": {
-                                "object": "not mentioned"
-                            },
-                            "opt": {
-                                "color": "not mentioned",
-                                "size": "not mentioned"
-                            },
-                            "type": "delivery"
-                        }
-                    }
-                }
-            },
-            {
-                "text": "It is a box",
-                "metadata": {}
-            },
-            {
-                "text": "Sure, I will delivery the box to the warehouse. Do you want me to execute the mission now?",
-                "metadata": {
-                    "assembly": {
-                        "DB_request": {
-                            "req": {
-                                "producttype": ""
-                            },
-                            "opt": {}
-                        },
-                        "T_inform": {
-                            "req": {
-                                "product": "",
-                                "quantity": ""
-                            },
-                            "opt": {
-                                "color": "",
-                                "holeonPCB": "",
-                                "deadline": ""
-                            },
-                            "type": ""
-                        }
-                    },
-                    "delivery": {
-                        "DB_request": {
-                            "req": {
-                                "area":"lab",
-                                "destination": "warehouse"
+                                "destination": "office"
                             },
                             "opt": {
                                 "sender": "not mentioned",
@@ -156,15 +106,18 @@
                             "type": "delivery"
                         }
                     }
+                },
+                "search_result": {
+                    "area":"detected",
+                    "location": "detected",
+                    "object": "none"
                 }
             },
             {
-                "text": "yes, that will be great. Thanks.",
-                "metadata": {}
-            },
-            {
-                "text": "Sure, thank you for using our services.",
-                "metadata": {
+                "user": "Great, please delivery it now",
+                "system": "Sure, I can execute the mission, but I need to know the recipient.",
+                "s_system": "Sorry for time",
+                "slot": {
                     "assembly": {
                         "DB_request": {
                             "req": {
@@ -189,7 +142,7 @@
                         "DB_request": {
                             "req": {
                                 "area":"lab",
-                                "destination": "warehouse"
+                                "destination": "office"
                             },
                             "opt": {
                                 "sender": "not mentioned",
@@ -207,23 +160,81 @@
                             "type": "delivery"
                         }
                     }
+                },
+                "search_result": {
+                    "area":"detected",
+                    "location": "detected",
+                    "object": "none"
+                }
+            },
+            {
+                "user": "yes, send it to Tom please.",
+                "system": "Sure, can I do the mission now?",
+                "s_system": "If you would",
+                "slots": {
+                    "assembly": {
+                        "DB_request": {
+                            "req": {
+                                "producttype": ""
+                            },
+                            "opt": {}
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "",
+                                "quantity": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "holeonPCB": "",
+                                "deadline": ""
+                            },
+                            "type": ""
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area":"lab",
+                                "destination": "office"
+                            },
+                            "opt": {
+                                "sender": "not mentioned",
+                                "recipient": "Tom"
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": "box"
+                            },
+                            "opt": {
+                                "color": "not mentioned",
+                                "size": "not mentioned"
+                            },
+                            "type": "delivery"
+                        }
+                    }
+                },
+                "search_result": {
+                    "area":"detected",
+                    "location": "detected",
+                    "recipient": "Tom",
+                    "object": "none"
                 }
             }
         ]
     },
-  "DL00002.json": {
-        "goal": {
+  "DL00102.json": {
+        "domain": {
             "assembly": true,
             "delivery": false
         },
-        "log": [
+        "turn": [
             {
-                "text": "I need you to help me with some assembly tasks.",
-                "metadata": {}
-            },
-            {
-                "text": "okay , what kind of product you want to assemble?",
-                "metadata": {
+                "user": "Hi, friend! I need your help",
+                "system": "okay , what do you want me to do?",
+                "s_system": "You know, I am really a nice friend.",
+                "slots": {
                     "assembly": {
                         "DB_request": {
                             "req": {
@@ -266,15 +277,18 @@
                             "type": ""
                         }
                     }
+                },
+                "search_result": {
+                    "producttype":"none",
+                    "product": "none",
+                    "quantity": "none"
                 }
             },
             {
-                "text": "Do you know how to assemble phones?",
-                "metadata": {}
-            },
-            {
-                "text": "Yes, I can do phone assembly. How many you want me to assemble?",
-                "metadata": {
+                "user": "Please help me assemble these black phones?",
+                "system": "Sure. How many are there?",
+                "s_system": "It's my pleasure.",
+                "slots": {
                     "assembly": {
                         "DB_request": {
                             "req": {
@@ -288,7 +302,7 @@
                                 "quantity": "not mentioned"
                             },
                             "opt": {
-                                "color": "not mentioned",
+                                "color": "black",
                                 "holeonPCB": "not mentioned",
                                 "deadline": "not mentioned"
                             },
@@ -317,19 +331,23 @@
                             "type": ""
                         }
                     }
+                },
+                "search_result": {
+                    "producttype":"detected",
+                    "product": "detected",
+                    "quantity": "none"
                 }
             },
             {
-                "text": "Great, please assemble 5 white phones.",
-                "metadata": {}
-            },
-            {
-                "text": "Sure, I will assemble 5 white phones for you.",
-                "metadata": {
+                "user": "just 6.",
+                "system": "Sure, I will assemble 6 black phones for you.",
+                "s_system": "Black phone is popular recently.",
+                "slots": {
                     "assembly": {
                         "DB_request": {
                             "req": {
-                                "producttype": "phone"
+                                "producttype": "phone",
+                                "quantity": "6"
                             },
                             "opt": {}
                         },
@@ -339,7 +357,7 @@
                                 "quantity": "5"
                             },
                             "opt": {
-                                "color": "white",
+                                "color": "black",
                                 "holeonPCB": "not mentioned",
                                 "deadline": "not mentioned"
                             },
@@ -368,29 +386,33 @@
                             "type": ""
                         }
                     }
+                },
+                "search_result": {
+                    "producttype":"detected",
+                    "product": "detected",
+                    "quantity": "detected"
                 }
             },
             {
-                "text": "Thank you for your help.",
-                "metadata": {}
-            },
-            {
-                "text": "Sure, you are welcome.",
-                "metadata": {
+                "user": "Great,many thanks.",
+                "system": "You are welcome.",
+                "s_system": "Nice talking with you.",
+                "slots": {
                     "assembly": {
                         "DB_request": {
                             "req": {
-                                "producttype": "phone"
+                                "producttype": "phone",
+                                "quantity": "6"
                             },
                             "opt": {}
                         },
                         "T_inform": {
                             "req": {
                                 "product": "phone",
-                                "quantity": "5"
+                                "quantity": "6"
                             },
                             "opt": {
-                                "color": "white",
+                                "color": "black",
                                 "holeonPCB": "not mentioned",
                                 "deadline": "not mentioned"
                             },
@@ -419,6 +441,11 @@
                             "type": ""
                         }
                     }
+                },
+                "search_result": {
+                    "producttype":"detected",
+                    "product": "detected",
+                    "quantity": "detected"
                 }
             }
         ]
