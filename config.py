@@ -7,7 +7,7 @@ class Config:
         self.project_path = os.path.dirname(os.path.abspath(__file__))
 
         # models path
-        # self.model_path = os.path.join(self.project_path, 'models')
+        self.model_path = os.path.join(self.project_path, 'train_models')
         # self.main_model_LSTM_path = os.path.join(self.model_path, 'main_intent/main.pt')
         # self.main_model_BERT_path = os.path.join(self.model_path, 'main_intent/main_intent.pt')
         # self.mir_model_path = os.path.join(self.model_path, 'mir')
@@ -16,8 +16,10 @@ class Config:
         self.dataset_path = os.path.join(self.project_path, 'dataset')
         self.dataset_path_IR = os.path.join(self.dataset_path, 'Industrial-robots/data_chen.json')
         self.dataset_path_IR_lex = os.path.join(self.dataset_path, 'Industrial-robots/train.context.belief.sysact.tres.sres.lex')
-        self.dataset_path_IR_delex = os.path.join(self.dataset_path,
+        self.dataset_path_IR_train_delex = os.path.join(self.dataset_path,
                                                 'Industrial-robots/train.context.belief.sysact.tres.sres.delex')
+        self.dataset_path_IR_val_delex = os.path.join(self.dataset_path,
+                                                  'Industrial-robots/train.context.belief.sysact.tres.sres.delex')
 
         #
         # self.main_intent_dataset_path = os.path.join(self.dataset_path, 'main_intent')
