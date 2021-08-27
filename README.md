@@ -8,8 +8,6 @@ e.g., [Mobile Industrial Robot](https://www.mobile-industrial-robots.com/en/),
 conversation strategies are introduced to generate near human response to provide a more natural and flexible conversation
 environment.
 
-We propose xxx We show xxx
-
 ## IRWOZ
 Industrial Robots Domain Wizard-of-Oz dataset (IRWOZ), a fully-labeled dialogue dataset of human-human conversations spanning 
 over two domains (Robot Assembly, Robot Delivery). At a size of xxx dialogues, it aims to provide simulated dialogues between
@@ -18,13 +16,11 @@ industrial setup. To the best of our knowledge, IRWOZ is the first annotated tas
 manufacturing domain.
 
 ### Data Structure
-There are two single-domain dialogues and xxx multi-domain dialogues consisting of at least x up to x domains. 
-
-To maintain a high scalability, IRWOZ is constructed by following data structure of the most popular 
+To maintain a high scalability, IRWOZ has a similar data structure of the most popular 
 Multi-Domain Wizard-of-Oz dataset ([MultiWOZ](https://github.com/budzianowski/multiwoz)). 
-Each dialogue consists of a goal, multiple user and system utterances as well as a belief state. 
+Each dialogue consists of a domain, multiple user&system utterances and belief state as well as system act. 
 
 The belief state have two sections: DB_request and T_inform. DB_request refers to slots that need to be
 used for query the database. T_inform includes slots which relate to the task. Each of them includes 
 required (req) and optional (opt) sections. "req" contains all the slots must be obtained during the
-dialogue while the slots in "opt" are the optional.
+dialogue while the slots in "opt" are the optional. 
