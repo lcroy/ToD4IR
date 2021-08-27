@@ -56,7 +56,7 @@
                 "search_result": {
                     "area":"detected",
                     "location": "undetected",
-                    "object": "none"
+                    "object": "null"
                 }
             },
             {
@@ -110,7 +110,7 @@
                 "search_result": {
                     "area":"detected",
                     "location": "detected",
-                    "object": "none"
+                    "object": "null"
                 }
             },
             {
@@ -278,9 +278,9 @@
                     }
                 },
                 "search_result": {
-                    "producttype":"none",
-                    "product": "none",
-                    "quantity": "none"
+                    "producttype":"null",
+                    "product": "null",
+                    "quantity": "null"
                 }
             },
             {
@@ -334,7 +334,7 @@
                 "search_result": {
                     "producttype":"detected",
                     "product": "detected",
-                    "quantity": "none"
+                    "quantity": "null"
                 }
             },
             {

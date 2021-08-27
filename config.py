@@ -15,7 +15,10 @@ class Config:
         # data
         self.dataset_path = os.path.join(self.project_path, 'dataset')
         self.dataset_path_IR = os.path.join(self.dataset_path, 'Industrial-robots/data_chen.json')
-        self.dataset_path_IR_lex = os.path.join(self.dataset_path, 'Industrial-robots/train.xiaochun')
+        self.dataset_path_IR_lex = os.path.join(self.dataset_path, 'Industrial-robots/train.context.belief.sysact.tres.sres.lex')
+        self.dataset_path_IR_delex = os.path.join(self.dataset_path,
+                                                'Industrial-robots/train.context.belief.sysact.tres.sres.delex')
+
         #
         # self.main_intent_dataset_path = os.path.join(self.dataset_path, 'main_intent')
         # self.main_intent_dataset_csv = os.path.join(self.main_intent_dataset_path, 'train/main_intent.tsv')

@@ -1,48 +1,17 @@
-
-Training belief prediction 
 <|endoftext|>
-	<|context|>
-		<|user|>
-		<|system|>
-		<|s_system|>
-	<|endofcontext|>
-	<|belief|>
-		<|DB_request_req|>
-		<|T_inform_req|>
-		<|DB_request_opt|>
-		<|T_inform_opt|>
-	<|endofbelief|>
-<|endoftext|>
-
-
-Training response (T + S) generation
- <|endoftext|>
-	<|context|>
-		<|user|>
-		<|system|>
-		<|s_system|>
-	<|endofcontext|>
-	<|belief|>
-		<|DB_request_req|>
-		<|T_inform_req|>
-		<|DB_request_opt|>
-		<|T_inform_opt|>
-	<|endofbelief|>
-	<|searchresult|>
-<|endoftext|>
-
-
- <|endoftext|>
-	<|context|>
-		<|user|> hello, I want you to deliver the box to office at lab.
-		<|system|> sorry, I can not find the [location]. Can you tell me again?
-		<|s_system|> wow, there are so many packages I delivered to lab today.
-	<|endofcontext|> 
-	<|belief|>
-		<|DB_request_req|> delivery area=lab location=office
-		<|T_inform_req|> delivery object=box
-		<|DB_request_opt|> null 
-		<|T_inform_opt|> null
-	<|endofbelief|>
-	<|search_result|> delivery area=detected location=undetected object=box
+	<|boc|>
+		<|user|> i need you to help me with some assembly tasks .
+		<|sys|> okay , what kind of product you want to assemble ?
+		<|user|> do you know how to assemble phones ?
+		<|sys|> yes , i can do [producttype] assembly . how many you want me to assemble ?
+		<|user|> great , please assemble 5 white phones .
+	<|eoc|>
+	<|bob|>
+		<|DB_req|> assembly producttype=phone
+		<|T_req|> assembly product=phone quantity=5
+		<|T_opt|> assembly color=white
+	<|eob|>
+	<|sys_act|> producttype=detected product=detected quantity=detected
+	<|boTres|> sure , i will assemble [quantity] [color] [producttype]s for you . <|eoTres|>
+	<|boSres|> wow , i can see this color is getting popular . <|eoSres|>
 <|endoftext|>
