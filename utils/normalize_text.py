@@ -42,38 +42,8 @@ def normalize(text):
     # replace white spaces in front and end
     text = re.sub(r'^\s*|\s*$', '', text)
 
-    # hotel domain pfb30
-    text = re.sub(r"b&b", "bed and breakfast", text)
-    text = re.sub(r"b and b", "bed and breakfast", text)
-
-    # normalize phone number
-    ms = re.findall('\(?(\d{3})\)?[-.\s]?(\d{3})[-.\s]?(\d{4,5})', text)
-    if ms:
-        sidx = 0
-        for m in ms:
-            sidx = text.find(m[0], sidx)
-            if text[sidx - 1] == '(':
-                sidx -= 1
-            eidx = text.find(m[-1], sidx) + len(m[-1])
-            text = text.replace(text[sidx:eidx], ''.join(m))
-
-    # normalize postcode
-    ms = re.findall('([a-z]{1}[\. ]?[a-z]{1}[\. ]?\d{1,2}[, ]+\d{1}[\. ]?[a-z]{1}[\. ]?[a-z]{1}|[a-z]{2}\d{2}[a-z]{2})',
-                    text)
-    if ms:
-        sidx = 0
-        for m in ms:
-            sidx = text.find(m, sidx)
-            eidx = sidx + len(m)
-            text = text[:sidx] + re.sub('[,\. ]', '', m) + text[eidx:]
-
     # weird unicode bug
     text = re.sub(u"(\u2018|\u2019)", "'", text)
-
-    # replace time and and price
-    text = re.sub(timepat, ' [value_time] ', text)
-    text = re.sub(pricepat, ' [value_price] ', text)
-    #text = re.sub(pricepat2, '[value_price]', text)
 
     # replace st.
     text = text.replace(';', ',')
@@ -236,13 +206,3 @@ def sentence_bleu_4(hyp, refs, weights=[0.25, 0.25, 0.25, 0.25]):
     bleu_hyp = bp * math.exp(s)
 
     return bleu_hyp
-
-if __name__ == '__main__':
-    text = "restaurant's CB39AL one seven"
-    text = "I'm I'd restaurant's CB39AL 099939399 one seven"
-    text = "ndd 19.30 nndd"
-    #print re.match("(\d+).(\d+)", text)
-    m = re.findall("(\d+\.\d+)", text)
-    #print m[0].strip('.')
-    #print m.groups()
-    #print text
