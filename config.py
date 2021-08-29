@@ -13,6 +13,7 @@ class Config:
         # self.mir_model_path = os.path.join(self.model_path, 'mir')
 
         # data
+        # for model training
         self.dataset_path = os.path.join(self.project_path, 'dataset')
         self.dataset_path_IR = os.path.join(self.dataset_path, 'Industrial-robots/data_chen.json')
         self.dataset_path_IR_lex = os.path.join(self.dataset_path, 'Industrial-robots/train.context.belief.sysact.tres.sres.lex')
@@ -20,6 +21,9 @@ class Config:
                                                 'Industrial-robots/train.context.belief.sysact.tres.sres.delex')
         self.dataset_path_IR_val_delex = os.path.join(self.dataset_path,
                                                   'Industrial-robots/train.context.belief.sysact.tres.sres.delex')
+
+        # for real time prediction
+        self.dataset_path_production_db = 'C:/Users/lcroy/OneDrive/Desktop/IRDB.db'
 
         #
         # self.main_intent_dataset_path = os.path.join(self.dataset_path, 'main_intent')

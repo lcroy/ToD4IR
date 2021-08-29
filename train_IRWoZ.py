@@ -273,6 +273,7 @@ def evaluate(args, model, tokenizer, prefix=""):
         nb_eval_steps += 1
 
     eval_loss = eval_loss / nb_eval_steps
+    # print(eval_loss)
     perplexity = torch.exp(torch.tensor(eval_loss))
 
     result = {"perplexity": perplexity}
