@@ -34,20 +34,20 @@
                         "DB_request": {
                             "req": {
                                 "area":"lab",
-                                "destination": "not mentioned"
+                                "location": "not_mentioned"
                             },
                             "opt": {
-                                "sender": "not mentioned",
-                                "recipient": "not mentioned"
+                                "sender": "not_mentioned",
+                                "recipient": "not_mentioned"
                             }
                         },
                         "T_inform": {
                             "req": {
-                                "object": "not mentioned"
+                                "object": "not_mentioned"
                             },
                             "opt": {
-                                "color": "not mentioned",
-                                "size": "not mentioned"
+                                "color": "not_mentioned",
+                                "size": "not_mentioned"
                             },
                             "type": "delivery"
                         }
@@ -88,20 +88,20 @@
                         "DB_request": {
                             "req": {
                                 "area":"lab",
-                                "destination": "warehouse"
+                                "location": "warehouse"
                             },
                             "opt": {
-                                "sender": "not mentioned",
-                                "recipient": "not mentioned"
+                                "sender": "not_mentioned",
+                                "recipient": "not_mentioned"
                             }
                         },
                         "T_inform": {
                             "req": {
-                                "object": "not mentioned"
+                                "object": "not_mentioned"
                             },
                             "opt": {
-                                "color": "not mentioned",
-                                "size": "not mentioned"
+                                "color": "not_mentioned",
+                                "size": "not_mentioned"
                             },
                             "type": "delivery"
                         }
@@ -142,11 +142,11 @@
                         "DB_request": {
                             "req": {
                                 "area":"lab",
-                                "destination": "warehouse"
+                                "location": "warehouse"
                             },
                             "opt": {
-                                "sender": "not mentioned",
-                                "recipient": "not mentioned"
+                                "sender": "not_mentioned",
+                                "recipient": "not_mentioned"
                             }
                         },
                         "T_inform": {
@@ -154,8 +154,8 @@
                                 "object": "box"
                             },
                             "opt": {
-                                "color": "not mentioned",
-                                "size": "not mentioned"
+                                "color": "not_mentioned",
+                                "size": "not_mentioned"
                             },
                             "type": "delivery"
                         }
@@ -196,11 +196,11 @@
                         "DB_request": {
                             "req": {
                                 "area":"lab",
-                                "destination": "warehouse"
+                                "location": "warehouse"
                             },
                             "opt": {
-                                "sender": "not mentioned",
-                                "recipient": "not mentioned"
+                                "sender": "not_mentioned",
+                                "recipient": "not_mentioned"
                             }
                         },
                         "T_inform": {
@@ -208,8 +208,8 @@
                                 "object": "box"
                             },
                             "opt": {
-                                "color": "not mentioned",
-                                "size": "not mentioned"
+                                "color": "not_mentioned",
+                                "size": "not_mentioned"
                             },
                             "type": "delivery"
                         }
@@ -237,19 +237,19 @@
                     "assembly": {
                         "DB_request": {
                             "req": {
-                                "producttype": "not mentioned"
+                                "producttype": "not_mentioned"
                             },
                             "opt": {}
                         },
                         "T_inform": {
                             "req": {
-                                "product": "not mentioned",
-                                "quantity": "not mentioned"
+                                "product": "not_mentioned",
+                                "quantity": "not_mentioned"
                             },
                             "opt": {
-                                "color": "not mentioned",
-                                "holeonPCB": "not mentioned",
-                                "deadline": "not mentioned"
+                                "color": "not_mentioned",
+                                "holeonPCB": "not_mentioned",
+                                "deadline": "not_mentioned"
                             },
                             "type": "assembly"
                         }
@@ -258,7 +258,7 @@
                         "DB_request": {
                             "req": {
                                 "area":"",
-                                "destination": ""
+                                "location": ""
                             },
                             "opt": {
                                 "sender": "",
@@ -298,12 +298,12 @@
                         "T_inform": {
                             "req": {
                                 "product": "phone",
-                                "quantity": "not mentioned"
+                                "quantity": "not_mentioned"
                             },
                             "opt": {
-                                "color": "not mentioned",
-                                "holeonPCB": "not mentioned",
-                                "deadline": "not mentioned"
+                                "color": "not_mentioned",
+                                "holeonPCB": "not_mentioned",
+                                "deadline": "not_mentioned"
                             },
                             "type": "assembly"
                         }
@@ -312,7 +312,7 @@
                         "DB_request": {
                             "req": {
                                 "area":"",
-                                "destination": ""
+                                "location": ""
                             },
                             "opt": {
                                 "sender": "",
@@ -356,8 +356,8 @@
                             },
                             "opt": {
                                 "color": "white",
-                                "holeonPCB": "not mentioned",
-                                "deadline": "not mentioned"
+                                "holeonPCB": "not_mentioned",
+                                "deadline": "not_mentioned"
                             },
                             "type": "assembly"
                         }
@@ -366,7 +366,7 @@
                         "DB_request": {
                             "req": {
                                 "area":"",
-                                "destination": ""
+                                "location": ""
                             },
                             "opt": {
                                 "sender": "",
@@ -410,8 +410,8 @@
                             },
                             "opt": {
                                 "color": "white",
-                                "holeonPCB": "not mentioned",
-                                "deadline": "not mentioned"
+                                "holeonPCB": "not_mentioned",
+                                "deadline": "not_mentioned"
                             },
                             "type": "assembly"
                         }
@@ -420,7 +420,7 @@
                         "DB_request": {
                             "req": {
                                 "area":"",
-                                "destination": ""
+                                "location": ""
                             },
                             "opt": {
                                 "sender": "",

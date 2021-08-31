@@ -52,7 +52,7 @@ def lex_IRWoZ_data(raw_data, lex_data):
                     opt_flag = 0
                     db_opt = turn['slots'][domain]['DB_request']['opt']
                     for key, value in db_opt.items():
-                        if value != "not mentioned":
+                        if value != "not_mentioned":
                             temp_db_opt += key + "=" + value + " "
                             opt_flag = 1
                     if opt_flag == 1:
@@ -70,7 +70,7 @@ def lex_IRWoZ_data(raw_data, lex_data):
                     opt_flag = 0
                     t_opt = turn['slots'][domain]['T_inform']['opt']
                     for key, value in t_opt.items():
-                        if value != "not mentioned":
+                        if value != "not_mentioned":
                             temp_t_opt += key + "=" + value + " "
                             opt_flag = 1
                     if opt_flag == 1:
@@ -139,7 +139,7 @@ def delex_IRWoZ_data(raw_data, delex_data):
                     for key, value in db_req.items():
                         temp_db_req += key + "=" + value + " "
                         #update t_res with delex representation
-                        if ((value!="") & (value!="not mentioned")):
+                        if ((value!="") & (value!="not_mentioned")):
                             temp_t_res = temp_t_res.replace(value, '[' + key + ']')
                     belief += ' <|DB_req|> ' + dialogue_domain + " " + temp_db_req
 
@@ -148,11 +148,11 @@ def delex_IRWoZ_data(raw_data, delex_data):
                     db_opt = turn['slots'][domain]['DB_request']['opt']
                     opt_flg = 0
                     for key, value in db_opt.items():
-                        if value != "not mentioned":
+                        if value != "not_mentioned":
                             temp_db_opt += key + "=" + value + " "
                             opt_flg = 1
                         #update t_res with delex representation
-                        if ((value!="") & (value!="not mentioned")):
+                        if ((value!="") & (value!="not_mentioned")):
                             temp_t_res = temp_t_res.replace(value, '[' + key + ']')
                     if opt_flg == 1:
                         belief += ' <|DB_opt|> ' + dialogue_domain + " " + temp_db_opt
@@ -163,7 +163,7 @@ def delex_IRWoZ_data(raw_data, delex_data):
                     for key, value in t_req.items():
                         temp_t_req += key + "=" + value + " "
                         # update t_res with delex representation
-                        if ((value != "") & (value != "not mentioned")):
+                        if ((value != "") & (value != "not_mentioned")):
                             temp_t_res = temp_t_res.replace(value, '[' + key + ']')
                     belief += ' <|T_req|> ' + dialogue_domain + " " + temp_t_req
 
@@ -172,11 +172,11 @@ def delex_IRWoZ_data(raw_data, delex_data):
                     t_opt = turn['slots'][domain]['T_inform']['opt']
                     opt_flg = 0
                     for key, value in t_opt.items():
-                        if value != "not mentioned":
+                        if value != "not_mentioned":
                             temp_t_opt += key + "=" + value + " "
                             opt_flg = 1
                         # update t_res with delex representation
-                        if ((value != "") & (value != "not mentioned")):
+                        if ((value != "") & (value != "not_mentioned")):
                             temp_t_res = temp_t_res.replace(value, '[' + key + ']')
 
                     if opt_flg == 1:
