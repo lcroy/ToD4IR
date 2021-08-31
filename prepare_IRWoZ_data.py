@@ -39,19 +39,24 @@ def lex_IRWoZ_data(raw_data, lex_data):
             for i, domain in enumerate(turn['slots']):
                 # find the domain
                 if domain == dialogue_domain:
+
                     # write the db search required slots
                     temp_db_req = ""
                     db_req = turn['slots'][domain]['DB_request']['req']
                     for key, value in db_req.items():
                         temp_db_req += key + "=" + value + " "
                     belief += ' <|DB_req|> ' + dialogue_domain + " " + temp_db_req
+
                     # write the db search optional slots
                     temp_db_opt = ""
+                    opt_flag = 0
                     db_opt = turn['slots'][domain]['DB_request']['opt']
                     for key, value in db_opt.items():
                         if value != "not mentioned":
                             temp_db_opt += key + "=" + value + " "
-                    belief += ' <|DB_opt|> ' + dialogue_domain + " " + temp_db_opt
+                            opt_flag = 1
+                    if opt_flag == 1:
+                        belief += ' <|DB_opt|> ' + dialogue_domain + " " + temp_db_opt
 
                     # write the task related info slots
                     temp_t_req = ""
@@ -59,13 +64,18 @@ def lex_IRWoZ_data(raw_data, lex_data):
                     for key, value in t_req.items():
                         temp_t_req += key + "=" + value + " "
                     belief += ' <|T_req|> ' + dialogue_domain + " " + temp_t_req
+
                     # write the db search optional slots
                     temp_t_opt = ""
+                    opt_flag = 0
                     t_opt = turn['slots'][domain]['T_inform']['opt']
                     for key, value in t_opt.items():
                         if value != "not mentioned":
                             temp_t_opt += key + "=" + value + " "
-                    belief += ' <|T_opt|> ' + dialogue_domain + " " + temp_t_opt
+                            opt_flag = 1
+                    if opt_flag == 1:
+                        belief += ' <|T_opt|> ' + dialogue_domain + " " + temp_t_opt
+
             belief += ' <|eob|> '
 
             #write system act
@@ -75,9 +85,9 @@ def lex_IRWoZ_data(raw_data, lex_data):
 
             # write sys + small talk response
             temp_t_res = normalize(turn['system'])
-            temp_r_res = normalize(turn['s_system'])
+            temp_s_res = normalize(turn['s_system'])
             t_res = ' <|boTres|> ' + temp_t_res + ' <|eoTres|>'
-            s_res = ' <|boSres|> ' + temp_r_res + ' <|eoSres|>'
+            s_res = ' <|boSres|> ' + temp_s_res + ' <|eoSres|>'
 
             # final text
             text = context + belief + sys_act + t_res + s_res
@@ -196,7 +206,7 @@ def main():
     # format the raw dialogues to lex data
     lex_IRWoZ_data(cfg.dataset_path_IR, cfg.dataset_path_IR_lex)
 
-    # format the raw dialogues to lex data
+    # format the raw dialogues to delex data
     delex_IRWoZ_data(cfg.dataset_path_IR, cfg.dataset_path_IR_delex)
 
 
