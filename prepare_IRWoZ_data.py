@@ -56,14 +56,14 @@ def lex_IRWoZ_data(raw_data, lex_data):
                             temp_db_opt += key + "=" + value + " "
                             opt_flag = 1
                     if opt_flag == 1:
-                        belief += ' <|DB_opt|> ' + dialogue_domain + " " + temp_db_opt
+                        belief += '<|DB_opt|> ' + dialogue_domain + " " + temp_db_opt
 
                     # write the task related info slots
                     temp_t_req = ""
                     t_req = turn['slots'][domain]['T_inform']['req']
                     for key, value in t_req.items():
                         temp_t_req += key + "=" + value + " "
-                    belief += ' <|T_req|> ' + dialogue_domain + " " + temp_t_req
+                    belief += '<|T_req|> ' + dialogue_domain + " " + temp_t_req
 
                     # write the db search optional slots
                     temp_t_opt = ""
@@ -74,14 +74,16 @@ def lex_IRWoZ_data(raw_data, lex_data):
                             temp_t_opt += key + "=" + value + " "
                             opt_flag = 1
                     if opt_flag == 1:
-                        belief += ' <|T_opt|> ' + dialogue_domain + " " + temp_t_opt
+                        belief += '<|T_opt|> ' + dialogue_domain + " " + temp_t_opt
 
-            belief += ' <|eob|> '
+            belief += '<|eob|>'
 
             #write system act
-            sys_act = ' <|sys_act|> '
+            sys_act = '<|bosys_act|> ' + dialogue_domain + ' '
             for key, value in turn['search_result'].items():
                 sys_act += key + "=" + value + " "
+
+            sys_act += '<|eosys_act|>'
 
             # write sys + small talk response
             temp_t_res = normalize(turn['system'])
@@ -165,7 +167,7 @@ def delex_IRWoZ_data(raw_data, delex_data):
                         # update t_res with delex representation
                         if ((value != "") & (value != "not_mentioned")):
                             temp_t_res = temp_t_res.replace(value, '[' + key + ']')
-                    belief += ' <|T_req|> ' + dialogue_domain + " " + temp_t_req
+                    belief += '<|T_req|> ' + dialogue_domain + " " + temp_t_req
 
                     # write the task related info slots
                     temp_t_opt = ""
@@ -182,16 +184,18 @@ def delex_IRWoZ_data(raw_data, delex_data):
                     if opt_flg == 1:
                         belief += ' <|T_opt|> ' + dialogue_domain + " " + temp_t_opt
 
-            belief += ' <|eob|> '
+            belief += '<|eob|> '
 
             # updated system response
             t_res = ' <|boTres|> ' + temp_t_res + ' <|eoTres|>'
             s_res = ' <|boSres|> ' + temp_r_res + ' <|eoSres|>'
 
             # write system act
-            sys_act = ' <|sys_act|> '
+            sys_act = '<|bosys_act|> ' + dialogue_domain + ' '
             for key, value in turn['search_result'].items():
                 sys_act += key + "=" + value + " "
+
+            sys_act += '<|eosys_act|>'
 
             # final text
             text = context + belief + sys_act + t_res + s_res

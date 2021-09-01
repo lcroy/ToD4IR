@@ -43,3 +43,6 @@ def text_to_speech_microsoft(text):
     speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config)
     print("Max: " + text)
     result = speech_synthesizer.speak_text(text)
+
+
+speech_to_text_microsoft()
