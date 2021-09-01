@@ -14,9 +14,9 @@ class Config:
         # for model training
         self.dataset_path = os.path.join(self.project_path, 'dataset')
         self.dataset_path_IR = os.path.join(self.dataset_path, 'Industrial-robots/data_chen.json')
-        self.dataset_path_IR_lex = os.path.join(self.dataset_path, 'Industrial-robots/train.context.belief.sysact.tres.sres.lex')
-        self.dataset_path_IR_delex = os.path.join(self.dataset_path,
-                                                'Industrial-robots/train.context.belief.sysact.tres.sres.delex')
+        self.dataset_path_IR_delex = os.path.join(self.dataset_path, 'Industrial-robots/train.context.belief.sysact.tres.sres.delex')
+        self.dataset_path_IR_pre_delex = os.path.join(self.dataset_path,
+                                                'Industrial-robots/train.context.belief.sysact.tres.sres.pre.delex')
         self.dataset_path_IR_val_delex = os.path.join(self.dataset_path,
                                                   'Industrial-robots/train.context.belief.sysact.tres.sres.delex')
 

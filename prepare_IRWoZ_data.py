@@ -6,7 +6,7 @@ from utils.normalize_text import normalize
 from transformers import GPT2Tokenizer
 gpt2_tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
 
-def lex_IRWoZ_data(raw_data, lex_data):
+def delex_IRWoZ_data(raw_data, delex_data):
 
     IRWoZ_data = json.load(open(raw_data, 'r'))
 
@@ -32,10 +32,14 @@ def lex_IRWoZ_data(raw_data, lex_data):
                 context = '<|boc|> ' + user + ' <|eoc|>'
             else:
                 context = context.replace(' <|eoc|>', '')
-                context += ' <|sys|> ' + temp_t_res + temp_s_res + ' <|user|> ' + normalize(turn['user']) + ' <|eoc|>'
+                context += ' <|sys|> ' + pre_t_res + ' ' + pre_s_res + ' <|user|> ' + normalize(turn['user']) + ' <|eoc|>'
+
+            # write sys + small talk response
+            temp_t_res = normalize(turn['system'])
+            temp_s_res = normalize(turn['s_system'])
 
             #write belief
-            belief = ' <|bob|> '
+            belief = ' <|bob|>'
             for i, domain in enumerate(turn['slots']):
                 # find the domain
                 if domain == dialogue_domain:
@@ -45,6 +49,9 @@ def lex_IRWoZ_data(raw_data, lex_data):
                     db_req = turn['slots'][domain]['DB_request']['req']
                     for key, value in db_req.items():
                         temp_db_req += key + "=" + value + " "
+                        # update t_res with delex representation
+                        if ((value != "") & (value != "not_mentioned")):
+                            temp_t_res = temp_t_res.replace(value, '[' + key + ']')
                     belief += ' <|DB_req|> ' + dialogue_domain + " " + temp_db_req
 
                     # write the db search optional slots
@@ -54,6 +61,9 @@ def lex_IRWoZ_data(raw_data, lex_data):
                     for key, value in db_opt.items():
                         if value != "not_mentioned":
                             temp_db_opt += key + "=" + value + " "
+                            # update t_res with delex representation
+                            if ((value != "") & (value != "not_mentioned")):
+                                temp_t_res = temp_t_res.replace(value, '[' + key + ']')
                             opt_flag = 1
                     if opt_flag == 1:
                         belief += '<|DB_opt|> ' + dialogue_domain + " " + temp_db_opt
@@ -63,6 +73,9 @@ def lex_IRWoZ_data(raw_data, lex_data):
                     t_req = turn['slots'][domain]['T_inform']['req']
                     for key, value in t_req.items():
                         temp_t_req += key + "=" + value + " "
+                        # update t_res with delex representation
+                        if ((value != "") & (value != "not_mentioned")):
+                            temp_t_res = temp_t_res.replace(value, '[' + key + ']')
                     belief += '<|T_req|> ' + dialogue_domain + " " + temp_t_req
 
                     # write the db search optional slots
@@ -73,10 +86,13 @@ def lex_IRWoZ_data(raw_data, lex_data):
                         if value != "not_mentioned":
                             temp_t_opt += key + "=" + value + " "
                             opt_flag = 1
+                            # update t_res with delex representation
+                            if ((value != "") & (value != "not_mentioned")):
+                                temp_t_res = temp_t_res.replace(value, '[' + key + ']')
                     if opt_flag == 1:
                         belief += '<|T_opt|> ' + dialogue_domain + " " + temp_t_opt
 
-            belief += '<|eob|>'
+            belief += '<|eob|> '
 
             #write system act
             sys_act = '<|bosys_act|> ' + dialogue_domain + ' '
@@ -85,20 +101,24 @@ def lex_IRWoZ_data(raw_data, lex_data):
 
             sys_act += '<|eosys_act|>'
 
-            # write sys + small talk response
-            temp_t_res = normalize(turn['system'])
-            temp_s_res = normalize(turn['s_system'])
+            # save the current sys + small talk response for next round
+            pre_t_res = normalize(turn['system'])
+            pre_s_res = normalize(turn['s_system'])
+
+            # create delex response
+            temp_t_res = normalize(temp_t_res)
+            temp_s_res = normalize(temp_s_res)
             t_res = ' <|boTres|> ' + temp_t_res + ' <|eoTres|>'
             s_res = ' <|boSres|> ' + temp_s_res + ' <|eoSres|>'
 
             # final text
             text = context + belief + sys_act + t_res + s_res
 
-            with open(lex_data, 'at', encoding='utf-8') as f:
+            with open(delex_data, 'at', encoding='utf-8') as f:
                 f.write('{} {} {}\n'.format(gpt2_tokenizer._bos_token, text, gpt2_tokenizer._bos_token))
 
 
-def delex_IRWoZ_data(raw_data, delex_data):
+def pre_delex_IRWoZ_data(raw_data, pre_delex_data):
 
     IRWoZ_data = json.load(open(raw_data, 'r'))
 
@@ -200,15 +220,15 @@ def delex_IRWoZ_data(raw_data, delex_data):
             # final text
             text = context + belief + sys_act + t_res + s_res
 
-            with open(delex_data, 'at', encoding='utf-8') as f:
+            with open(pre_delex_data, 'at', encoding='utf-8') as f:
                 f.write('{} {} {}\n'.format(gpt2_tokenizer._bos_token, text, gpt2_tokenizer._bos_token))
 
 
 def main():
     cfg = Config()
 
-    # format the raw dialogues to lex data
-    lex_IRWoZ_data(cfg.dataset_path_IR, cfg.dataset_path_IR_lex)
+    # format the raw dialogues to pre_delex data
+    pre_delex_IRWoZ_data(cfg.dataset_path_IR, cfg.dataset_path_IR_pre_delex)
 
     # format the raw dialogues to delex data
     delex_IRWoZ_data(cfg.dataset_path_IR, cfg.dataset_path_IR_delex)
