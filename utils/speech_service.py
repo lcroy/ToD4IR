@@ -1,7 +1,6 @@
 import azure.cognitiveservices.speech as speechsdk
 import time
 
-
 # Microsoft service to recognize speech
 def speech_to_text_microsoft():
     audio_config = speechsdk.audio.AudioConfig(use_default_microphone=True)

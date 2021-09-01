@@ -4,15 +4,23 @@
 # 27-08-2021
 #############################################################################################
 import argparse
+import torch
+import glob
+import random
+import numpy as np
+import os
+import logging
+
 from tqdm import tqdm, trange
 from torch.utils.data import DataLoader, Dataset, RandomSampler
 from torch.nn.utils.rnn import pad_sequence
 from torch.utils.data.distributed import DistributedSampler
 from transformers import WEIGHTS_NAME,GPT2LMHeadModel,GPT2Config,GPT2Tokenizer
 from transformers import AdamW, get_linear_schedule_with_warmup
-from utils.model import *
-
 from config import Config
+
+logger = logging.getLogger(__name__)
+cfg = Config()
 
 try:
     from torch.utils.tensorboard import SummaryWriter
@@ -30,6 +38,19 @@ def initial_seed(init_seed, n_gpu):
     torch.manual_seed(init_seed)
     if n_gpu > 0:
         torch.cuda.manual_seed_all(init_seed)
+
+def save_checkpoint(model, optimizer, scheduler, tokenizer, args):
+    # Save model checkpoint
+    model_to_save = (model.module if hasattr(model, "module") else model)
+    model_to_save.save_pretrained(cfg.model_checkpoint_path)
+    tokenizer.save_pretrained(cfg.model_checkpoint_path)
+
+    torch.save(args, os.path.join(cfg.model_checkpoint_path, "training_args.bin"))
+    logger.info("We are saving model checkpoint to %s", cfg.model_checkpoint_path)
+
+    torch.save(optimizer.state_dict(), os.path.join(cfg.model_checkpoint_path, "optimizer.pt"))
+    torch.save(scheduler.state_dict(), os.path.join(cfg.model_checkpoint_path, "scheduler.pt"))
+    logger.info("We are saving optimizer and scheduler states to %s", cfg.model_checkpoint_path)
 
 class IRWoZDataset(Dataset):
     def __init__(self, tokenizer, args, file_path, block_size=1024):
@@ -273,7 +294,7 @@ def evaluate(args, model, tokenizer, prefix=""):
         nb_eval_steps += 1
 
     eval_loss = eval_loss / nb_eval_steps
-    # print(eval_loss)
+    print(eval_loss)
     perplexity = torch.exp(torch.tensor(eval_loss))
 
     result = {"perplexity": perplexity}
@@ -289,8 +310,6 @@ def evaluate(args, model, tokenizer, prefix=""):
 
 def main():
     parser = argparse.ArgumentParser()
-    cfg = Config()
-
     ## Required parameters
     parser.add_argument("--train_data_file", default=None, type=str, required=True,
                         help="The input training data file which includes delexicalized responses.")

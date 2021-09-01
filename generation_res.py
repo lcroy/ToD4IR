@@ -1,8 +1,6 @@
 import random
-
 import torch
 from transformers import GPT2Tokenizer, GPT2LMHeadModel, OpenAIGPTLMHeadModel, OpenAIGPTTokenizer
-import argparse
 from config import Config
 from utils.speech_service import *
 from utils.dbsearch import *
@@ -130,96 +128,6 @@ def db_search(context_pred_belief):
 
     return results
 
-
-# def main():
-#     parser = argparse.ArgumentParser()
-#
-#     ## Required parameters
-#     parser.add_argument("--eval_data_file", default=None, type=str, required=True,
-#                         help="An optional input evaluation data file to evaluate the perplexity on (a text file).")
-#
-#     parser.add_argument("--output_dir", default=None, type=str, required=True,
-#                         help="The output directory where the model predictions and checkpoints will be written.")
-#
-#     parser.add_argument("--model_type", default="gpt2", type=str,
-#                         help="The model architecture to be fine-tuned.")
-#
-#     parser.add_argument("--model_name_or_path", default="", type=str,
-#                         help="The model checkpoint for weights initialization. ToB4IR is trained from scratch. It does not need this.")
-#
-#     parser.add_argument('--decoding', default='greedy',
-#                         help='decoding method for now.')
-#
-#     parser.add_argument("--config_name", default="", type=str,
-#                         help="Optional pretrained config name or path if not the same as model_name_or_path")
-#
-#     parser.add_argument("--cache_dir", default=None, type=str,
-#                         help="Optional directory to store the downloaded pre-trained models")
-#
-#     parser.add_argument("--block_size", default=1024, type=int,
-#                         help="The default length of input sequnce is the max input 1024.")
-#
-#     parser.add_argument("--max_steps", default=-1, type=int,
-#                         help="If > 0: set total number of training steps to perform. Override num_train_epochs.")
-#
-#     parser.add_argument("--do_train", action='store_true', help="Whether to run training.")
-#
-#     parser.add_argument("--do_eval", action='store_true', help="Whether to run eval on the dev set.")
-#
-#     parser.add_argument("--eval_all_checkpoints", action='store_true',
-#                         help="Evaluate all checkpoints starting with the same prefix as model_name_or_path ending and ending with step number")
-#
-#     parser.add_argument("--per_gpu_train_batch_size", default=1, type=int,
-#                         help="Batch size per GPU/CPU for training.")
-#
-#     parser.add_argument("--per_gpu_eval_batch_size", default=1, type=int,
-#                         help="Batch size per GPU/CPU for evaluation.")
-#
-#     parser.add_argument('--gradient_accumulation_steps', type=int, default=1,
-#                         help="Number of updates steps to accumulate before performing a backward/update pass.")
-#
-#     parser.add_argument("--learning_rate", default=5e-5, type=float,
-#                         help="The initial learning rate for Adam.")
-#
-#     parser.add_argument("--weight_decay", default=0.0, type=float,
-#                         help="Weight deay if we apply some.")
-#
-#     parser.add_argument("--adam_epsilon", default=1e-8, type=float,
-#                         help="Epsilon for Adam optimizer.")
-#
-#     parser.add_argument("--max_grad_norm", default=1.0, type=float,
-#                         help="Max gradient norm.")
-#
-#     parser.add_argument("--warmup_steps", default=0, type=int,
-#                         help="Linear warmup over warmup_steps.")
-#
-#     parser.add_argument("--num_train_epochs", default=10, type=float,
-#                         help="Total number of training epochs to perform.")
-#
-#     parser.add_argument('--logging_steps', type=int, default=100,
-#                         help="Log every 100 updates steps.")
-#
-#     parser.add_argument('--save_steps', type=int, default=5000,
-#                         help="Save checkpoint every 5000 updates steps.")
-#
-#     parser.add_argument("--no_cuda", action='store_true',
-#                         help="Avoid using CUDA when available")
-#
-#     parser.add_argument('--seed', type=int, default=10,
-#                         help="random seed for initialization")
-#
-#     parser.add_argument('--fp16', action='store_true',
-#                         help="Whether to use 16-bit (mixed) precision (through NVIDIA apex) instead of 32-bit")
-#
-#     parser.add_argument("--local_rank", type=int, default=-1,
-#                         help="For distributed training: local_rank")
-#
-#     parser.add_argument('--save_total_limit', type=int, default=None,
-#                         help='Limit the total amount of checkpoints, delete the older checkpoints in the output_dir, does not delete by default')
-#
-#     args = parser.parse_args()
-
-
 def do_generation():
     # load model
     model = GPT2LMHeadModel.from_pretrained(cfg.model_checkpoint_path)
@@ -312,7 +220,7 @@ def do_generation():
             tokens_tensor = tokens_tensor.to(device)
             predicted_index = indexed_tokens[-1]
 
-            # Predict response
+            # Predict system response + small talk response
             with torch.no_grad():
                 # while predicted_index not in endoftext:
                 while predicted_index not in endoftext:
