@@ -24,3 +24,6 @@ The belief state have two sections: DB_request and T_inform. DB_request refers t
 used for query the database. T_inform includes slots which relate to the task. Each of them includes 
 required (req) and optional (opt) sections. "req" contains all the slots must be obtained during the
 dialogue while the slots in "opt" are the optional. The system act contains all the DB search results and status of the required slots. 
+
+### Real Time Robotics database
+IRDB.db is a sqlite3 database. It includes tables, area_location, employee, product, inventory, that supports response generation. 

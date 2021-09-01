@@ -1,6 +1,5 @@
 import os
 
-
 class Config:
     def __init__(self):
         # project path
@@ -19,9 +18,7 @@ class Config:
                                                 'Industrial-robots/train.context.belief.sysact.tres.sres.pre.delex')
         self.dataset_path_IR_val_delex = os.path.join(self.dataset_path,
                                                   'Industrial-robots/train.context.belief.sysact.tres.sres.delex')
-
-        # for real time prediction
-        self.dataset_path_production_db = 'C:/Users/lcroy/OneDrive/Desktop/IRDB.db'
+        self.dataset_path_production_db = os.path.join(self.dataset_path, 'db/IRDB.db')
 
         # parameters
         self.max_length = 1024
