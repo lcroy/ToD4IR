@@ -734,7 +734,7 @@
             {
                 "user": "Hey, there is a package for you.",
                 "system": "Yes, tell me where you want me to deliver it then",
-                "s_system": "",
+                "s_system": "I am always happy to help.",
                 "slots": {
                     "assembly": {
                         "DB_request": {
@@ -786,9 +786,9 @@
                 }
             },
             {
-                "user": "Ah you are right. It is the office.",
-                "system": "Sure, I know where it is. But which is the location then?",
-                "s_system": "Sorry, I need more information to more understand you.",
+                "user": "Sure, send it to the lab.",
+                "system": "yes, lab it is. Can you tell me the location please?",
+                "s_system": "more information are better",
                 "slots": {
                     "assembly": {
                         "DB_request": {
@@ -813,7 +813,7 @@
                     "delivery": {
                         "DB_request": {
                             "req": {
-                                "area":"office",
+                                "area":"lab",
                                 "location": "not_mentioned"
                             },
                             "opt": {
@@ -840,9 +840,9 @@
                 }
             },
             {
-                "user": "It is caffe room.",
-                "system": "Great, caffe room in office. so, what do you want me to deliver then",
-                "s_system": "You can trust me on this.",
+                "user": "It is workshop.",
+                "system": "yes, I find it is registered the system. So, what do you want me to deliver.",
+                "s_system": "Dont worry, I will safely deliver it to the destination.",
                 "slots": {
                     "assembly": {
                         "DB_request": {
@@ -868,7 +868,7 @@
                         "DB_request": {
                             "req": {
                                 "area":"lab",
-                                "location": "caffe room"
+                                "location": "workshop"
                             },
                             "opt": {
                                 "sender": "not_mentioned",
@@ -894,9 +894,9 @@
                 }
             },
             {
-                "user": "yes, it is a trash bag",
-                "system": "Sure, I can do that.",
-                "s_system": "It might take some time but I am good at it.",
+                "user": "it is a big yellow parcel",
+                "system": "Sure, I see.",
+                "s_system": "I will make sure it is delivered it on time",
                 "slots": {
                     "assembly": {
                         "DB_request": {
@@ -921,8 +921,8 @@
                     "delivery": {
                         "DB_request": {
                             "req": {
-                                "area":"office",
-                                "location": "caffe room"
+                                "area":"lab",
+                                "location": "workshop"
                             },
                             "opt": {
                                 "sender": "not_mentioned",
@@ -931,11 +931,11 @@
                         },
                         "T_inform": {
                             "req": {
-                                "object": "trash bag"
+                                "object": "parcel"
                             },
                             "opt": {
-                                "color": "not_mentioned",
-                                "size": "not_mentioned"
+                                "color": "yellow",
+                                "size": "big"
                             },
                             "type": "delivery"
                         }
@@ -948,9 +948,9 @@
                 }
             },
             {
-                "user": "yes, that will be great. Thanks.",
-                "system": "Sure, happy to help you.",
-                "s_system": "call me when you need me then.",
+                "user": "yes, that's it. thanks",
+                "system": "No problem.",
+                "s_system": "I am always happy to help human.",
                 "slots": {
                     "assembly": {
                         "DB_request": {
@@ -975,8 +975,8 @@
                     "delivery": {
                         "DB_request": {
                             "req": {
-                                "area":"office",
-                                "location": "caffe room"
+                                "area":"lab",
+                                "location": "workshop"
                             },
                             "opt": {
                                 "sender": "not_mentioned",
@@ -985,11 +985,11 @@
                         },
                         "T_inform": {
                             "req": {
-                                "object": "trash bag"
+                                "object": "parcel"
                             },
                             "opt": {
-                                "color": "not_mentioned",
-                                "size": "not_mentioned"
+                                "color": "yellow",
+                                "size": "big"
                             },
                             "type": "delivery"
                         }
