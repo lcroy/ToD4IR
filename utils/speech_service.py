@@ -4,7 +4,7 @@ import time
 # Microsoft service to recognize speech
 def speech_to_text_microsoft():
     audio_config = speechsdk.audio.AudioConfig(use_default_microphone=True)
-    speech_config = speechsdk.SpeechConfig(subscription="f6bd8f851e48430ea0ea46bb47fad10a", region="northeurope")
+
     speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config, audio_config=audio_config)
 
     done = False
