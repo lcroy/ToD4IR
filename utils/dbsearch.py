@@ -2,7 +2,6 @@ import sqlite3
 from sqlite3 import Error
 from config import Config
 
-
 #=================================================================
 # Public functions for DB query
 #=================================================================
