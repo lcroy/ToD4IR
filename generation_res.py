@@ -2,7 +2,7 @@ import random
 import torch
 from transformers import GPT2Tokenizer, GPT2LMHeadModel, OpenAIGPTLMHeadModel, OpenAIGPTTokenizer
 from config import Config
-from utils.speech_service import *
+# from utils.speech_service import *
 from utils.dbsearch import *
 from utils.normalize_text import normalize
 
