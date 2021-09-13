@@ -144,23 +144,24 @@ def do_generation():
     dialogue = '<|endoftext|> <|boc|> '
     while True:
         # get user input
-        text_to_speech_microsoft("speak something")
-        text = speech_to_text_microsoft().strip()
+        # text_to_speech_microsoft("speak something")
+        # text = speech_to_text_microsoft().strip()
         # text = 'I want you to help me to deliver it to the lab. <|eoc|>'
+        text = input("User: ")
         if len(text) > 0:
-            text = normalize('i have a package here . i want you to help me to deliver it to the lab .')
+            # text = normalize('i have a package here . i want you to help me to deliver it to the lab .')
             # text = normalize(text)
             # end of the current dialogue and go to next one
             if any(key in text for key in cfg.stop_words):
                 dialogue = '<|endoftext|> <|boc|> '
-                text_to_speech_microsoft(random.choice(cfg.max_end_dialogue))
+                # text_to_speech_microsoft(random.choice(cfg.max_end_dialogue))
                 continue
 
             # add the user utterance to the previous context the "<|eoc|>" location
             loc_eoc = dialogue.find("<|eoc|>")
             if loc_eoc < 0:
                 # the beginning of the dialogue
-                dialogue += ' <|user|> ' + text + " <|eoc|>"
+                dialogue += '<|user|> ' + text + " <|eoc|>"
             else:
                 # during the conversation
                 tmp_context = dialogue.split('<|eoc|>', 1)
@@ -168,7 +169,7 @@ def do_generation():
 
             # encoding the dialogue
             # # tempt = '<|endoftext|> <|boc|> <|user|> I want you to help me to deliver it to the lab . <|eoc|>'
-            dialogue = '<|endoftext|> <|boc|> <|user|> i have a package here . i want you to help me to deliver it to the lab . <|eoc|>'
+            # dialogue = '<|endoftext|> <|boc|> <|user|> i have a package here . i want you to help me to deliver it to the lab . <|eoc|>'
             indexed_tokens = tokenizer.encode(dialogue)
             if len(indexed_tokens) > cfg.max_length:
                 indexed_tokens = indexed_tokens[-1 * cfg.max_length:]
@@ -197,17 +198,17 @@ def do_generation():
 
             dialogue = tokenizer.decode(indexed_tokens)
             # print the intermediate results
-            print(dialogue)
+            # print(dialogue)
             # text_to_speech_microsoft(context_pred_belief)
 
             # extract the domain and slots to query the DB and generate system act
             sys_act = db_search(dialogue)
 
             # context + pred_belief + system actions
-            dialogue += ' <|bosys_act|> ' + sys_act + ' |eosys_act|'
+            dialogue += ' <|bosys_act|> ' + sys_act + ' <|eosys_act|>'
 
             # test
-            print(dialogue)
+            # print(dialogue)
 
             # generation response
             indexed_tokens = tokenizer.encode(dialogue)
@@ -245,7 +246,7 @@ def do_generation():
                 dialogue = tokenizer.decode(indexed_tokens)
 
                 # print the intermediate results
-                print(dialogue)
+                # print(dialogue)
 
                 # lex system response (sysTres)
                 while dialogue.find('[') > 0:
@@ -278,7 +279,8 @@ def do_generation():
                     response = t_res + " " + r_res
 
                 dialogue = new_dialogue + ' <|eoc|>'
-                text_to_speech_microsoft(response)
+                # text_to_speech_microsoft(response)
+                print("Max: " + response)
 
 
 if __name__ == "__main__":

@@ -29,7 +29,7 @@ except:
 
 logger = logging.getLogger(__name__)
 MODEL_CLASSES = {
-    "gpt2": (GPT2Config, GPT2LMHeadModel, GPT2Tokenizer),
+    "gpt2-xl": (GPT2Config, GPT2LMHeadModel, GPT2Tokenizer),
 }
 
 def initial_seed(init_seed, n_gpu):
@@ -320,7 +320,7 @@ def main():
     parser.add_argument("--output_dir", default=None, type=str, required=True,
                         help="The output directory where the model predictions and checkpoints will be written.")
 
-    parser.add_argument("--model_type", default="gpt2", type=str,
+    parser.add_argument("--model_type", default="gpt2-xl", type=str,
                         help="The model architecture to be fine-tuned.")
 
     parser.add_argument("--tokenizer_name", default="", type=str,
