@@ -3457,8 +3457,7 @@
                 "search_result": {
                     "area": "null",
                     "location": "null",
-                    "object": "detected",
-                    "recipient": "detected"
+                    "object": "detected"
                 }
             },
             {
@@ -3512,8 +3511,7 @@
                 "search_result": {
                     "area": "detected",
                     "location": "detected",
-                    "object": "detected",
-                    "recipient": "detected"
+                    "object": "detected"
                 }
             },
             {
@@ -3567,7 +3565,6 @@
                 "search_result": {
                     "area": "detected",
                     "location": "detected",
-                    "recipient": "detected",
                     "object": "detected"
                 }
             }
@@ -3630,8 +3627,7 @@
                 "search_result": {
                     "area": "null",
                     "location": "null",
-                    "object": "detected",
-                    "color": "detected"
+                    "object": "detected"
                 }
             },
             {
@@ -3685,8 +3681,7 @@
                 "search_result": {
                     "area": "detected",
                     "location": "detected",
-                    "object": "detected",
-                    "color": "detected"
+                    "object": "detected"
                 }
             },
             {
@@ -3740,8 +3735,7 @@
                 "search_result": {
                     "area": "detected",
                     "location": "detected",
-                    "object": "detected",
-                    "color": "detected"
+                    "object": "detected"
                 }
             },
             {
@@ -3795,8 +3789,7 @@
                 "search_result": {
                     "area": "detected",
                     "location": "detected",
-                    "object": "detected",
-                    "color": "detected"
+                    "object": "detected"
                 }
             }
         ]
