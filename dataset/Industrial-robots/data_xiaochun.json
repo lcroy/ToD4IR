@@ -346,15 +346,14 @@
                     "assembly": {
                         "DB_request": {
                             "req": {
-                                "producttype": "phone",
-                                "quantity": "6"
+                                "producttype": "phone"
                             },
                             "opt": {}
                         },
                         "T_inform": {
                             "req": {
                                 "product": "phone",
-                                "quantity": "5"
+                                "quantity": "6"
                             },
                             "opt": {
                                 "color": "black",
@@ -401,8 +400,7 @@
                     "assembly": {
                         "DB_request": {
                             "req": {
-                                "producttype": "phone",
-                                "quantity": "6"
+                                "producttype": "phone"
                             },
                             "opt": {}
                         },
@@ -1181,15 +1179,14 @@
                     "assembly": {
                         "DB_request": {
                             "req": {
-                                "producttype": "phone",
-                                "quantity": "null"
+                                "producttype": "phone"
                             },
                             "opt": {}
                         },
                         "T_inform": {
                             "req": {
                                 "product": "phone",
-                                "quantity": "null"
+                                "quantity": "not mentioned"
                             },
                             "opt": {
                                 "color": "white",
@@ -3780,6 +3777,1072 @@
                             },
                             "opt": {
                                 "color": "yellow",
+                                "size": "not mentioned"
+                            },
+                            "type": "delivery"
+                        }
+                    }
+                },
+                "search_result": {
+                    "area": "detected",
+                    "location": "detected",
+                    "object": "detected"
+                }
+            }
+        ]
+    },
+    "DL00116.json": {
+        "domain": {
+            "assembly": false,
+            "delivery": true
+        },
+        "turn": [
+            {
+                "user": "Can you help me delivery this parcel?",
+                "system": "sure, what's the parcel and where's the location?",
+                "s_system": "I'm so busy today.",
+                "slots": {
+                    "assembly": {
+                        "DB_request": {
+                            "req": {
+                                "producttype": ""
+                            },
+                            "opt": {}
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "",
+                                "quantity": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "holeonPCB": "",
+                                "deadline": ""
+                            },
+                            "type": ""
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area": "not mentioned",
+                                "location": "not mentioned"
+                            },
+                            "opt": {
+                                "sender": "not mentioned",
+                                "recipient": "not mentioned"
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": "not mentioned"
+                            },
+                            "opt": {
+                                "color": "not mentioned",
+                                "size": "not mentioned"
+                            },
+                            "type": "delivery"
+                        }
+                    }
+                },
+                "search_result": {
+                    "area": "null",
+                    "location": "null",
+                    "object": "null"
+                }
+            },
+            {
+                "user": "It's a box of notebooks. The location is the printer room of the office.",
+                "system": "OK, i found it.",
+                "s_system": "Nice！",
+                "slots": {
+                    "assembly": {
+                        "DB_request": {
+                            "req": {
+                                "producttype": ""
+                            },
+                            "opt": {}
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "",
+                                "quantity": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "holeonPCB": "",
+                                "deadline": ""
+                            },
+                            "type": ""
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area": "office",
+                                "location": "printer room"
+                            },
+                            "opt": {
+                                "sender": "not mentioned",
+                                "recipient": "not mentioned"
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": "notebooks"
+                            },
+                            "opt": {
+                                "color": "not mentioned",
+                                "size": "not mentioned"
+                            },
+                            "type": "delivery"
+                        }
+                    }
+                },
+                "search_result": {
+                    "area": "detected",
+                    "location": "detected",
+                    "object": "detected"
+                }
+            },
+            {
+                "user": "Could you send them as quickly as possible?",
+                "system": "Of course. I am going right now.",
+                "s_system": "Sorry to keep you waiting.",
+                "slot": {
+                    "assembly": {
+                        "DB_request": {
+                            "req": {
+                                "producttype": ""
+                            },
+                            "opt": {}
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "",
+                                "quantity": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "holeonPCB": "",
+                                "deadline": ""
+                            },
+                            "type": ""
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area": "office",
+                                "location": "printer room"
+                            },
+                            "opt": {
+                                "sender": "not mentioned",
+                                "recipient": "not mentioned"
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": "notebooks"
+                            },
+                            "opt": {
+                                "color": "not mentioned",
+                                "size": "not mentioned"
+                            },
+                            "type": "delivery"
+                        }
+                    }
+                },
+                "search_result": {
+                    "area": "detected",
+                    "location": "detected",
+                    "object": "detected"
+                }
+            },
+            {
+                "user": "Thank you!",
+                "system": "Not at all.",
+                "s_system": "Thank you for our service.",
+                "slots": {
+                    "assembly": {
+                        "DB_request": {
+                            "req": {
+                                "producttype": ""
+                            },
+                            "opt": {}
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "",
+                                "quantity": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "holeonPCB": "",
+                                "deadline": ""
+                            },
+                            "type": ""
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area": "office",
+                                "location": "printer room"
+                            },
+                            "opt": {
+                                "sender": "not mentioned",
+                                "recipient": "not mentioned"
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": "notebooks"
+                            },
+                            "opt": {
+                                "color": "not mentioned",
+                                "size": "not mentioned"
+                            },
+                            "type": "delivery"
+                        }
+                    }
+                },
+                "search_result": {
+                    "area": "detected",
+                    "location": "detected",
+                    "object": "detected"
+                }
+            }
+        ]
+    },
+    "DL00117.json": {
+        "domain": {
+            "assembly": false,
+            "delivery": true
+        },
+        "turn": [
+            {
+                "user": "Hi, friend! Are you available now? I have some red bottles need to be sent.",
+                "system": "All right. Where is the destination?",
+                "s_system": "",
+                "slots": {
+                    "assembly": {
+                        "DB_request": {
+                            "req": {
+                                "producttype": ""
+                            },
+                            "opt": {}
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "",
+                                "quantity": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "holeonPCB": "",
+                                "deadline": ""
+                            },
+                            "type": ""
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area": "not mentioned",
+                                "location": "not mentioned"
+                            },
+                            "opt": {
+                                "sender": "not mentioned",
+                                "recipient": "not mentioned"
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": "bottles"
+                            },
+                            "opt": {
+                                "color": "red",
+                                "size": "not mentioned"
+                            },
+                            "type": "delivery"
+                        }
+                    }
+                },
+                "search_result": {
+                    "area": "null",
+                    "location": "null",
+                    "object": "detected"
+                }
+            },
+            {
+                "user": "It is office.",
+                "system": "OK, Can you tell me the location of  the office? ",
+                "s_system": "It will help me a lot.",
+                "slots": {
+                    "assembly": {
+                        "DB_request": {
+                            "req": {
+                                "producttype": ""
+                            },
+                            "opt": {}
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "",
+                                "quantity": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "holeonPCB": "",
+                                "deadline": ""
+                            },
+                            "type": ""
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area": "office",
+                                "location": "not mentioned"
+                            },
+                            "opt": {
+                                "sender": "not mentioned",
+                                "recipient": "not mentioned"
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": "bottles"
+                            },
+                            "opt": {
+                                "color": "red",
+                                "size": "not mentioned"
+                            },
+                            "type": "delivery"
+                        }
+                    }
+                },
+                "search_result": {
+                    "area": "detected",
+                    "location": "null",
+                    "object": "detected"
+                }
+            },
+            {
+                "user": "Of course. It's the caffe room",
+                "system": "Ok, I can finish the task.",
+                "s_system": "Don't worry",
+                "slot": {
+                    "assembly": {
+                        "DB_request": {
+                            "req": {
+                                "producttype": ""
+                            },
+                            "opt": {}
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "",
+                                "quantity": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "holeonPCB": "",
+                                "deadline": ""
+                            },
+                            "type": ""
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area": "office",
+                                "location": "caffe room"
+                            },
+                            "opt": {
+                                "sender": "not mentioned",
+                                "recipient": "not mentioned"
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": "bottles"
+                            },
+                            "opt": {
+                                "color": "red",
+                                "size": "not mentioned"
+                            },
+                            "type": "delivery"
+                        }
+                    }
+                },
+                "search_result": {
+                    "area": "detected",
+                    "location": "detected",
+                    "object": "detected"
+                }
+            },
+            {
+                "user": "Many thanks!",
+                "system": "Don't mention it.",
+                "s_system": "See you soon.",
+                "slots": {
+                    "assembly": {
+                        "DB_request": {
+                            "req": {
+                                "producttype": ""
+                            },
+                            "opt": {}
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "",
+                                "quantity": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "holeonPCB": "",
+                                "deadline": ""
+                            },
+                            "type": ""
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area": "office",
+                                "location": "caffe room"
+                            },
+                            "opt": {
+                                "sender": "not mentioned",
+                                "recipient": "not mentioned"
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": "bottles"
+                            },
+                            "opt": {
+                                "color": "red",
+                                "size": "not mentioned"
+                            },
+                            "type": "delivery"
+                        }
+                    }
+                },
+                "search_result": {
+                    "area": "detected",
+                    "location": "detected",
+                    "object": "detected"
+                }
+            }
+        ]
+    },
+    "DL00118.json": {
+        "domain": {
+            "assembly": true,
+            "delivery": false
+        },
+        "turn": [
+            {
+                "user": "Good morning! Can you do some phones assembly task for me?",
+                "system": "All right. How many phones and what are they looks?",
+                "s_system": "It must be helpful.",
+                "slots": {
+                    "assembly": {
+                        "DB_request": {
+                            "req": {
+                                "producttype": "not mentioned"
+                            },
+                            "opt": {}
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "phones",
+                                "quantity": "not mentioned"
+                            },
+                            "opt": {
+                                "color": "not mentioned",
+                                "holeonPCB": "not mentioned",
+                                "deadline": "not mentioned"
+                            },
+                            "type": "assembly"
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area": "",
+                                "location": ""
+                            },
+                            "opt": {
+                                "sender": "",
+                                "recipient": ""
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "size": ""
+                            },
+                            "type": ""
+                        }
+                    }
+                },
+                "search_result": {
+                    "producttype": "null",
+                    "product": "null",
+                    "quantity": "null"
+                }
+            },
+            {
+                "user": "Yes, we need four white phones with 2 holes.",
+                "system": "Sure. I got that.",
+                "s_system": "Cool.",
+                "slots": {
+                    "assembly": {
+                        "DB_request": {
+                            "req": {
+                                "producttype": "phone"
+                            },
+                            "opt": {}
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "phone",
+                                "quantity": "4"
+                            },
+                            "opt": {
+                                "color": "white",
+                                "holeonPCB": "2",
+                                "deadline": "not mentioned"
+                            },
+                            "type": "assembly"
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area": "",
+                                "location": ""
+                            },
+                            "opt": {
+                                "sender": "",
+                                "recipient": ""
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "size": ""
+                            },
+                            "type": ""
+                        }
+                    }
+                },
+                "search_result": {
+                    "producttype": "detected",
+                    "product": "detected",
+                    "quantity": "null"
+                }
+            },
+            {
+                "user": "When can you begin it?",
+                "system": "As soon as possible. Don't worry about that.",
+                "s_system": "I'm good at that.",
+                "slots": {
+                    "assembly": {
+                        "DB_request": {
+                            "req": {
+                                "producttype": "phone"
+                            },
+                            "opt": {}
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "phone",
+                                "quantity": "4"
+                            },
+                            "opt": {
+                                "color": "white",
+                                "holeonPCB": "2",
+                                "deadline": "not mentioned"
+                            },
+                            "type": "assembly"
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area": "",
+                                "location": ""
+                            },
+                            "opt": {
+                                "sender": "",
+                                "recipient": ""
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "size": ""
+                            },
+                            "type": ""
+                        }
+                    }
+                },
+                "search_result": {
+                    "producttype": "detected",
+                    "product": "detected",
+                    "quantity": "detected"
+                }
+            },
+            {
+                "user": "Great,many thanks.",
+                "system": "You are welcome.",
+                "s_system": "Nice talking with you. Bye!",
+                "slots": {
+                    "assembly": {
+                        "DB_request": {
+                            "req": {
+                                "producttype": "phone"
+                            },
+                            "opt": {}
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "phone",
+                                "quantity": "6"
+                            },
+                            "opt": {
+                                "color": "black",
+                                "holeonPCB": "not mentioned",
+                                "deadline": "not mentioned"
+                            },
+                            "type": "assembly"
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area": "",
+                                "location": ""
+                            },
+                            "opt": {
+                                "sender": "",
+                                "recipient": ""
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "size": ""
+                            },
+                            "type": ""
+                        }
+                    }
+                },
+                "search_result": {
+                    "producttype": "detected",
+                    "product": "detected",
+                    "quantity": "detected"
+                }
+            }
+        ]
+    },
+    "DL00119.json": {
+        "domain": {
+            "assembly": true,
+            "delivery": false
+        },
+        "turn": [
+            {
+                "user": "How are you, friend! Can you assembly five black phones for me?",
+                "system": "Of course. When do you want me to do?",
+                "s_system": "I'm free now.",
+                "slots": {
+                    "assembly": {
+                        "DB_request": {
+                            "req": {
+                                "producttype": "not mentioned"
+                            },
+                            "opt": {}
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "phones",
+                                "quantity": "five"
+                            },
+                            "opt": {
+                                "color": "black",
+                                "holeonPCB": "not mentioned",
+                                "deadline": "not mentioned"
+                            },
+                            "type": "assembly"
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area": "",
+                                "location": ""
+                            },
+                            "opt": {
+                                "sender": "",
+                                "recipient": ""
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "size": ""
+                            },
+                            "type": ""
+                        }
+                    }
+                },
+                "search_result": {
+                    "producttype": "detected",
+                    "product": "detected",
+                    "quantity": "detected"
+                }
+            },
+            {
+                "user": "All right. Please do that now.",
+                "system": "Sure. I'm ready.",
+                "s_system": "What a wonderful day!",
+                "slots": {
+                    "assembly": {
+                        "DB_request": {
+                            "req": {
+                                "producttype": "phone"
+                            },
+                            "opt": {}
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "phone",
+                                "quantity": "five"
+                            },
+                            "opt": {
+                                "color": "black",
+                                "holeonPCB": "not mentioned",
+                                "deadline": "not mentioned"
+                            },
+                            "type": "assembly"
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area": "",
+                                "location": ""
+                            },
+                            "opt": {
+                                "sender": "",
+                                "recipient": ""
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "size": ""
+                            },
+                            "type": ""
+                        }
+                    }
+                },
+                "search_result": {
+                    "producttype": "detected",
+                    "product": "detected",
+                    "quantity": "detected"
+                }
+            },
+            {
+                "user": "I really appreciate your help.",
+                "system": "It was my pleasure. I enjoyed helping you.",
+                "s_system": "Good bye.",
+                "slots": {
+                    "assembly": {
+                        "DB_request": {
+                            "req": {
+                                "producttype": "phone"
+                            },
+                            "opt": {}
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "phone",
+                                "quantity": "five"
+                            },
+                            "opt": {
+                                "color": "black",
+                                "holeonPCB": "not mentioned",
+                                "deadline": "not mentioned"
+                            },
+                            "type": "assembly"
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area": "",
+                                "location": ""
+                            },
+                            "opt": {
+                                "sender": "",
+                                "recipient": ""
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "size": ""
+                            },
+                            "type": ""
+                        }
+                    }
+                },
+                "search_result": {
+                    "producttype": "detected",
+                    "product": "detected",
+                    "quantity": "detected"
+                }
+            }
+        ]
+    },
+    "DL00120.json": {
+        "domain": {
+            "assembly": false,
+            "delivery": true
+        },
+        "turn": [
+            {
+                "user": "Morning! Could you help me deliver the package?",
+                "system": "Of course, where is it?",
+                "s_system": "I enjoy my work.",
+                "slots": {
+                    "assembly": {
+                        "DB_request": {
+                            "req": {
+                                "producttype": ""
+                            },
+                            "opt": {}
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "",
+                                "quantity": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "holeonPCB": "",
+                                "deadline": ""
+                            },
+                            "type": ""
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area": "not mentioned",
+                                "location": "not mentioned"
+                            },
+                            "opt": {
+                                "sender": "not mentioned",
+                                "recipient": "not mentioned"
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": "package"
+                            },
+                            "opt": {
+                                "color": "not mentioned",
+                                "size": "not mentioned"
+                            },
+                            "type": "delivery"
+                        }
+                    }
+                },
+                "search_result": {
+                    "area": "null",
+                    "location": "null",
+                    "object": "detected"
+                }
+            },
+            {
+                "user": "Yes, it is the building.",
+                "system": "OK, where's the location?",
+                "s_system": "I found a lot of locations in the building.",
+                "slots": {
+                    "assembly": {
+                        "DB_request": {
+                            "req": {
+                                "producttype": ""
+                            },
+                            "opt": {}
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "",
+                                "quantity": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "holeonPCB": "",
+                                "deadline": ""
+                            },
+                            "type": ""
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area": "building",
+                                "location": "not mentioned"
+                            },
+                            "opt": {
+                                "sender": "not mentioned",
+                                "recipient": "not mentioned"
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": "package"
+                            },
+                            "opt": {
+                                "color": "not mentioned",
+                                "size": "not mentioned"
+                            },
+                            "type": "delivery"
+                        }
+                    }
+                },
+                "search_result": {
+                    "area": "detected",
+                    "location": "null",
+                    "object": "detected"
+                }
+            },
+            {
+                "user": "Great. It's office",
+                "system": "OK, I can find the office in the building.",
+                "s_system": "Sorry for time",
+                "slot": {
+                    "assembly": {
+                        "DB_request": {
+                            "req": {
+                                "producttype": ""
+                            },
+                            "opt": {}
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "",
+                                "quantity": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "holeonPCB": "",
+                                "deadline": ""
+                            },
+                            "type": ""
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area": "building",
+                                "location": "office"
+                            },
+                            "opt": {
+                                "sender": "not mentioned",
+                                "recipient": "not mentioned"
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": "package"
+                            },
+                            "opt": {
+                                "color": "not mentioned",
+                                "size": "not mentioned"
+                            },
+                            "type": "delivery"
+                        }
+                    }
+                },
+                "search_result": {
+                    "area": "detected",
+                    "location": "detected",
+                    "object": "detected"
+                }
+            },
+            {
+                "user": "Nice, please delivery it now.",
+                "system": "Sure, I start to the mission now",
+                "s_system": "Trust me please!",
+                "slots": {
+                    "assembly": {
+                        "DB_request": {
+                            "req": {
+                                "producttype": ""
+                            },
+                            "opt": {}
+                        },
+                        "T_inform": {
+                            "req": {
+                                "product": "",
+                                "quantity": ""
+                            },
+                            "opt": {
+                                "color": "",
+                                "holeonPCB": "",
+                                "deadline": ""
+                            },
+                            "type": ""
+                        }
+                    },
+                    "delivery": {
+                        "DB_request": {
+                            "req": {
+                                "area": "building",
+                                "location": "office"
+                            },
+                            "opt": {
+                                "sender": "not mentioned",
+                                "recipient": "not mentioned"
+                            }
+                        },
+                        "T_inform": {
+                            "req": {
+                                "object": "package"
+                            },
+                            "opt": {
+                                "color": "not mentioned",
                                 "size": "not mentioned"
                             },
                             "type": "delivery"
