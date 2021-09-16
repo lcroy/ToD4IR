@@ -8,7 +8,7 @@ gpt2_tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
 
 def delex_IRWoZ_data(raw_data, delex_data):
 
-    IRWoZ_data = json.load(open(raw_data, 'r'))
+    IRWoZ_data = json.load(open(raw_data, 'rb'))
 
     # samples, context, belief, search result
     context = ""
@@ -120,7 +120,7 @@ def delex_IRWoZ_data(raw_data, delex_data):
 
 def pre_delex_IRWoZ_data(raw_data, pre_delex_data):
 
-    IRWoZ_data = json.load(open(raw_data, 'r'))
+    IRWoZ_data = json.load(open(raw_data, 'rb'))
 
     # samples, context, belief, search result
     context = ""
