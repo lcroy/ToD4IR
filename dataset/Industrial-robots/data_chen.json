@@ -24,8 +24,8 @@
                             },
                             "opt": {
                                 "color": "",
-                                "holeonPCB": "",
-                                "deadline": ""
+                                "style": "",
+                                "size": ""
                             },
                             "type": ""
                         }
@@ -78,8 +78,8 @@
                             },
                             "opt": {
                                 "color": "",
-                                "holeonPCB": "",
-                                "deadline": ""
+                                "style": "",
+                                "size": ""
                             },
                             "type": ""
                         }
@@ -132,8 +132,8 @@
                             },
                             "opt": {
                                 "color": "",
-                                "holeonPCB": "",
-                                "deadline": ""
+                                "style": "",
+                                "size": ""
                             },
                             "type": ""
                         }
@@ -186,8 +186,8 @@
                             },
                             "opt": {
                                 "color": "",
-                                "holeonPCB": "",
-                                "deadline": ""
+                                "style": "",
+                                "size": ""
                             },
                             "type": ""
                         }
@@ -248,8 +248,8 @@
                             },
                             "opt": {
                                 "color": "not_mentioned",
-                                "holeonPCB": "not_mentioned",
-                                "deadline": "not_mentioned"
+                                "style": "not_mentioned",
+                                "size": "not_mentioned"
                             },
                             "type": "assembly"
                         }
@@ -291,7 +291,7 @@
                     "assembly": {
                         "DB_request": {
                             "req": {
-                                "producttype": "phone"
+                                "producttype": "electronic"
                             },
                             "opt": {}
                         },
@@ -302,8 +302,8 @@
                             },
                             "opt": {
                                 "color": "not_mentioned",
-                                "holeonPCB": "not_mentioned",
-                                "deadline": "not_mentioned"
+                                "style": "not_mentioned",
+                                "size": "not_mentioned"
                             },
                             "type": "assembly"
                         }
@@ -345,7 +345,7 @@
                     "assembly": {
                         "DB_request": {
                             "req": {
-                                "producttype": "phone"
+                                "producttype": "electronic"
                             },
                             "opt": {}
                         },
@@ -356,8 +356,8 @@
                             },
                             "opt": {
                                 "color": "white",
-                                "holeonPCB": "not_mentioned",
-                                "deadline": "not_mentioned"
+                                "style": "not_mentioned",
+                                "size": "not_mentioned"
                             },
                             "type": "assembly"
                         }
@@ -399,7 +399,7 @@
                     "assembly": {
                         "DB_request": {
                             "req": {
-                                "producttype": "phone"
+                                "producttype": "electronic"
                             },
                             "opt": {}
                         },
@@ -410,8 +410,8 @@
                             },
                             "opt": {
                                 "color": "white",
-                                "holeonPCB": "not_mentioned",
-                                "deadline": "not_mentioned"
+                                "style": "not_mentioned",
+                                "size": "not_mentioned"
                             },
                             "type": "assembly"
                         }
@@ -472,8 +472,8 @@
                             },
                             "opt": {
                                 "color": "",
-                                "holeonPCB": "",
-                                "deadline": ""
+                                "style": "",
+                                "size": ""
                             },
                             "type": ""
                         }
@@ -526,8 +526,8 @@
                             },
                             "opt": {
                                 "color": "",
-                                "holeonPCB": "",
-                                "deadline": ""
+                                "style": "",
+                                "size": ""
                             },
                             "type": ""
                         }
@@ -580,8 +580,8 @@
                             },
                             "opt": {
                                 "color": "",
-                                "holeonPCB": "",
-                                "deadline": ""
+                                "style": "",
+                                "size": ""
                             },
                             "type": ""
                         }
@@ -634,8 +634,8 @@
                             },
                             "opt": {
                                 "color": "",
-                                "holeonPCB": "",
-                                "deadline": ""
+                                "style": "",
+                                "size": ""
                             },
                             "type": ""
                         }
@@ -688,8 +688,8 @@
                             },
                             "opt": {
                                 "color": "",
-                                "holeonPCB": "",
-                                "deadline": ""
+                                "style": "",
+                                "size": ""
                             },
                             "type": ""
                         }
@@ -750,8 +750,8 @@
                             },
                             "opt": {
                                 "color": "",
-                                "holeonPCB": "",
-                                "deadline": ""
+                                "style": "",
+                                "size": ""
                             },
                             "type": ""
                         }
@@ -804,8 +804,8 @@
                             },
                             "opt": {
                                 "color": "",
-                                "holeonPCB": "",
-                                "deadline": ""
+                                "style": "",
+                                "size": ""
                             },
                             "type": ""
                         }
@@ -858,8 +858,8 @@
                             },
                             "opt": {
                                 "color": "",
-                                "holeonPCB": "",
-                                "deadline": ""
+                                "style": "",
+                                "size": ""
                             },
                             "type": ""
                         }
@@ -912,8 +912,8 @@
                             },
                             "opt": {
                                 "color": "",
-                                "holeonPCB": "",
-                                "deadline": ""
+                                "style": "",
+                                "size": ""
                             },
                             "type": ""
                         }
@@ -966,8 +966,8 @@
                             },
                             "opt": {
                                 "color": "",
-                                "holeonPCB": "",
-                                "deadline": ""
+                                "style": "",
+                                "size": ""
                             },
                             "type": ""
                         }

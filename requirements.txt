@@ -1,4 +1,4 @@
-transformers==2.7
+transformers==4.5.0
 spicy
 boto3
 ipdb

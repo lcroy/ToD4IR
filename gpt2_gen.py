@@ -130,9 +130,9 @@ def db_search(context_pred_belief):
 
 def do_generation():
     # load model
-    model = GPT2LMHeadModel.from_pretrained(cfg.model_checkpoint_path)
+    model = GPT2LMHeadModel.from_pretrained(cfg.model_gpt2_checkpoint_path)
     # get tokenizer
-    tokenizer = GPT2Tokenizer.from_pretrained(cfg.model_checkpoint_path)
+    tokenizer = GPT2Tokenizer.from_pretrained(cfg.model_gpt2_checkpoint_path)
 
     model.eval()
 
@@ -150,7 +150,7 @@ def do_generation():
         text = input("User: ")
         if len(text) > 0:
             # text = normalize('i have a package here . i want you to help me to deliver it to the lab .')
-            # text = normalize(text)
+            text = normalize(text)
             # end of the current dialogue and go to next one
             if any(key in text for key in cfg.stop_words):
                 dialogue = '<|endoftext|> <|boc|> '
@@ -177,7 +177,7 @@ def do_generation():
             tokens_tensor = tokens_tensor.to(device)
             predicted_index = indexed_tokens[-1]
 
-            # generate belief
+            # Task 1: generate belief
             with torch.no_grad():
                 while predicted_index not in endoftext:
                     outputs = model(tokens_tensor)
@@ -200,17 +200,21 @@ def do_generation():
             # print the intermediate results
             # print(dialogue)
             # text_to_speech_microsoft(context_pred_belief)
+            print("belief================================")
+            print(dialogue)
+            print("belief================================")
 
-            # extract the domain and slots to query the DB and generate system act
+            # Task 2.a: extract the domain and slots to query the DB
             sys_act = db_search(dialogue)
 
-            # context + pred_belief + system actions
+            # Task 2.b: generate system act (context + pred_belief + system actions)
             dialogue += ' <|bosys_act|> ' + sys_act + ' <|eosys_act|>'
 
-            # test
-            # print(dialogue)
+            print("system act================================")
+            print(dialogue)
+            print("system act================================")
 
-            # generation response
+            # Task 3: generation response
             indexed_tokens = tokenizer.encode(dialogue)
             if len(indexed_tokens) > cfg.max_length:
                 indexed_tokens = indexed_tokens[-1 * cfg.max_length:]
@@ -245,8 +249,10 @@ def do_generation():
                 # get the response
                 dialogue = tokenizer.decode(indexed_tokens)
 
-                # print the intermediate results
-                # print(dialogue)
+                print("response================================")
+                print(dialogue)
+                print("response================================")
+
 
                 # lex system response (sysTres)
                 while dialogue.find('[') > 0:

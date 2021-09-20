@@ -292,7 +292,7 @@
                     "assembly": {
                         "DB_request": {
                             "req": {
-                                "producttype": "phone"
+                                "producttype": "electronic"
                             },
                             "opt": {}
                         },
@@ -346,7 +346,7 @@
                     "assembly": {
                         "DB_request": {
                             "req": {
-                                "producttype": "phone"
+                                "producttype": "electronic"
                             },
                             "opt": {}
                         },
@@ -400,7 +400,7 @@
                     "assembly": {
                         "DB_request": {
                             "req": {
-                                "producttype": "phone"
+                                "producttype": "electronic"
                             },
                             "opt": {}
                         },
@@ -1126,7 +1126,7 @@
                     "assembly": {
                         "DB_request": {
                             "req": {
-                                "producttype": "phone"
+                                "producttype": "electronic"
                             },
                             "opt": {}
                         },

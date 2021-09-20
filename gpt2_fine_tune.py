@@ -40,13 +40,13 @@ def initial_seed(init_seed, n_gpu):
         torch.cuda.manual_seed_all(init_seed)
 
 def save_checkpoint(model, optimizer, scheduler, tokenizer, args):
-    # Save model checkpoint
+    # Save model gpt2_checkpoint
     model_to_save = (model.module if hasattr(model, "module") else model)
     model_to_save.save_pretrained(cfg.model_checkpoint_path)
     tokenizer.save_pretrained(cfg.model_checkpoint_path)
 
     torch.save(args, os.path.join(cfg.model_checkpoint_path, "training_args.bin"))
-    logger.info("We are saving model checkpoint to %s", cfg.model_checkpoint_path)
+    logger.info("We are saving model gpt2_checkpoint to %s", cfg.model_checkpoint_path)
 
     torch.save(optimizer.state_dict(), os.path.join(cfg.model_checkpoint_path, "optimizer.pt"))
     torch.save(scheduler.state_dict(), os.path.join(cfg.model_checkpoint_path, "scheduler.pt"))
@@ -129,7 +129,7 @@ def train_epoch(model, tokenizer, optimizer, scheduler, train_dataloader, tr_los
                 tb_writer.add_scalar("loss", (tr_loss - logging_loss) / args.logging_steps, global_step)
                 logging_loss = tr_loss
 
-            # save checkpoint
+            # save gpt2_checkpoint
             save_checkpoint(model, optimizer, scheduler, tokenizer, args)
 
         if args.max_steps > 0 and global_step > args.max_steps:
@@ -144,16 +144,16 @@ def get_training_info(dataloader, args):
     epochs_trained = 0
     steps_trained_in_current_epoch = 0
 
-    # Check if continuing training from a checkpoint
+    # Check if continuing training from a gpt2_checkpoint
     if args.model_name_or_path and os.path.exists(args.model_name_or_path):
         try:
-            # set global_step to gobal_step of last saved checkpoint from model path
+            # set global_step to gobal_step of last saved gpt2_checkpoint from model path
             checkpoint_suffix = args.model_name_or_path.split("-")[-1].split("/")[0]
             global_step = int(checkpoint_suffix)
             epochs_trained = global_step // (len(dataloader) // args.gradient_accumulation_steps)
             steps_trained_in_current_epoch = global_step % (len(dataloader) // args.gradient_accumulation_steps)
 
-            logger.info("  Continuing training from checkpoint, will skip to saved global_step")
+            logger.info("  Continuing training from gpt2_checkpoint, will skip to saved global_step")
             logger.info("  Continuing training from epoch %d", epochs_trained)
             logger.info("  Continuing training from global step %d", global_step)
             logger.info("  Will skip the first %d steps in the first epoch", steps_trained_in_current_epoch)
@@ -253,7 +253,7 @@ def train(args, train_dataset, model, tokenizer):
 
 def evaluate(args, model, tokenizer, prefix=""):
     # Loop to handle MNLI double evaluation (matched, mis-matched)
-    eval_output_dir = args.output_dir + '/checkpoint'
+    eval_output_dir = args.output_dir + '/gpt2_checkpoint'
 
     eval_dataset = load_and_cache_examples(args, tokenizer, evaluate=True)
 
@@ -324,11 +324,11 @@ def main():
                         help="The model architecture to be fine-tuned.")
 
     parser.add_argument("--tokenizer_name", default="", type=str,
-                        help="The model checkpoint for weights initialization. ToB4IR is trained from scratch. It does not need this.")
+                        help="The model gpt2_checkpoint for weights initialization. ToB4IR is trained from scratch. It does not need this.")
 
     ## Other parameters
     parser.add_argument("--model_name_or_path", default="", type=str,
-                        help="The model checkpoint for weights initialization. ToB4IR is trained from scratch. It does not need this.")
+                        help="The model gpt2_checkpoint for weights initialization. ToB4IR is trained from scratch. It does not need this.")
 
     parser.add_argument("--config_name", default="", type=str,
                         help="Optional pretrained config name or path if not the same as model_name_or_path")
@@ -383,7 +383,7 @@ def main():
                         help="Log every 100 updates steps.")
 
     parser.add_argument('--save_steps', type=int, default=5000,
-                        help="Save checkpoint every 5000 updates steps.")
+                        help="Save gpt2_checkpoint every 5000 updates steps.")
 
     parser.add_argument("--no_cuda", action='store_true',
                         help="Avoid using CUDA when available")
@@ -470,7 +470,7 @@ def main():
     # Evaluation
     results = {}
     if args.do_eval and args.local_rank in [-1, 0]:
-        checkpoints = [args.output_dir + "/checkpoint"]
+        checkpoints = [args.output_dir + "/gpt2_checkpoint"]
 
         if args.eval_all_checkpoints:
             checkpoints = list(
@@ -481,7 +481,7 @@ def main():
 
         for checkpoint in checkpoints:
             global_step = checkpoint.split("-")[-1] if len(checkpoints) > 1 else ""
-            prefix = checkpoint.split("/")[-1] if checkpoint.find("checkpoint") != -1 else ""
+            prefix = checkpoint.split("/")[-1] if checkpoint.find("gpt2_checkpoint") != -1 else ""
 
             model = model_class.from_pretrained(checkpoint)
             model.to(args.device)

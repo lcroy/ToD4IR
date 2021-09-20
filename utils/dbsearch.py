@@ -107,8 +107,8 @@ def query_product(db_file, product):
 
     return "undetected", "no details"
 
-# for testing
-if __name__ == "__main__":
-    cfg = Config()
-    result, details = query_product(cfg.dataset_path_production_db, "phone")
-    print(result, details)
+# # for testing
+# if __name__ == "__main__":
+#     cfg = Config()
+#     result, details = query_product(cfg.dataset_path_production_db, "phone")
+#     print(result, details)

@@ -50,7 +50,7 @@ def delex_IRWoZ_data(raw_data, delex_data):
                     for key, value in db_req.items():
                         temp_db_req += key + "=" + value + " "
                         # update t_res with delex representation
-                        if ((value != "") & (value != "not_mentioned")):
+                        if (value != "not_mentioned"):
                             temp_t_res = temp_t_res.replace(value, '[' + key + ']')
                     belief += ' <|DB_req|> ' + dialogue_domain + " " + temp_db_req
 
@@ -62,8 +62,8 @@ def delex_IRWoZ_data(raw_data, delex_data):
                         if value != "not_mentioned":
                             temp_db_opt += key + "=" + value + " "
                             # update t_res with delex representation
-                            if ((value != "") & (value != "not_mentioned")):
-                                temp_t_res = temp_t_res.replace(value, '[' + key + ']')
+                            # if (value != ""):
+                            temp_t_res = temp_t_res.replace(value, '[' + key + ']')
                             opt_flag = 1
                     if opt_flag == 1:
                         belief += '<|DB_opt|> ' + dialogue_domain + " " + temp_db_opt
@@ -74,7 +74,7 @@ def delex_IRWoZ_data(raw_data, delex_data):
                     for key, value in t_req.items():
                         temp_t_req += key + "=" + value + " "
                         # update t_res with delex representation
-                        if ((value != "") & (value != "not_mentioned")):
+                        if (value != "not_mentioned"):
                             temp_t_res = temp_t_res.replace(value, '[' + key + ']')
                     belief += '<|T_req|> ' + dialogue_domain + " " + temp_t_req
 
@@ -85,10 +85,10 @@ def delex_IRWoZ_data(raw_data, delex_data):
                     for key, value in t_opt.items():
                         if value != "not_mentioned":
                             temp_t_opt += key + "=" + value + " "
-                            opt_flag = 1
                             # update t_res with delex representation
-                            if ((value != "") & (value != "not_mentioned")):
-                                temp_t_res = temp_t_res.replace(value, '[' + key + ']')
+                            # if (value != ""):
+                            temp_t_res = temp_t_res.replace(value, '[' + key + ']')
+                            opt_flag = 1
                     if opt_flag == 1:
                         belief += '<|T_opt|> ' + dialogue_domain + " " + temp_t_opt
 
@@ -148,7 +148,7 @@ def pre_delex_IRWoZ_data(raw_data, pre_delex_data):
 
             # write sys + small talk response
             temp_t_res = normalize(turn['system'])
-            temp_r_res = normalize(turn['s_system'])
+            temp_s_res = normalize(turn['s_system'])
 
             # write belief
             belief = ' <|bob|>'
@@ -161,7 +161,7 @@ def pre_delex_IRWoZ_data(raw_data, pre_delex_data):
                     for key, value in db_req.items():
                         temp_db_req += key + "=" + value + " "
                         #update t_res with delex representation
-                        if ((value!="") & (value!="not_mentioned")):
+                        if (value!="not_mentioned"):
                             temp_t_res = temp_t_res.replace(value, '[' + key + ']')
                     belief += ' <|DB_req|> ' + dialogue_domain + " " + temp_db_req
 
@@ -174,7 +174,7 @@ def pre_delex_IRWoZ_data(raw_data, pre_delex_data):
                             temp_db_opt += key + "=" + value + " "
                             opt_flg = 1
                         #update t_res with delex representation
-                        if ((value!="") & (value!="not_mentioned")):
+                        # if (value!=""):
                             temp_t_res = temp_t_res.replace(value, '[' + key + ']')
                     if opt_flg == 1:
                         belief += ' <|DB_opt|> ' + dialogue_domain + " " + temp_db_opt
@@ -185,7 +185,7 @@ def pre_delex_IRWoZ_data(raw_data, pre_delex_data):
                     for key, value in t_req.items():
                         temp_t_req += key + "=" + value + " "
                         # update t_res with delex representation
-                        if ((value != "") & (value != "not_mentioned")):
+                        if (value != "not_mentioned"):
                             temp_t_res = temp_t_res.replace(value, '[' + key + ']')
                     belief += '<|T_req|> ' + dialogue_domain + " " + temp_t_req
 
@@ -198,7 +198,7 @@ def pre_delex_IRWoZ_data(raw_data, pre_delex_data):
                             temp_t_opt += key + "=" + value + " "
                             opt_flg = 1
                         # update t_res with delex representation
-                        if ((value != "") & (value != "not_mentioned")):
+                        # if (value != ""):
                             temp_t_res = temp_t_res.replace(value, '[' + key + ']')
 
                     if opt_flg == 1:
@@ -208,7 +208,7 @@ def pre_delex_IRWoZ_data(raw_data, pre_delex_data):
 
             # updated system response
             t_res = ' <|boTres|> ' + temp_t_res + ' <|eoTres|>'
-            s_res = ' <|boSres|> ' + temp_r_res + ' <|eoSres|>'
+            s_res = ' <|boSres|> ' + temp_s_res + ' <|eoSres|>'
 
             # write system act
             sys_act = '<|bosys_act|> ' + dialogue_domain + ' '
