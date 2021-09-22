@@ -10,6 +10,7 @@ import random
 import numpy as np
 import os
 import logging
+from torch import nn
 
 from tqdm import tqdm, trange
 from torch.utils.data import DataLoader, Dataset, RandomSampler
@@ -22,6 +23,9 @@ from config import Config
 logger = logging.getLogger(__name__)
 cfg = Config()
 
+# train it on 4 gpus
+os.environ["CUDA_VISIBLE_DEVICES"]="0,1,2,3"
+
 try:
     from torch.utils.tensorboard import SummaryWriter
 except:
@@ -29,7 +33,7 @@ except:
 
 logger = logging.getLogger(__name__)
 MODEL_CLASSES = {
-    "gpt2-xl": (GPT2Config, GPT2LMHeadModel, GPT2Tokenizer),
+    "gpt2-large": (GPT2Config, GPT2LMHeadModel, GPT2Tokenizer),
 }
 
 def initial_seed(init_seed, n_gpu):
@@ -42,15 +46,15 @@ def initial_seed(init_seed, n_gpu):
 def save_checkpoint(model, optimizer, scheduler, tokenizer, args):
     # Save model gpt2_checkpoint
     model_to_save = (model.module if hasattr(model, "module") else model)
-    model_to_save.save_pretrained(cfg.model_checkpoint_path)
-    tokenizer.save_pretrained(cfg.model_checkpoint_path)
+    model_to_save.save_pretrained(cfg.model_gpt2_checkpoint_path)
+    tokenizer.save_pretrained(cfg.model_gpt2_checkpoint_path)
 
-    torch.save(args, os.path.join(cfg.model_checkpoint_path, "training_args.bin"))
-    logger.info("We are saving model gpt2_checkpoint to %s", cfg.model_checkpoint_path)
+    torch.save(args, os.path.join(cfg.model_gpt2_checkpoint_path, "training_args.bin"))
+    logger.info("We are saving model gpt2_checkpoint to %s", cfg.model_gpt2_checkpoint_path)
 
-    torch.save(optimizer.state_dict(), os.path.join(cfg.model_checkpoint_path, "optimizer.pt"))
-    torch.save(scheduler.state_dict(), os.path.join(cfg.model_checkpoint_path, "scheduler.pt"))
-    logger.info("We are saving optimizer and scheduler states to %s", cfg.model_checkpoint_path)
+    torch.save(optimizer.state_dict(), os.path.join(cfg.model_gpt2_checkpoint_path, "optimizer.pt"))
+    torch.save(scheduler.state_dict(), os.path.join(cfg.model_gpt2_checkpoint_path, "scheduler.pt"))
+    logger.info("We are saving optimizer and scheduler states to %s", cfg.model_gpt2_checkpoint_path)
 
 class IRWoZDataset(Dataset):
     def __init__(self, tokenizer, args, file_path, block_size=1024):
@@ -208,7 +212,7 @@ def train(args, train_dataset, model, tokenizer):
     if args.n_gpu > 1:
         model = torch.nn.DataParallel(model)
 
-    # Distributed training (we didn't do this)
+    # Distributed training
     if args.local_rank != -1:
         model = torch.nn.parallel.DistributedDataParallel(
             model, device_ids=[args.local_rank], output_device=args.local_rank, find_unused_parameters=True
@@ -320,7 +324,7 @@ def main():
     parser.add_argument("--output_dir", default=None, type=str, required=True,
                         help="The output directory where the model predictions and checkpoints will be written.")
 
-    parser.add_argument("--model_type", default="gpt2-xl", type=str,
+    parser.add_argument("--model_type", default="gpt2-large", type=str,
                         help="The model architecture to be fine-tuned.")
 
     parser.add_argument("--tokenizer_name", default="", type=str,
@@ -445,7 +449,8 @@ def main():
     args.block_size = min(args.block_size, tokenizer.max_len_single_sentence)
 
     # Training new model from scratch
-    model = model_class(config=config)
+    # model = model_class(config=config)
+    model = model_class.from_pretrained(args.model_type)
 
     model.to(args.device)
 
