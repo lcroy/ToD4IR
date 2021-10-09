@@ -1,4 +1,4 @@
-# ToB4IR - Task-Oriented Bot for Industrial Robots
+# ToD4IR - Task-Oriented Dialogue System for Industrial Robots
 
 ## Introduction
 
@@ -10,7 +10,7 @@ environment.
 
 ## IRWOZ
 Industrial Robots Domain Wizard-of-Oz dataset (IRWOZ), a fully-labeled dialogue dataset of human-human conversations spanning 
-over two domains (Robot Assembly, Robot Delivery). At a size of xxx dialogues, it aims to provide simulated dialogues between
+over four domains (Product Assembly, Transportation, Mapping, Relocation). At a size of xxx dialogues, it aims to provide simulated dialogues between
 shop floor worker and industrial robots to support language-assisted Human Robot Interaction (HRI) in 
 industrial setup. To the best of our knowledge, IRWOZ is the first annotated task-oriented corpora for 
 manufacturing domain.
