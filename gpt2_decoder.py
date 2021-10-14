@@ -11,12 +11,6 @@ from torch.utils.data import DataLoader, Dataset
 cfg = Config()
 logger = logging.getLogger(__name__)
 
-f = r'C:\ToD4IR\dataset\Industrial-robots\test.delex'
-
-with open(f, 'r', encoding='utf-8') as test_file:
-    lines = [line for line in test_file.read().splitlines() if (len(line) > 0 and not line.isspace())]
-
-
 def decoder(lines):
     model = GPT2LMHeadModel.from_pretrained(cfg.model_gpt2_checkpoint_path)
     # get tokenizer
@@ -240,5 +234,15 @@ def db_search(context_pred_belief):
     return results
 
 
+if __name__ == '__main__':
 
-results = decoder(lines)
+    f = cfg.dataset_path_test_file
+
+    with open(f, 'r', encoding='utf-8') as test_file:
+        lines = [line for line in test_file.read().splitlines() if (len(line) > 0 and not line.isspace())]
+
+    results = decoder(lines)
+    decoded_file = open(cfg.dataset_path_decoded_file, mode='wt', encoding='utf-8')
+    for row in results:
+        decoded_file.write(row + "\n")
+    decoded_file.close()
