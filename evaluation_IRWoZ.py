@@ -96,7 +96,7 @@ class BLEUScorer(object):
 
 class IRWoz(object):
     # loading databases
-    domains = ['Delivery', 'Position', 'Map', 'Assembly', 'Relocation', 'Cleaning']
+    domains = ['Delivery', 'Position', 'Assembly', 'Relocation']
     dbs = {}
     CUR_DIR = os.path.dirname(__file__)
 
@@ -181,7 +181,7 @@ class IRWoZEvaluator(BaseEvaluator):
             for domain in goal.keys():
                 # for computing success
                 if '[' + domain + '_name]' in sent_t or '_id' in sent_t:
-                    if domain in ['Delivery', 'Position', 'Map', 'Assembly', 'Relocation', 'Cleaning']:
+                    if domain in ['Delivery', 'Position', 'Assembly', 'Relocation']:
 
                         if domain in bs[t].keys():
                             state = bs[t][domain]
@@ -225,15 +225,15 @@ class IRWoZEvaluator(BaseEvaluator):
         The dialogue is successful if that's the case for all domains.
         """
         # HARD EVAL
-        stats = {'Delivery': [0, 0, 0], 'Position': [0, 0, 0], 'Map': [0, 0, 0], 'Assembly': [0, 0, 0],
-                 'Relocation': [0, 0, 0], 'Cleaning': [0, 0, 0]}
+        stats = {'Delivery': [0, 0, 0], 'Position': [0, 0, 0], 'Assembly': [0, 0, 0],
+                 'Relocation': [0, 0, 0]}
 
         match = 0
         success = 0
         # MATCH
         for domain in goal.keys():
             match_stat = 0
-            if domain in ['Delivery', 'Position', 'Map', 'Assembly', 'Relocation', 'Cleaning']:
+            if domain in ['Delivery', 'Position', 'Assembly', 'Relocation']:
                 goal_venues = self.db.queryResultVenues(domain, goal[domain]['informable'], real_belief=True)
                 if type(venue_offered[domain]) is str and '_name' in venue_offered[domain]:
                     match += 1
@@ -294,7 +294,7 @@ class IRWoZEvaluator(BaseEvaluator):
         """Evaluation of the real dialogue.
         First we loads the user goal and then go through the dialogue history.
         Similar to evaluateGeneratedDialogue above."""
-        domains = ['Delivery', 'Position', 'Map', 'Assembly', 'Relocation', 'Cleaning']
+        domains = ['Delivery', 'Position', 'Assembly', 'Relocation']
         requestables = ['producttype', 'area', 'location']
 
         # get the list of domains in the goal
@@ -321,7 +321,7 @@ class IRWoZEvaluator(BaseEvaluator):
                 sent_t = m_targetutt[t]
                 # for computing match - where there are limited entities
                 if domain + '_name' in sent_t or '_id' in sent_t:
-                    if domain in ['Delivery', 'Position', 'Map', 'Assembly', 'Relocation', 'Cleaning']:
+                    if domain in ['Delivery', 'Position', 'Assembly', 'Relocation']:
                         # HERE YOU CAN PUT YOUR BELIEF STATE ESTIMATION
                         venues = self.db.queryResultVenues(domain, dialog['turn'][t * 2 + 1])
 
@@ -345,14 +345,14 @@ class IRWoZEvaluator(BaseEvaluator):
                         provided_requestables[domain].append(requestable)
 
         # HARD (0-1) EVAL
-        stats = {'Delivery': [0, 0, 0], 'Position': [0, 0, 0], 'Map': [0, 0, 0], 'Assembly': [0, 0, 0],
-                 'Relocation': [0, 0, 0], 'Cleaning': [0, 0, 0]}
+        stats = {'Delivery': [0, 0, 0], 'Position': [0, 0, 0], 'Assembly': [0, 0, 0],
+                 'Relocation': [0, 0, 0]}
 
         match, success = 0, 0
         # MATCH
         for domain in goal.keys():
             match_stat = 0
-            if domain in ['Delivery', 'Position', 'Map', 'Assembly', 'Relocation', 'Cleaning']:
+            if domain in ['Delivery', 'Position', 'Assembly', 'Relocation']:
                 goal_venues = self.db.queryResultVenues(domain, dialog['turn'][domain]['search_result'], real_belief=True)
                 # print(goal_venues)
                 if type(venue_offered[domain]) is str and '_name' in venue_offered[domain]:
