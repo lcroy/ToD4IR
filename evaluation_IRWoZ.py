@@ -10,6 +10,9 @@ import random
 import logging
 from utils.nlp import BLEUScorer
 from nltk.translate.bleu_score import corpus_bleu, SmoothingFunction, sentence_bleu
+from config import Config
+
+cfg = Config()
 
 class BaseEvaluator(object):
     def initialize(self):
@@ -94,17 +97,15 @@ class BLEUScorer(object):
         return bleu
 
 
-class IRWoz(object):
-    # loading databases
+class IRWOZ(object):
+    # building database connection
     domains = ['Delivery', 'Position', 'Assembly', 'Relocation']
-    dbs = {}
-    CUR_DIR = os.path.dirname(__file__)
-
+    db_conns = {}
+    db = cfg.dataset_path_production_db
     for domain in domains:
-        db = os.path.join('db/{}-IRDB.db'.format(domain))
         conn = sqlite3.connect(db)
         c = conn.cursor()
-        dbs[domain] = c
+        db_conns[domain] = c
 
     def queryResultVenues(self, domain, turn, bs=None, real_belief=False):
         # query the db
@@ -140,17 +141,16 @@ class IRWoz(object):
                     val2 = normalize(val2)
                     sql_query += r" and " + key + "=" + r"'" + val2 + r"'"
         try:  # "select * from *  where * = '*'"
-            return self.dbs[domain].execute(sql_query).fetchall()
+            return self.db_conns[domain].execute(sql_query).fetchall()
         except:
             return []  # TODO test it
 
-class IRWoZEvaluator(BaseEvaluator):
-    def __init__(self, data_name):
-        self.data_name = data_name
+class IRWOZEvaluator(BaseEvaluator):
+    def __init__(self, mode, lines):
+        self.mode = mode
         self.slot_dict = delex.prepareSlotValuesIndependent()
-        self.delex_dialogues = json.load(file('dataset/industrial-robots/data_chen.json'))
-
-        self.db = IRWoz()
+        self.text = lines
+        self.db = IRWOZ()
         self.labels = list()
         self.hyps = list()
 
@@ -217,13 +217,13 @@ class IRWoZEvaluator(BaseEvaluator):
                 # if realDialogue['goal'][domain]['info'].has_key('name'):
                 if 'name' in realDialogue['goal'][domain]['info']:
                     venue_offered[domain] = '[' + domain + '_name]'
-       """
+    """
         Given all inform and requestable slots
         we go through each domain from the user goal
         and check whether right entity was provided and
         all requestable slots were given to the user.
         The dialogue is successful if that's the case for all domains.
-        """
+    """
         # HARD EVAL
         stats = {'Delivery': [0, 0, 0], 'Position': [0, 0, 0], 'Assembly': [0, 0, 0],
                  'Relocation': [0, 0, 0]}
@@ -512,11 +512,14 @@ if __name__ == '__main__':
     parser.add_argument("--eval_mode", default='test', type=str, help="valid/test")
 
     args = parser.parse_args()
-    mode = "test"
-    evaluator = IRWoZEvaluator(mode)
 
-    f = 'ourtestfile.txt'
-    res, res_bs = parse_decoding_results(f, mode)
+    mode = "test"
+    with open(cfg.dataset_path_test_file, encoding="utf-8") as f:
+        lines = [line for line in f.read().splitlines() if (len(line) > 0 and not line.isspace())]
+    evaluator = IRWOZEvaluator(mode,lines)
+
+
+    res, res_bs = parse_decoding_results(cfg.dataset_path_decoded_file, mode)
 
     # PROVIDE HERE YOUR GENERATED DIALOGUES INSTEAD
     generated_data = res
