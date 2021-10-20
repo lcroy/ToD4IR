@@ -216,7 +216,7 @@ def evaluate_generated_dialogue(gen_dialogue, ref_dialogue):
         gen_res = normalize(gen_res.replace("<|endoftext",""))
         model_turns.append([gen_res])
 
-        # lexical test file response
+        # lexical test file response (replace all [slot] to belief state)
         while ref_dialogue[i].find('[') > 0:
             # get location of delex
             delex_slot = ref_dialogue[i][ref_dialogue[i].find('[')+1:ref_dialogue[i].find(']')]
