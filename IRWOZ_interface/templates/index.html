@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IRWOZ Data Collection Interface</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="card text-white bg-dark mb-3">
+        <div class="card-header"><h5 class="card-title">IRWOZ Interface</h5></div>
+        <div class="card-body">
+            <p class="card-text">This is an interface of collecting dialogue corpus to build IRWOZ dataset.</p>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-lg-12">
+            <div class="card chat-app">
+                <div id="plist" class="people-list">
+                    <div class="input-group">
+                    </div>
+                    <ul class="list-unstyled chat-list mt-2 mb-0">
+                    <li class="clearfix active">
+                        <img src="{{url_for('static', filename= 'data/image/user.png') }}" alt="User">
+                        <div class="about">
+                            <div class="name">User</div>
+                            <div class="status"> <i class="fa fa-circle online"></i> Online </div>
+                        </div>
+                    </li>
+                </ul>
+                </div>
+                <div class="chat">
+                    <div class="chat-header clearfix">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                <img src="{{url_for('static', filename= 'data/image/max.png') }}" alt="ToD4IR">
+                            </a>
+                                <div class="chat-about">
+                                    <h6 class="m-b-0">Max</h6>
+                                    <div class="status"> <i class="fa fa-circle online"></i> Virtual Assistant </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 hidden-sm text-right">
+                           <input id="usermode" type="checkbox" data-on="User Mode" data-off="Sys Mode" data-toggle="toggle" data-onstyle="outline-warning" data-offstyle="outline-info" style="float: left" onchange="checkmode(this)">
+                        </div>
+                        </div>
+                    </div>
+                    <div class="chat-history" style="max-height:400px; overflow-y:scroll">
+                        <ul class="m-b-0" id="dialogue">
+                        </ul>
+                    </div>
+                    <div class="chat-message clearfix">
+                        <div class="input-group mb-0">
+                            <form action="" method="POST">
+                                <div class="input-group-prepend" style="width: 800px">
+                                    <input type="submit"/>
+                                    <input type="text" id="message" class="form-control" style="float: left" placeholder="Enter text here...">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="max_side_domains">
+        <div class="card text-white bg-secondary mb-3">
+            <div class="card-header">Please select the domain according to the user's request</div>
+        </div>
+{#        <h6 class="m-b-0">Please select the domain according to the user's request</h6>#}
+        <ul class="nav nav-tabs" id="max_domain_tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="max_Delivery-tab" data-toggle="tab" href="#max_Delivery" role="tab" aria-controls="max_Delivery" aria-selected="true">Delivery</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="max_Assembly-tab" data-toggle="tab" href="#max_Assembly" role="tab" aria-controls="max_Assembly" aria-selected="false">Assembly</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="max_Relocation-tab" data-toggle="tab" href="#max_Relocation" role="tab" aria-controls="max_Relocation" aria-selected="false">Relocation</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="max_Position-tab" data-toggle="tab" href="#max_Position" role="tab" aria-controls="max_Position" aria-selected="false">Position</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="maxTabContent">
+            <div class="tab-pane fade show active" id="max_Delivery" role="tabpanel" aria-labelledby="max_Delivery-tab">
+                <div style="visibility: hidden"><hr></div>
+                <div class="card border-info mb-3">
+                    <div class="card-header">Required slots: You (Max) need to ask user questions to obtain the following required slots.</div>
+                    <div class="card-body text-info">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend col-6">
+                                <span id="inputGroup-sizing-default">Which area that the package should be delivered?</span>
+                            </div>
+                            <div class="col-2">
+                                    <input type="text" id="area" class="form-control" style="float: left" placeholder="area is...">
+                            </div>
+                            <div class="col-4">
+                                    <button type="button" class="btn btn-info" onclick="get_area()">Search DB </button>
+                                    <span id="area_res"></span>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend col-6">
+                                <span id="inputGroup-sizing-default">Which location that the package should be delivered?</span>
+                            </div>
+                            <div class="col-2">
+                                <input type="text" id="location" class="form-control" style="float: left" placeholder="location is...">
+                            </div>
+                            <div class="col-4">
+                                    <button type="button" class="btn btn-info" onclick="get_location()">Search DB </button>
+                                    <span id="location_res"></span>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend col-6">
+                                <span id="inputGroup-sizing-default">What object needs to be delivered?</span>
+                            </div>
+                            <div class="col-2">
+                                <input type="text" id="object" class="form-control" style="float: left" placeholder="Object is...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-secondary mb-3">
+                    <div class="card-header">Optional slots: The following slots are not necessary, only if user wants to provide them. </div>
+                    <div class="card-body text-secondary">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend col-6">
+                                <span id="inputGroup-sizing-default">Which color is it (object)?</span>
+                            </div>
+                            <div class="col-2">
+                                    <input type="text" id="color" class="form-control" style="float: left" placeholder="color is...">
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend col-6">
+                                <span id="inputGroup-sizing-default">Which size is it (object)?</span>
+                            </div>
+                            <div class="col-2">
+                                <input type="text" id="size" class="form-control" style="float: left" placeholder="size is...">
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend col-6">
+                                <span id="inputGroup-sizing-default">Who is the sender?</span>
+                            </div>
+                            <div class="col-2">
+                                <input type="text" id="sender" class="form-control" style="float: left" placeholder="Sender is...">
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend col-6">
+                                <span id="inputGroup-sizing-default">Who is the recipient?</span>
+                            </div>
+                            <div class="col-2">
+                                <input type="text" id="recipient" class="form-control" style="float: left" placeholder="Recipient is...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="max_Assembly" role="max_Assembly" aria-labelledby="max_Assembly-tab">Assembly</div>
+            <div class="tab-pane fade" id="max_Relocation" role="max_Relocation" aria-labelledby="max_Relocation-tab">Relocation</div>
+            <div class="tab-pane fade" id="max_Position" role="max_Position" aria-labelledby="max_Position-tab">Position</div>
+        </div>
+    </div>
+    <div id="user_side_task_specification">
+        <h6 class="m-b-0">Please read the task specifications of each domain and ask question to Max.</h6>
+        <ul class="nav nav-tabs" id="user_domain_tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="user_Delivery-tab" data-toggle="tab" href="#user_Delivery" role="tab" aria-controls="user_Delivery" aria-selected="true">Delivery</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="user_Assembly-tab" data-toggle="tab" href="#user_Assembly" role="tab" aria-controls="user_Assembly" aria-selected="false">Assembly</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="user_Relocation-tab" data-toggle="tab" href="#user_Relocation" role="tab" aria-controls="user_Relocation" aria-selected="false">Relocation</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="user_Position-tab" data-toggle="tab" href="#user_Position" role="tab" aria-controls="user_Position" aria-selected="false">Position</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="userTabContent">
+            <div class="tab-pane fade show active" id="user_Delivery" role="tabpanel" aria-labelledby="user_Delivery-tab">
+                specifi
+            </div>
+            <div class="tab-pane fade" id="user_Assembly" role="user_Assembly" aria-labelledby="user_Assembly-tab">Assembly</div>
+            <div class="tab-pane fade" id="user_Relocation" role="user_Relocation" aria-labelledby="user_Relocation-tab">Relocation</div>
+            <div class="tab-pane fade" id="user_Position" role="user_Position" aria-labelledby="user_Position-tab">Position</div>
+        </div>
+    </div>
+</div>
+    <script type="text/javascript" src="{{url_for ('static',filename='js/io_connection.js')}}"></script>
+</body>
+</html>
