@@ -63,7 +63,8 @@
                             <form action="" method="POST">
                                 <div class="input-group-prepend" style="width: 800px">
                                     <input type="submit"/>
-                                    <input type="text" id="message" class="form-control" style="float: left" placeholder="Enter text here...">
+                                    <input type="text" id="message" class="form-control" style="float: left" placeholder="Enter text here... ">
+                                    <input type="text" id="s_message" class="form-control" style="float: left" placeholder="Enter small talk response here...">
                                 </div>
                             </form>
                         </div>
@@ -76,7 +77,6 @@
         <div class="card text-white bg-secondary mb-3">
             <div class="card-header">Please select the domain according to the user's request</div>
         </div>
-{#        <h6 class="m-b-0">Please select the domain according to the user's request</h6>#}
         <ul class="nav nav-tabs" id="max_domain_tab" role="tablist">
             <li class="nav-item" role="presentation">
                 <a class="nav-link active" id="max_Delivery-tab" data-toggle="tab" href="#max_Delivery" role="tab" aria-controls="max_Delivery" aria-selected="true">Delivery</a>
@@ -99,7 +99,7 @@
                     <div class="card-body text-info">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend col-6">
-                                <span id="inputGroup-sizing-default">Which area that the package should be delivered?</span>
+                                <span>Which area that the package should be delivered?</span>
                             </div>
                             <div class="col-2">
                                     <input type="text" id="area" class="form-control" style="float: left" placeholder="area is...">
@@ -111,7 +111,7 @@
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend col-6">
-                                <span id="inputGroup-sizing-default">Which location that the package should be delivered?</span>
+                                <span>Which location that the package should be delivered?</span>
                             </div>
                             <div class="col-2">
                                 <input type="text" id="location" class="form-control" style="float: left" placeholder="location is...">
@@ -123,7 +123,7 @@
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend col-6">
-                                <span id="inputGroup-sizing-default">What object needs to be delivered?</span>
+                                <span>What object needs to be delivered?</span>
                             </div>
                             <div class="col-2">
                                 <input type="text" id="object" class="form-control" style="float: left" placeholder="Object is...">
@@ -136,7 +136,7 @@
                     <div class="card-body text-secondary">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend col-6">
-                                <span id="inputGroup-sizing-default">Which color is it (object)?</span>
+                                <span>Which color is it (object)?</span>
                             </div>
                             <div class="col-2">
                                     <input type="text" id="color" class="form-control" style="float: left" placeholder="color is...">
@@ -144,7 +144,7 @@
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend col-6">
-                                <span id="inputGroup-sizing-default">Which size is it (object)?</span>
+                                <span>Which size is it (object)?</span>
                             </div>
                             <div class="col-2">
                                 <input type="text" id="size" class="form-control" style="float: left" placeholder="size is...">
@@ -152,7 +152,7 @@
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend col-6">
-                                <span id="inputGroup-sizing-default">Who is the sender?</span>
+                                <span>Who is the sender?</span>
                             </div>
                             <div class="col-2">
                                 <input type="text" id="sender" class="form-control" style="float: left" placeholder="Sender is...">
@@ -160,7 +160,7 @@
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend col-6">
-                                <span id="inputGroup-sizing-default">Who is the recipient?</span>
+                                <span>Who is the recipient?</span>
                             </div>
                             <div class="col-2">
                                 <input type="text" id="recipient" class="form-control" style="float: left" placeholder="Recipient is...">
@@ -175,7 +175,9 @@
         </div>
     </div>
     <div id="user_side_task_specification">
-        <h6 class="m-b-0">Please read the task specifications of each domain and ask question to Max.</h6>
+        <div class="card text-white bg-secondary mb-3">
+            <div class="card-header">Please read the task specifications of each domain and ask question to Max.</div>
+        </div>
         <ul class="nav nav-tabs" id="user_domain_tab" role="tablist">
             <li class="nav-item" role="presentation">
                 <a class="nav-link active" id="user_Delivery-tab" data-toggle="tab" href="#user_Delivery" role="tab" aria-controls="user_Delivery" aria-selected="true">Delivery</a>
@@ -192,11 +194,49 @@
         </ul>
         <div class="tab-content" id="userTabContent">
             <div class="tab-pane fade show active" id="user_Delivery" role="tabpanel" aria-labelledby="user_Delivery-tab">
-                specifi
+                <div style="visibility: hidden"><hr></div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" aria-label="Checkbox for following text input" onchange="confirm_delivery(this)">
+                        </div>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Text input with checkbox" value="I am fully understand the following task specification :)" readonly>
+                </div>
             </div>
-            <div class="tab-pane fade" id="user_Assembly" role="user_Assembly" aria-labelledby="user_Assembly-tab">Assembly</div>
-            <div class="tab-pane fade" id="user_Relocation" role="user_Relocation" aria-labelledby="user_Relocation-tab">Relocation</div>
-            <div class="tab-pane fade" id="user_Position" role="user_Position" aria-labelledby="user_Position-tab">Position</div>
+            <div class="tab-pane fade" id="user_Assembly" role="user_Assembly" aria-labelledby="user_Assembly-tab">
+                <div style="visibility: hidden"><hr></div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" aria-label="Checkbox for following text input" onchange="confirm_assembly(this)">
+                        </div>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Text input with checkbox" value="I am fully understand the following task specification :)" readonly>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="user_Relocation" role="user_Relocation" aria-labelledby="user_Relocation-tab">
+                <div style="visibility: hidden"><hr></div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" aria-label="Checkbox for following text input" onchange="confirm_relocation(this)">
+                        </div>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Text input with checkbox" value="I am fully understand the following task specification :)" readonly>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="user_Position" role="user_Position" aria-labelledby="user_Position-tab">
+                <div style="visibility: hidden"><hr></div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" aria-label="Checkbox for following text input" onchange="confirm_position(this)">
+                        </div>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Text input with checkbox" value="I am fully understand the following task specification :)" readonly>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -1,18 +1,56 @@
 var socket = io.connect('http://' + document.domain + ':' + location.port);
 
+var domain = 'null';
+// list of parameters related to delivery
+var del_sa_area = 'null';
+var del_sa_location = 'null';
+var del_sa_object = 'null';
+
+
 $(document).ready(function() {
     $( '#max_side_domains' ).show();
+    $( '#s_message' ).show();
     $( '#user_side_task_specification' ).hide();
 });
 
 function checkmode(element){
   if (element.checked){
      $( '#max_side_domains' ).hide();
+     $( '#s_message' ).hide();
      $( '#user_side_task_specification' ).show();
   } else{
     $( '#max_side_domains' ).show();
+    $( '#s_message' ).show();
     $( '#user_side_task_specification' ).hide();
   }
+}
+
+function confirm_delivery(element){
+    if (element.checked){
+        domain = 'delivery';
+        alert(domain)
+    }
+}
+
+function confirm_assembly(element){
+    if (element.checked){
+        domain = 'assembly';
+        alert(domain)
+    }
+}
+
+function confirm_relocation(element){
+    if (element.checked){
+        domain = 'relocation';
+        alert(domain)
+    }
+}
+
+function confirm_position(element){
+    if (element.checked){
+        domain = 'position';
+        alert(domain)
+    }
 }
 
 function gettzdate(){
@@ -32,11 +70,14 @@ function get_area() {
                 success:function (data) {
                     $.each(data,function(k,v) {
                         if (v == "detected"){
-                          document.getElementById("area_res").textContent = "Great, " + $('#area').val().toLowerCase() + " is found."
+                            document.getElementById("area_res").textContent = "Great, " + $('#area').val().toLowerCase() + " is found.";
+                            del_sa_area = 'detected';
                         }else if (v == "undetected"){
-                            document.getElementById("area_res").textContent = "Sorry, " + $('#area').val().toLowerCase() + " is not found."
+                            document.getElementById("area_res").textContent = "Sorry, " + $('#area').val().toLowerCase() + " is not found.";
+                            del_sa_area = 'undetected'
                         }else{
                             document.getElementById("area_res").textContent = "Please enter the area first."
+                            del_sa_area = 'null';
                         }
                     })
                 }
@@ -52,15 +93,20 @@ function get_location() {
                 success:function (data) {
                     $.each(data,function(k,v) {
                         if (v == "detected"){
-                          document.getElementById("location_res").textContent = $('#area').val().toLowerCase() + " and " + $('#location').val().toLowerCase() + " are found."
+                          document.getElementById("location_res").textContent = $('#area').val().toLowerCase() + " and " + $('#location').val().toLowerCase() + " are found.";
+                          del_sa_location = 'detected';
                         }else if (v == "undetected"){
-                            document.getElementById("location_res").textContent = "Area and Loation are not related."
+                            document.getElementById("location_res").textContent = "Area and Loation are not related.";
+                            del_sa_location = 'undetected';
                         }else if (v =="Need Area and Location"){
-                            document.getElementById("location_res").textContent = " Area and Location can not be empty."
+                            document.getElementById("location_res").textContent = " Area and Location can not be empty.";
+                            del_sa_area = 'null';
+                            del_sa_location = 'null';
                         }else if (v =="Need Area"){
                             document.getElementById("location_res").textContent = "Need area for search location."
                         }else if (v =="Need Location"){
-                            document.getElementById("location_res").textContent = "Location can not be empty."
+                            document.getElementById("location_res").textContent = "Location can not be empty.";
+                            del_sa_location = 'null';
                         }
                     })
                 }
@@ -70,22 +116,38 @@ function get_location() {
 
 socket.on( 'connect', function() {
   socket.emit( 'my event', {
-    data: 'User Connected'
+      data: 'User Connected is',
+      flag: 'connection'
   } )
   var form = $( 'form' ).on( 'submit', function( e ) {
     e.preventDefault()
-    let user_input = $("#message").val();
+    let t_res = $("#message").val();
+    let s_res = $("#s_message").val();
     let speaker = '';
-    if ($('#usermode').is(':checked')){
-      speaker = "user"
-    } else {
-      speaker = "max"
+    let slots = '';
+    if($('#object').val().toLowerCase()!=''){
+        del_sa_object = 'detected';
     }
+    if ($('#usermode').is(':checked')){
+      speaker = "user";
+      slots = '';
+    } else {
+      speaker = "max";
+      slots = {'area':$('#area').val().toLowerCase(),'location':$('#location').val().toLowerCase(), 'sender': $('#sender').val().toLowerCase(),
+      'recipient': $('#recipient').val().toLowerCase(), 'object': $('#object').val().toLowerCase(),'color': $('#color').val().toLowerCase(),
+          'size': $('#size').val().toLowerCase(), 'sa_area': del_sa_area,'sa_location': del_sa_location,
+      'sa_object': del_sa_object};
+    };
     socket.emit( 'my event', {
-      message : user_input,
-      speaker : speaker
+        domain : domain,
+        slots : slots,
+        t_res : t_res,
+        s_res : s_res,
+        speaker : speaker,
+        flag: 'response'
     } )
-  $("#message").val( '' ).focus()
+    $("#message").val( '' ).focus();
+    $("#s_message").val( '' )
   } )
 } )
 
