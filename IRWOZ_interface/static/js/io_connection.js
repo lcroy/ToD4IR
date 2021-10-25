@@ -6,6 +6,8 @@ var del_sa_area = 'null';
 var del_sa_location = 'null';
 var del_sa_object = 'null';
 
+var user_utterance = '';
+
 
 $(document).ready(function() {
     $( '#max_side_domains' ).show();
@@ -115,40 +117,134 @@ function get_location() {
 
 
 socket.on( 'connect', function() {
-  socket.emit( 'my event', {
-      data: 'User Connected is',
-      flag: 'connection'
-  } )
-  var form = $( 'form' ).on( 'submit', function( e ) {
-    e.preventDefault()
-    let t_res = $("#message").val();
-    let s_res = $("#s_message").val();
-    let speaker = '';
-    let slots = '';
-    if($('#object').val().toLowerCase()!=''){
-        del_sa_object = 'detected';
-    }
-    if ($('#usermode').is(':checked')){
-      speaker = "user";
-      slots = '';
-    } else {
-      speaker = "max";
-      slots = {'area':$('#area').val().toLowerCase(),'location':$('#location').val().toLowerCase(), 'sender': $('#sender').val().toLowerCase(),
-      'recipient': $('#recipient').val().toLowerCase(), 'object': $('#object').val().toLowerCase(),'color': $('#color').val().toLowerCase(),
-          'size': $('#size').val().toLowerCase(), 'sa_area': del_sa_area,'sa_location': del_sa_location,
-      'sa_object': del_sa_object};
-    };
     socket.emit( 'my event', {
-        domain : domain,
-        slots : slots,
-        t_res : t_res,
-        s_res : s_res,
-        speaker : speaker,
-        flag: 'response'
+        data: 'User Connected is',
+        flag: 'connection'
     } )
-    $("#message").val( '' ).focus();
-    $("#s_message").val( '' )
-  } )
+    var form = $( 'form' ).on( 'submit', function( e ) {
+        e.preventDefault()
+        let t_res = $("#message").val();
+        user_utterance = $("#message").val();
+        let s_res = $("#s_message").val();
+        let speaker = '';
+        let slots = '';
+        if($('#object').val().toLowerCase()!=''){
+            del_sa_object = 'detected';
+        }
+        if ($('#usermode').is(':checked')){
+            speaker = "user";
+            slots = {'user': user_utterance};
+        } else {
+            speaker = "max";
+            // set up turn info.
+            if (domain == 'delivery') {
+                slots = {
+                    "user": user_utterance,
+                    "system": t_res,
+                    "s_system": s_res,
+                    "slots": {
+                        "assembly": {
+                            "DB_request": {
+                                "req": {
+                                    "producttype": ""
+                                },
+                                "opt": {}
+                            },
+                            "T_inform": {
+                                "req": {
+                                    "product": "",
+                                    "quantity": ""
+                                },
+                                "opt": {
+                                    "color": "",
+                                    "style": "",
+                                    "size": ""
+                                },
+                                "type": ""
+                            }
+                        },
+                        "delivery": {
+                            "DB_request": {
+                                "req": {
+                                    "area": $('#area').val(),
+                                    "location": $('#location').val()
+                                },
+                                "opt": {
+                                    "sender": $('#sender').val(),
+                                    "recipient": $('#recipient').val()
+                                }
+                            },
+                            "T_inform": {
+                                "req": {
+                                    "object": $('#object').val()
+                                },
+                                "opt": {
+                                    "color": $('#color').val(),
+                                    "size": $('#size').val()
+                                },
+                                "type": "delivery"
+                            }
+                        },
+                        "position": {
+                            "DB_request": {
+                                "req": {
+                                    "location": ""
+                                },
+                                "opt": {}
+                            },
+                            "T_inform": {
+                                "req": {
+                                    "operation": ""
+                                },
+                                "opt": {},
+                                "type": ""
+                            }
+                        },
+                        "relocation": {
+                            "DB_request": {
+                                "req": {
+                                    "object": ""
+                                },
+                                "opt": {}
+                            },
+                            "T_inform": {
+                                "req": {},
+                                "opt": {
+                                    "color": "",
+                                    "size": "",
+                                    "from": "",
+                                    "to": ""
+                                },
+                                "type": ""
+                            }
+                        }
+                    },
+                    "search_result": {
+                        "area": del_sa_area,
+                        "location": del_sa_location,
+                        "object": del_sa_object
+                    }
+                }
+            }
+        }
+
+        //   slots = {'area':$('#area').val().toLowerCase(),'location':$('#location').val().toLowerCase(), 'sender': $('#sender').val().toLowerCase(),
+        //   'recipient': $('#recipient').val().toLowerCase(), 'object': $('#object').val().toLowerCase(),'color': $('#color').val().toLowerCase(),
+        //       'size': $('#size').val().toLowerCase(), 'sa_area': del_sa_area,'sa_location': del_sa_location,
+        //   'sa_object': del_sa_object};
+        // };
+
+        socket.emit( 'my event', {
+            domain : domain,
+            slots : slots,
+            t_res : t_res,
+            s_res : s_res,
+            speaker : speaker,
+            flag: 'response'
+        } )
+        $("#message").val( '' ).focus();
+        $("#s_message").val( '' )
+    } )
 } )
 
 

@@ -2,7 +2,9 @@
   "DL00001.json": {
         "domain": {
             "assembly": false,
-            "delivery": true
+            "delivery": true,
+            "position": false,
+            "relocation": false
         },
         "turn": [
             {
@@ -50,6 +52,39 @@
                                 "size": "not_mentioned"
                             },
                             "type": "delivery"
+                        }
+                    },
+                    "position": {
+                        "DB_request": {
+                            "req": {
+                                "location": ""
+                            },
+                            "opt": {}
+                        },
+                        "T_inform": {
+                            "req": {
+                                "operation": ""
+                            },
+                            "opt": {},
+                            "type": ""
+                        }
+                    },
+                    "relocation": {
+                        "DB_request": {
+                            "req": {
+                                "object":""
+                            },
+                            "opt": {}
+                        },
+                        "T_inform": {
+                            "req": {},
+                            "opt": {
+                                "color": "",
+                                "size": "",
+                                "from": "",
+                                "to": ""
+                            },
+                            "type": ""
                         }
                     }
                 },
