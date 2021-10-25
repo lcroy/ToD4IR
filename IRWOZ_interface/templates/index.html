@@ -78,21 +78,21 @@
             <div class="card-header">Please select the domain according to the user's request</div>
         </div>
         <ul class="nav nav-tabs" id="max_domain_tab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <a class="nav-link active" id="max_Delivery-tab" data-toggle="tab" href="#max_Delivery" role="tab" aria-controls="max_Delivery" aria-selected="true">Delivery</a>
+            <li class="nav-item" role="presentation" id="tab_delivery">
+                <a class="nav-link active" id="max_Delivery-tab" data-toggle="tab" href="#max_delivery" role="tab" aria-controls="max_Delivery" aria-selected="true">Delivery</a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link" id="max_Assembly-tab" data-toggle="tab" href="#max_Assembly" role="tab" aria-controls="max_Assembly" aria-selected="false">Assembly</a>
+                <a class="nav-link" id="max_Assembly-tab" data-toggle="tab" href="#max_assembly" role="tab" aria-controls="max_Assembly" aria-selected="false">Assembly</a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link" id="max_Relocation-tab" data-toggle="tab" href="#max_Relocation" role="tab" aria-controls="max_Relocation" aria-selected="false">Relocation</a>
+                <a class="nav-link" id="max_Relocation-tab" data-toggle="tab" href="#max_relocation" role="tab" aria-controls="max_Relocation" aria-selected="false">Relocation</a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link" id="max_Position-tab" data-toggle="tab" href="#max_Position" role="tab" aria-controls="max_Position" aria-selected="false">Position</a>
+                <a class="nav-link" id="max_Position-tab" data-toggle="tab" href="#max_position" role="tab" aria-controls="max_Position" aria-selected="false">Position</a>
             </li>
         </ul>
         <div class="tab-content" id="maxTabContent">
-            <div class="tab-pane fade show active" id="max_Delivery" role="tabpanel" aria-labelledby="max_Delivery-tab">
+            <div class="tab-pane fade show active" id="max_delivery" role="tabpanel" aria-labelledby="max_Delivery-tab">
                 <div style="visibility: hidden"><hr></div>
                 <div class="card border-info mb-3">
                     <div class="card-header">Required slots: You (Max) need to ask user questions to obtain the following required slots.</div>
@@ -168,10 +168,17 @@
                         </div>
                     </div>
                 </div>
+                <button type="button" class="btn btn-success" onclick="get_end_conv()">Please remember to click this button when conversation is over. You will be able to start a new dialogue.</button>
             </div>
-            <div class="tab-pane fade" id="max_Assembly" role="max_Assembly" aria-labelledby="max_Assembly-tab">Assembly</div>
-            <div class="tab-pane fade" id="max_Relocation" role="max_Relocation" aria-labelledby="max_Relocation-tab">Relocation</div>
-            <div class="tab-pane fade" id="max_Position" role="max_Position" aria-labelledby="max_Position-tab">Position</div>
+            <div class="tab-pane fade" id="max_assembly" role="max_Assembly" aria-labelledby="max_Assembly-tab">
+
+            </div>
+            <div class="tab-pane fade" id="max_relocation" role="max_Relocation" aria-labelledby="max_Relocation-tab">
+
+            </div>
+            <div class="tab-pane fade" id="max_position" role="max_Position" aria-labelledby="max_Position-tab">
+
+            </div>
         </div>
     </div>
     <div id="user_side_task_specification">
@@ -180,7 +187,7 @@
         </div>
         <ul class="nav nav-tabs" id="user_domain_tab" role="tablist">
             <li class="nav-item" role="presentation">
-                <a class="nav-link active" id="user_Delivery-tab" data-toggle="tab" href="#user_Delivery" role="tab" aria-controls="user_Delivery" aria-selected="true">Delivery</a>
+                <a class="nav-link" id="user_Delivery-tab" data-toggle="tab" href="#user_Delivery" role="tab" aria-controls="user_Delivery" aria-selected="true">Delivery</a>
             </li>
             <li class="nav-item" role="presentation">
                 <a class="nav-link" id="user_Assembly-tab" data-toggle="tab" href="#user_Assembly" role="tab" aria-controls="user_Assembly" aria-selected="false">Assembly</a>
@@ -193,49 +200,21 @@
             </li>
         </ul>
         <div class="tab-content" id="userTabContent">
-            <div class="tab-pane fade show active" id="user_Delivery" role="tabpanel" aria-labelledby="user_Delivery-tab">
+            <div class="tab-pane fade" id="user_Delivery" role="tabpanel" aria-labelledby="user_Delivery-tab">
                 <div style="visibility: hidden"><hr></div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <input type="checkbox" aria-label="Checkbox for following text input" onchange="confirm_delivery(this)">
-                        </div>
-                    </div>
-                    <input type="text" class="form-control" aria-label="Text input with checkbox" value="I am fully understand the following task specification :)" readonly>
-                </div>
+
             </div>
             <div class="tab-pane fade" id="user_Assembly" role="user_Assembly" aria-labelledby="user_Assembly-tab">
                 <div style="visibility: hidden"><hr></div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <input type="checkbox" aria-label="Checkbox for following text input" onchange="confirm_assembly(this)">
-                        </div>
-                    </div>
-                    <input type="text" class="form-control" aria-label="Text input with checkbox" value="I am fully understand the following task specification :)" readonly>
-                </div>
+
             </div>
             <div class="tab-pane fade" id="user_Relocation" role="user_Relocation" aria-labelledby="user_Relocation-tab">
                 <div style="visibility: hidden"><hr></div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <input type="checkbox" aria-label="Checkbox for following text input" onchange="confirm_relocation(this)">
-                        </div>
-                    </div>
-                    <input type="text" class="form-control" aria-label="Text input with checkbox" value="I am fully understand the following task specification :)" readonly>
-                </div>
+
             </div>
             <div class="tab-pane fade" id="user_Position" role="user_Position" aria-labelledby="user_Position-tab">
                 <div style="visibility: hidden"><hr></div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <input type="checkbox" aria-label="Checkbox for following text input" onchange="confirm_position(this)">
-                        </div>
-                    </div>
-                    <input type="text" class="form-control" aria-label="Text input with checkbox" value="I am fully understand the following task specification :)" readonly>
-                </div>
+
             </div>
         </div>
     </div>

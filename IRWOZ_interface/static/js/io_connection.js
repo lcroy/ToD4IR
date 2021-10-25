@@ -1,11 +1,11 @@
 var socket = io.connect('http://' + document.domain + ':' + location.port);
 
 var domain = 'null';
+var domain_set = 'null';
 // list of parameters related to delivery
 var del_sa_area = 'null';
 var del_sa_location = 'null';
 var del_sa_object = 'null';
-
 var user_utterance = '';
 
 
@@ -27,34 +27,46 @@ function checkmode(element){
   }
 }
 
-function confirm_delivery(element){
-    if (element.checked){
-        domain = 'delivery';
-        alert(domain)
-    }
-}
+// listening on tab changing event.
+$(function () {
+             $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                 var target = $(e.target).attr("href");
+                 var temp_domain = target.replace("#max_","");
+                 if (temp_domain === 'delivery'){
+                     domain_set = { "assembly": false, "delivery": true, "position": false, "relocation": false };
+                     domain = 'delivery';
+                 } else if (temp_domain === 'assembly'){
+                     domain_set = { "assembly": true, "delivery": false, "position": false, "relocation": false };
+                     domain = 'assembly';
+                 } else if (temp_domain === 'position'){
+                     domain_set = { "assembly": false, "delivery": false, "position": true, "relocation": false };
+                     domain = 'position';
+                 } else if (temp_domain === 'relocation'){
+                     domain_set = { "assembly": false, "delivery": false, "position": false, "relocation": true };
+                     domain = 'relocation';
+                 }
+                 // clear all the slots on the page
+                // clear delivery
+                $('#area').val('');
+                $('#location').val('');
+                $('#sender').val('');
+                $('#recipient').val('');
+                $('#object').val('');
+                $('#color').val('');
+                $('#size').val('');
+                $("#message").val();
+                $("#s_message").val();
+                $("#area_res").text('');
+                $("#location_res").text('');
+                del_sa_area = 'null';
+                del_sa_location = 'null';
+                del_sa_object = 'null';
 
-function confirm_assembly(element){
-    if (element.checked){
-        domain = 'assembly';
-        alert(domain)
-    }
-}
+             });
+         })
 
-function confirm_relocation(element){
-    if (element.checked){
-        domain = 'relocation';
-        alert(domain)
-    }
-}
 
-function confirm_position(element){
-    if (element.checked){
-        domain = 'position';
-        alert(domain)
-    }
-}
-
+// obtain time for message
 function gettzdate(){
     var current_time = new Date().toLocaleTimeString();
     // if ($('#usermode').is(':checked')){
@@ -63,6 +75,7 @@ function gettzdate(){
     return current_time ;
 }
 
+//search the database
 function get_area() {
             $.ajax({
               url:'/get_area/',
@@ -86,6 +99,7 @@ function get_area() {
             })
         };
 
+//search the database
 function get_location() {
             $.ajax({
               url:'/get_location/',
@@ -109,6 +123,39 @@ function get_location() {
                         }else if (v =="Need Location"){
                             document.getElementById("location_res").textContent = "Location can not be empty.";
                             del_sa_location = 'null';
+                        }
+                    })
+                }
+            })
+        };
+
+//end conversation
+function get_end_conv() {
+            $.ajax({
+              url:'/get_end_conv/',
+              data: { "end": 'yes'},
+              type:"GET",
+              dataType:'json',
+                success:function (data) {
+                    $.each(data,function(k,v) {
+                        if (v == "done"){
+                            // clear page
+                            if (domain == 'delivery'){
+                                $('#area').val('');
+                                $('#location').val('');
+                                $('#sender').val('');
+                                $('#recipient').val('');
+                                $('#object').val('');
+                                $('#color').val('');
+                                $('#size').val('');
+                                $("#message").val('');
+                                $("#s_message").val('');
+                                $("#area_res").text('');
+                                $("#location_res").text('');
+                                del_sa_area = 'null';
+                                del_sa_location = 'null';
+                                del_sa_object = 'null';
+                            }
                         }
                     })
                 }
@@ -227,15 +274,9 @@ socket.on( 'connect', function() {
                 }
             }
         }
-
-        //   slots = {'area':$('#area').val().toLowerCase(),'location':$('#location').val().toLowerCase(), 'sender': $('#sender').val().toLowerCase(),
-        //   'recipient': $('#recipient').val().toLowerCase(), 'object': $('#object').val().toLowerCase(),'color': $('#color').val().toLowerCase(),
-        //       'size': $('#size').val().toLowerCase(), 'sa_area': del_sa_area,'sa_location': del_sa_location,
-        //   'sa_object': del_sa_object};
-        // };
-
         socket.emit( 'my event', {
             domain : domain,
+            domain_set: domain_set,
             slots : slots,
             t_res : t_res,
             s_res : s_res,
