@@ -1,12 +1,17 @@
 var socket = io.connect('http://' + document.domain + ':' + location.port);
 
-var domain = 'null';
+var domain = 'delivery';
 var domain_set = 'null';
+var user_utterance = '';
+
 // list of parameters related to delivery
 var del_sa_area = 'null';
 var del_sa_location = 'null';
 var del_sa_object = 'null';
-var user_utterance = '';
+
+// list of parameters related to assembly
+var asb_sa_producttype = 'null';
+var asb_sa_quantity = 'null';
 
 
 $(document).ready(function() {
@@ -62,6 +67,14 @@ $(function () {
                 del_sa_location = 'null';
                 del_sa_object = 'null';
 
+                // clear assembly
+                $('#producttype').val('');
+                $('#quantity').val('');
+                $("#prod_color").val();
+                $("#prod_size").val();
+                $("#prod_style").text('');
+                asb_sa_producttype = 'null';
+                asb_sa_quantity = 'null';
              });
          })
 
@@ -129,6 +142,30 @@ function get_location() {
             })
         };
 
+//search the database
+function get_product() {
+            $.ajax({
+              url:'/get_prod/',
+              data: { "prod": $('#producttype').val()},
+              type:"GET",
+              dataType:'json',
+                success:function (data) {
+                    $.each(data,function(k,v) {
+                        if (v == "detected"){
+                            document.getElementById("producttype_res").textContent = "Great, " + $('#producttype').val() + " is found.";
+                            asb_sa_producttype = 'detected';
+                        }else if (v == "undetected"){
+                            document.getElementById("producttype_res").textContent = "Sorry, " + $('#producttype').val() + " is not found.";
+                            asb_sa_producttype = 'undetected'
+                        }else{
+                            document.getElementById("producttype_res").textContent = "Please enter the product type first."
+                            asb_sa_producttype = 'null';
+                        }
+                    })
+                }
+            })
+        };
+
 //end conversation
 function get_end_conv() {
             $.ajax({
@@ -155,6 +192,14 @@ function get_end_conv() {
                                 del_sa_area = 'null';
                                 del_sa_location = 'null';
                                 del_sa_object = 'null';
+                            } else if (domain == 'assembly'){
+                                $('#producttype').val('');
+                                $('#quantity').val('');
+                                $("#prod_color").val('');
+                                $("#prod_size").val('');
+                                $("#prod_style").val('');
+                                asb_sa_producttype = 'null';
+                                asb_sa_quantity = 'null';
                             }
                         }
                     })
@@ -175,9 +220,7 @@ socket.on( 'connect', function() {
         let s_res = $("#s_message").val();
         let speaker = '';
         let slots = '';
-        if($('#object').val().toLowerCase()!=''){
-            del_sa_object = 'detected';
-        }
+
         if ($('#usermode').is(':checked')){
             speaker = "user";
             slots = {'user': user_utterance};
@@ -213,23 +256,111 @@ socket.on( 'connect', function() {
                         "delivery": {
                             "DB_request": {
                                 "req": {
-                                    "area": $('#area').val(),
-                                    "location": $('#location').val()
+                                    "area": $('#area').val() == ''?"not_mentioned":$('#area').val(),
+                                    "location": $('#location').val() == ''?"not_mentioned":$('#location').val()
                                 },
                                 "opt": {
-                                    "sender": $('#sender').val(),
-                                    "recipient": $('#recipient').val()
+                                    "sender": $('#sender').val() == ''?"not_mentioned":$('#sender').val(),
+                                    "recipient": $('#recipient').val() == ''?"not_mentioned":$('#recipient').val()
                                 }
                             },
                             "T_inform": {
                                 "req": {
-                                    "object": $('#object').val()
+                                    "object": $('#object').val() == ''?"not_mentioned":$('#object').val()
                                 },
                                 "opt": {
-                                    "color": $('#color').val(),
-                                    "size": $('#size').val()
+                                    "color": $('#color').val() == ''?"not_mentioned":$('#color').val(),
+                                    "size": $('#size').val() == ''?"not_mentioned":$('#size').val()
                                 },
                                 "type": "delivery"
+                            }
+                        },
+                        "position": {
+                            "DB_request": {
+                                "req": {
+                                    "position_name": ""
+                                },
+                                "opt": {}
+                            },
+                            "T_inform": {
+                                "req": {
+                                    "operation": ""
+                                },
+                                "opt": {},
+                                "type": ""
+                            }
+                        },
+                        "relocation": {
+                            "DB_request": {
+                                "req": {
+                                    "object": ""
+                                },
+                                "opt": {}
+                            },
+                            "T_inform": {
+                                "req": {},
+                                "opt": {
+                                    "color": "",
+                                    "size": "",
+                                    "from": "",
+                                    "to": ""
+                                },
+                                "type": ""
+                            }
+                        }
+                    },
+                    "search_result": {
+                        "area": del_sa_area,
+                        "location": del_sa_location,
+                        "object": $('#object').val() == ''?"null":"detected"
+                    }
+                }
+            };
+            if (domain == 'assembly') {
+                slots = {
+                    "user": user_utterance,
+                    "system": t_res,
+                    "s_system": s_res,
+                    "slots": {
+                        "assembly": {
+                            "DB_request": {
+                                "req": {
+                                    "producttype": $('#producttype').val() == ''?"not_mentioned":$('#producttype').val()
+                                },
+                                "opt": {}
+                            },
+                            "T_inform": {
+                                "req": {
+                                    "quantity": $('#quantity').val() == ''?"not_mentioned":$('#quantity').val()
+                                },
+                                "opt": {
+                                    "color": $('#prod_color').val() == ''?"not_mentioned":$('#prod_color').val(),
+                                    "style": $('#prod_size').val() == ''?"not_mentioned":$('#prod_size').val(),
+                                    "size": $('#prod_style').val() == ''?"not_mentioned":$('#prod_style').val()
+                                },
+                                "type": "assembly"
+                            }
+                        },
+                        "delivery": {
+                            "DB_request": {
+                                "req": {
+                                    "area": "",
+                                    "location": ""
+                                },
+                                "opt": {
+                                    "sender": "",
+                                    "recipient": ""
+                                }
+                            },
+                            "T_inform": {
+                                "req": {
+                                    "object": ""
+                                },
+                                "opt": {
+                                    "color": "",
+                                    "size": ""
+                                },
+                                "type": ""
                             }
                         },
                         "position": {
@@ -267,9 +398,8 @@ socket.on( 'connect', function() {
                         }
                     },
                     "search_result": {
-                        "area": del_sa_area,
-                        "location": del_sa_location,
-                        "object": del_sa_object
+                        "producttype": asb_sa_producttype,
+                        "quantity": $('#quantity').val() == ''?"null":"detected"
                     }
                 }
             }

@@ -82,6 +82,15 @@ def get_location():
 
     return jsonify({"result":result})
 
+@app.route('/get_prod/', methods=['GET'])
+def get_prod():
+    prod = request.args.get('prod')
+    if prod == "":
+        result = "null"
+    else:
+        result,_ = query_product(db_file, prod)
+
+    return jsonify({"result":result})
 
 def messageReceived(methods=['GET', 'POST']):
     print('message was received!!!')

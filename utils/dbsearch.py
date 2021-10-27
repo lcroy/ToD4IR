@@ -107,6 +107,28 @@ def query_product(db_file, product):
 
     return "undetected", "no details"
 
+
+#=================================================================
+# Pre-defined SQL Queries of DB
+# Domain: position
+# Slots as search conditions: position_name
+# Tables: position
+#=================================================================
+# def query_position(db_file, position_name, operation):
+#     conn = create_connection(db_file)
+#     if conn != None:
+#         cur = conn.cursor()
+#         if (operation == 'add'):
+#         sql_query = "SELECT * FROM product WHERE product='" + product + "'"
+#         cur.execute(sql_query)
+#         rows = cur.fetchall()
+#         num_of_rows = len(rows)
+#         if num_of_rows > 0:
+#             for row in rows:
+#                 return "detected", row[2]
+#
+#     return "undetected", "no details"
+
 # # for testing
 # if __name__ == "__main__":
 #     cfg = Config()
