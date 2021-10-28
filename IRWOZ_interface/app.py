@@ -12,6 +12,7 @@ cfg = Config()
 
 start_conv = 1
 domain_set = ''
+user_utterance = ''
 turn = []
 db_file = cfg.dataset_path_production_db
 
@@ -92,6 +93,23 @@ def get_prod():
 
     return jsonify({"result":result})
 
+
+@app.route('/get_position_name/', methods=['GET'])
+def get_position_name():
+    position_name = request.args.get('position_name')
+    operation = request.args.get('operation')
+    result = query_position(db_file, position_name, operation)
+
+    return jsonify({"result":result})
+
+
+@app.route('/get_object/', methods=['GET'])
+def get_object():
+    object_name = request.args.get('object')
+    result = query_object(db_file, object_name)
+
+    return jsonify({"result":result})
+
 def messageReceived(methods=['GET', 'POST']):
     print('message was received!!!')
 
@@ -101,6 +119,7 @@ def handle_my_custom_event(json, methods=['GET', 'POST']):
     global domain_set
     global start_conv
     global turn
+    global user_utterance
     print('received my event: ' + str(json))
     raw_dialogue = json
     if json['flag'] == 'response':
@@ -112,9 +131,11 @@ def handle_my_custom_event(json, methods=['GET', 'POST']):
             if start_conv == 1:
                 domain_set = raw_dialogue['domain_set']
                 start_conv = 0
+            raw_dialogue['slots']['user'] = user_utterance
             turn.append(raw_dialogue['slots'])
-            print("========")
             print(turn)
+        if raw_dialogue['speaker'] == 'user':
+            user_utterance = raw_dialogue['slots']['user']
 
     socketio.emit('my response', json, callback=messageReceived)
 

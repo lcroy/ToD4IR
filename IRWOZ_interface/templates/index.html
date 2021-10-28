@@ -227,10 +227,89 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="max_relocation" role="max_Relocation" aria-labelledby="max_Relocation-tab">
-
+                <div style="visibility: hidden"><hr></div>
+                <div class="card border-info mb-3">
+                    <div class="card-header">Required slots: You (Max) need to ask user questions to obtain the following required slots.</div>
+                    <div class="card-body text-info">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend col-6">
+                                <span>What is object required by user?</span>
+                            </div>
+                            <div class="col-2">
+                                    <input type="text" id="rel_object" class="form-control" style="float: left" placeholder="object is ...">
+                            </div>
+                            <div class="col-4">
+                                    <button type="button" class="btn btn-info" onclick="get_object()">Search DB </button>
+                                    <span id="rel_object_res"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-secondary mb-3">
+                    <div class="card-header">Optional slots: The following slots are not necessary, only if user wants to provide them. </div>
+                    <div class="card-body text-secondary">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend col-6">
+                                <span>What color is it (object)?</span>
+                            </div>
+                            <div class="col-2">
+                                    <input type="text" id="obj_color" class="form-control" style="float: left" placeholder="object color is...">
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend col-6">
+                                <span>Which size is it (object)?</span>
+                            </div>
+                            <div class="col-2">
+                                <input type="text" id="object_size" class="form-control" style="float: left" placeholder="object size is...">
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend col-6">
+                                <span>From where? (e.g, left, right center, top, bottom)</span>
+                            </div>
+                            <div class="col-2">
+                                <input type="text" id="from_loc" class="form-control" style="float: left" placeholder="From...">
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend col-6">
+                                <span>To where? (e.g, left, right center, top, bottom)</span>
+                            </div>
+                            <div class="col-2">
+                                <input type="text" id="to_loc" class="form-control" style="float: left" placeholder="To...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="tab-pane fade" id="max_position" role="max_Position" aria-labelledby="max_Position-tab">
-
+                <div style="visibility: hidden"><hr></div>
+                <div class="card border-info mb-3">
+                    <div class="card-header">Required slots: You (Max) need to ask user questions to obtain the following required slots.</div>
+                    <div class="card-body text-info">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend col-6">
+                                <span>Which name is provided by user?</span>
+                            </div>
+                            <div class="col-2">
+                                    <input type="text" id="position_name" class="form-control" style="float: left" placeholder="Position name is...">
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend col-6">
+                                <span>Which operation will the user like to perform?(Only 'add' operation is allowed atm.)</span>
+                            </div>
+                            <div class="col-2">
+                                <input type="text" id="operation" class="form-control" style="float: left" placeholder="operation is...">
+                            </div>
+                              <div class="col-4">
+                                    <button type="button" class="btn btn-info" onclick="get_position_name()">Update DB</button>
+                                    <span id="position_name_res"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
