@@ -1,6 +1,9 @@
 import math
 import re
 from collections import Counter
+from config import Config
+
+cfg = Config()
 
 from nltk.util import ngrams
 
@@ -9,7 +12,7 @@ pricepat = re.compile("\d{1,3}[.]\d{1,2}")
 
 
 file=open
-fin = open('utils/mapping.pair')
+fin = open(cfg.pair_path)
 replacements = []
 for line in fin.readlines():
     tok_from, tok_to = line.replace('\n', '').split('\t')

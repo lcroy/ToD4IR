@@ -28,6 +28,9 @@ class Config:
         # generated from IRWOZ interface
         self.dataset_path_gen_IRWOZ = os.path.join(self.dataset_path, 'Industrial-robots/gen_dialogue.json')
 
+        # pair file
+        self.pair_path = os.path.join(self.project_path, 'utils/mapping.pair')
+
         # parameters
         self.max_length = 1024
 
