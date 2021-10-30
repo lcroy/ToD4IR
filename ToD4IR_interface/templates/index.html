@@ -69,6 +69,54 @@
             </div>
         </div>
     </div>
+    <div id="max_side_domains">
+
+        <div class="tab-content" id="maxTabContent">
+            <div class="tab-pane fade show active" id="max_delivery" role="tabpanel" aria-labelledby="max_Delivery-tab">
+                <div style="visibility: hidden"><hr></div>
+                <div class="card border-success mb-3">
+                    <div class="card-header">Generated Belief States</div>
+                    <div class="card-body text-info">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="card-text" id="belief_state">Here will display the generated belief states...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-success mb-3">
+                    <div class="card-header">Generated System Actions</div>
+                    <div class="card-body text-secondary">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="card-text" id="sys_act">Here will display the system actions...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-success mb-3">
+                    <div class="card-header">Generated Task Related System Response</div>
+                    <div class="card-body text-secondary">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="card-text" id="tt_res">Here will show task related response...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-success mb-3">
+                    <div class="card-header">Generated Small Talk Related Response</div>
+                    <div class="card-body text-secondary">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="card-text" id="st_res">Here will show small talk related response...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
     <script type="text/javascript" src="{{url_for ('static',filename='js/io_connection.js')}}"></script>
 </body>

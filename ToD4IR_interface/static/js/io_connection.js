@@ -34,7 +34,16 @@ socket.on('my response', function( msg ) {
               "</span><img src=\"/static/data/image/user.png\" alt=\"User\"></div><div class=\"message other-message float-right\">" + msg.message + "</div></li>");
          $("#dialogue").append("<li class=\"clearfix\"><div class=\"message-data\"><img src=\"/static/data/image/max.png\" alt=\"Max\"> " +
               "<span class=\"message-data-time\">" + gettzdate() + "</span></div><div class=\"message other-message\">"
-              + msg.tod_res + "</div></li>")
+              + msg.tod_res + "</div></li>");
+
+      //   assign belief state
+            document.getElementById("belief_state").textContent = msg.bf;
+      //   assign system actions
+            document.getElementById("sys_act").textContent = msg.sys;
+      //   assign task related response
+            document.getElementById("tt_res").textContent = msg.tt;
+      //   assign small talk related response
+            document.getElementById("st_res").textContent = msg.st;
       } else {
       alert("Please enter the message before you post :)")
     }

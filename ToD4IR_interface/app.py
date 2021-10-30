@@ -30,6 +30,10 @@ endoftext = tokenizer.encode(str(tokenizer._eos_token))
 dialogue = '<|endoftext|> <|boc|> '
 db_file = cfg.dataset_path_production_db
 
+bf = ''
+sys = ''
+tt = ''
+st = ''
 
 @app.route('/')
 def hello_world():  # put application's code here
@@ -163,6 +167,10 @@ def db_search(context_pred_belief):
 def do_generation(text):
 
         global dialogue
+        global bf
+        global sys
+        global tt
+        global st
         response = ''
 
         if len(text) > 0:
@@ -171,7 +179,7 @@ def do_generation(text):
             if any(key in text for key in cfg.stop_words):
                 dialogue = '<|endoftext|> <|boc|> '
                 # text_to_speech_microsoft(random.choice(cfg.max_end_dialogue))
-                return
+                return 'Please give next command...','','','',''
 
             # add the user utterance to the previous context the "<|eoc|>" location
             loc_eoc = dialogue.find("<|eoc|>")
@@ -211,6 +219,7 @@ def do_generation(text):
                         break
 
             dialogue = tokenizer.decode(indexed_tokens)
+            bf = dialogue[dialogue.find('<|bob|>') + 8: len(dialogue) - 7]
             print("belief================================")
             print(dialogue)
             print("belief================================")
@@ -220,6 +229,7 @@ def do_generation(text):
 
             # Task 2.b: generate system act (context + pred_belief + system actions)
             dialogue += ' <|bosys_act|> ' + sys_act + ' <|eosys_act|>'
+            sys = sys_act
 
             print("system act================================")
             print(dialogue)
@@ -294,12 +304,14 @@ def do_generation(text):
                     r_res = dialogue[loc_boSres + 10: loc_eoSres]
                     new_dialogue += ' <|sys|> ' + t_res + " " + r_res
                     response = t_res + " " + r_res
+                    tt = t_res
+                    st = r_res
 
                 dialogue = new_dialogue + ' <|eoc|>'
                 # text_to_speech_microsoft(response)
                 print("Max: " + response)
 
-            return response
+            return response, bf, sys, tt, st
 
 @socketio.on('my event')
 def handle_my_custom_event(json, methods=['GET', 'POST']):
@@ -311,9 +323,12 @@ def handle_my_custom_event(json, methods=['GET', 'POST']):
         json = {'speaker':json['speaker'],'message':res}
 
         # generate response
-        response = do_generation(res)
+        response, bf, sys, tt, st = do_generation(res)
         json['tod_res'] = response
-
+        json['bf'] = bf
+        json['sys'] = sys
+        json['tt'] = tt
+        json['st'] = st
 
     socketio.emit('my response', json, callback=messageReceived)
 
