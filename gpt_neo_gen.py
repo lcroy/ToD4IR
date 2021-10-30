@@ -8,6 +8,126 @@ from transformers import GPT2Tokenizer, GPTNeoForCausalLM
 
 cfg = Config()
 
+# def db_search(context_pred_belief):
+#
+#     loc_db_req = context_pred_belief.find('<|DB_req|>')
+#     loc_db_opt = context_pred_belief.find('<|DB_opt|>')
+#     loc_t_req = context_pred_belief.find('<|T_req|>')
+#     loc_t_opt = context_pred_belief.find('<|T_opt|>')
+#     loc_eob = context_pred_belief.find('<|eob|>')
+#     # get db_req slots
+#     if loc_db_req > 0:
+#         if loc_db_opt > 0:
+#             db_req = context_pred_belief[loc_db_req + 10:loc_db_opt]
+#         elif loc_t_req > 0:
+#             db_req = context_pred_belief[loc_db_req + 10:loc_t_req]
+#         elif loc_t_opt > 0:
+#             db_req = context_pred_belief[loc_db_req + 10:loc_t_opt]
+#         else:
+#             db_req = context_pred_belief[loc_db_req + 10:loc_eob]
+#
+#         db_req = [x for x in list(dict.fromkeys(db_req.split(' '))) if x]
+#
+#     # # get db_opt slots
+#     # if loc_db_opt > 0:
+#     #     if loc_t_req > 0:
+#     #         db_opt = context_pred_belief[loc_db_opt + 10:loc_t_req]
+#     #     elif loc_t_opt > 0:
+#     #         db_opt = context_pred_belief[loc_db_opt + 10:loc_t_opt]
+#     #     else:
+#     #         db_opt = context_pred_belief[loc_db_opt + 10:loc_eob]
+#     #     db_opt = list(dict.fromkeys(db_opt.split(' '))).remove('')
+#
+#     # get t_req slots
+#     if loc_t_req > 0:
+#         if loc_t_opt > 0:
+#             t_req = context_pred_belief[loc_t_req + 9:loc_t_opt]
+#         else:
+#             t_req = context_pred_belief[loc_t_req + 9:loc_eob]
+#
+#         t_req = [x for x in list(dict.fromkeys(t_req.split(' '))) if x]
+#
+#     # # get t_opt slots
+#     # if loc_t_opt > 0:
+#     #     if loc_eob > 0:
+#     #         t_opt = context_pred_belief[loc_t_opt + 9:loc_eob]
+#     #         t_opt = list(dict.fromkeys(t_opt.split(' '))).remove('')
+#
+#     results = ''
+#     # db_req slots
+#     if loc_db_req > 0:
+#         # get the domain
+#         domain = db_req[0]
+#         if domain == 'delivery':
+#             # set the condition for searching area_location table
+#             area, location = '', ''
+#             for item in db_req[1:]:
+#                 key, value = item[0:item.find('=')], item[item.find('=') + 1:]
+#                 if key == 'area':
+#                     area = value
+#                 elif key == 'location':
+#                     location = value
+#             if (area == 'not_mentioned') and (location == 'not_mentioned'):
+#                 results = 'area=null location=null'
+#             elif (area != 'not_mentioned') and (location == 'not_mentioned'):
+#                 db_results = query_area(cfg.dataset_path_production_db, area)
+#                 results = 'area=' + db_results + ' location=null'
+#             elif (area != 'not_mentioned') and (location != 'not_mentioned'):
+#                 db_results = query_area_location(cfg.dataset_path_production_db, area, location)
+#                 results = 'area=' + db_results + ' location=' + db_results
+#             elif (area == 'not_mentioned') and (location != 'not_mentioned'):
+#                 db_results = query_location(cfg.dataset_path_production_db, location)
+#                 results = 'area=null' + ' location=' + db_results
+#
+#         elif domain == 'assembly':
+#             # set the condition for searching product table
+#             producttype = ''
+#             for item in db_req[1:]:
+#                 key, value = item[0:item.find('=')], item[item.find('=') + 1:]
+#                 if key == 'producttype':
+#                     producttype = value
+#             if (producttype == 'not_mentioned'):
+#                 results = 'producttype=null'
+#             else:
+#                 db_results, _ = query_product(cfg.dataset_path_production_db, producttype)
+#                 results = 'producttype=' + db_results
+#
+#     # t_req slots
+#     if loc_t_req > 0:
+#         # get the domain
+#         domain = t_req[0]
+#         if domain == 'delivery':
+#             # set the condition for searching area_location table
+#             object = ''
+#             for item in t_req[1:]:
+#                 key, value = item[0:item.find('=')], item[item.find('=') + 1:]
+#                 if key == 'object':
+#                     object = value
+#             if (object == 'not_mentioned'):
+#                 results += ' object=null'
+#             else:
+#                 results += ' object=' + object
+#
+#         elif domain == 'assembly':
+#             # set the condition for searching product table
+#             product, quantity = '', ''
+#             for item in t_req[1:]:
+#                 key, value = item[0:item.find('=')], item[item.find('=') + 1:]
+#                 if key == 'product':
+#                     product = value
+#                 elif key == 'quantity':
+#                     quantity = value
+#             if (product == 'not_mentioned'):
+#                 results += ' product=null'
+#             else:
+#                 results += ' product=' + product
+#             if (quantity == 'not_mentioned'):
+#                 results += ' quantity=null'
+#             else:
+#                 results += ' quantity=' + quantity
+#
+#     return results
+
 def db_search(context_pred_belief):
 
     loc_db_req = context_pred_belief.find('<|DB_req|>')
@@ -28,16 +148,6 @@ def db_search(context_pred_belief):
 
         db_req = [x for x in list(dict.fromkeys(db_req.split(' '))) if x]
 
-    # # get db_opt slots
-    # if loc_db_opt > 0:
-    #     if loc_t_req > 0:
-    #         db_opt = context_pred_belief[loc_db_opt + 10:loc_t_req]
-    #     elif loc_t_opt > 0:
-    #         db_opt = context_pred_belief[loc_db_opt + 10:loc_t_opt]
-    #     else:
-    #         db_opt = context_pred_belief[loc_db_opt + 10:loc_eob]
-    #     db_opt = list(dict.fromkeys(db_opt.split(' '))).remove('')
-
     # get t_req slots
     if loc_t_req > 0:
         if loc_t_opt > 0:
@@ -46,12 +156,6 @@ def db_search(context_pred_belief):
             t_req = context_pred_belief[loc_t_req + 9:loc_eob]
 
         t_req = [x for x in list(dict.fromkeys(t_req.split(' '))) if x]
-
-    # # get t_opt slots
-    # if loc_t_opt > 0:
-    #     if loc_eob > 0:
-    #         t_opt = context_pred_belief[loc_t_opt + 9:loc_eob]
-    #         t_opt = list(dict.fromkeys(t_opt.split(' '))).remove('')
 
     results = ''
     # db_req slots
@@ -92,6 +196,32 @@ def db_search(context_pred_belief):
                 db_results, _ = query_product(cfg.dataset_path_production_db, producttype)
                 results = 'producttype=' + db_results
 
+        elif domain == 'position':
+            # set the condition for searching position table
+            position_name = ''
+            for item in db_req[1:]:
+                key, value = item[0:item.find('=')], item[item.find('=') + 1:]
+                if key == 'position_name':
+                    producttype = value
+            if (position_name == 'not_mentioned'):
+                results = 'position_name=null'
+            else:
+                db_results, _ = query_position_name(cfg.dataset_path_production_db, position_name)
+                results = 'position_name=' + db_results
+
+        elif domain == 'relocation':
+            # set the condition for searching position table
+            object_name = ''
+            for item in db_req[1:]:
+                key, value = item[0:item.find('=')], item[item.find('=') + 1:]
+                if key == 'object_name':
+                    object_name = value
+            if (object_name == 'not_mentioned'):
+                results = 'object_name=null'
+            else:
+                db_results, _ = query_object(cfg.dataset_path_production_db, object_name)
+                results = 'object_name=' + db_results
+
     # t_req slots
     if loc_t_req > 0:
         # get the domain
@@ -106,7 +236,7 @@ def db_search(context_pred_belief):
             if (object == 'not_mentioned'):
                 results += ' object=null'
             else:
-                results += ' object=' + object
+                results += ' object=detected'
 
         elif domain == 'assembly':
             # set the condition for searching product table
@@ -120,11 +250,22 @@ def db_search(context_pred_belief):
             if (product == 'not_mentioned'):
                 results += ' product=null'
             else:
-                results += ' product=' + product
+                results += ' product=detected'
             if (quantity == 'not_mentioned'):
                 results += ' quantity=null'
             else:
-                results += ' quantity=' + quantity
+                results += ' quantity=detected'
+
+        elif domain == 'position':
+            operation = ''
+            for item in t_req[1:]:
+                key, value = item[0:item.find('=')], item[item.find('=') + 1:]
+                if key == 'operation':
+                    operation = value
+            if (operation == 'not_mentioned'):
+                results += ' operation=null'
+            else:
+                results += ' operation=detected'
 
     return results
 

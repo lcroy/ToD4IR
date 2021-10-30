@@ -114,6 +114,18 @@ def query_product(db_file, product):
 # Slots as search conditions: position_name, operation
 # Tables: position
 #=================================================================
+def query_position_name(db_file, position_name):
+    conn = create_connection(db_file)
+    if conn != None:
+        cur = conn.cursor()
+        sql_serch_name = "SELECT * FROM position WHERE position_name='" + position_name + "'"
+        cur.execute(sql_serch_name)
+        rows = cur.fetchall()
+        if (len(rows) > 0):
+            return "detected"
+
+    return "undetected"
+
 def query_position(db_file, position_name, operation):
     conn = create_connection(db_file)
     if conn != None:
@@ -129,6 +141,15 @@ def query_position(db_file, position_name, operation):
                 sql_add_position = "INSERT INTO position(position_name) VALUES('" + position_name + "')"
                 cur.execute(sql_add_position)
                 conn.commit()
+                return "undetected"
+        elif (operation == 'move'):
+            # search if the name is exist
+            sql_serch_name = "SELECT * FROM position WHERE position_name='" + position_name + "'"
+            cur.execute(sql_serch_name)
+            rows = cur.fetchall()
+            if (len(rows) > 0):
+                return "detected"
+            else:
                 return "undetected"
 
     return "unknown"

@@ -661,7 +661,7 @@ socket.on( 'connect', function() {
                         "relocation": {
                             "DB_request": {
                                 "req": {
-                                    "object": $('#rel_object').val() == ''?"not_mentioned":$('#rel_object').val()
+                                    "object_name": $('#rel_object').val() == ''?"not_mentioned":$('#rel_object').val()
                                 },
                                 "opt": {}
                             },
@@ -678,7 +678,7 @@ socket.on( 'connect', function() {
                         }
                     },
                     "search_result": {
-                        "object": rel_sa_object
+                        "object_name": rel_sa_object
                     }
                 }
             }

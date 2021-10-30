@@ -12,7 +12,7 @@ from torch.utils.data.distributed import DistributedSampler
 from torch.nn.parallel import DistributedDataParallel
 
 # we train it on 4 gpus
-os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 logger = logging.getLogger(__name__)
 
@@ -74,11 +74,11 @@ def main():
     # model = DistributedDataParallel(model)
     # model = model.cuda()
     # model = nn.parallel.DistributedDataParallel(model)
-    model = nn.DataParallel(model)
-    model = model.cuda()
+    # model = nn.DataParallel(model)
+    # model = model.cuda()
     # train single
-    # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    # model.to(device)
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model.to(device)
 
     # load the dataset
     with open(cfg.dataset_path_IR_delex, encoding="utf-8") as f:
