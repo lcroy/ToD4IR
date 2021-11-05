@@ -203,10 +203,18 @@ function get_position_name() {
                     success:function (data) {
                         $.each(data,function(k,v) {
                             if (v == "detected"){
-                                document.getElementById("position_name_res").textContent = "Sorry, " + $('#position_name').val() + " already exists.";
+                                if ($('#operation').val() == 'move'){
+                                    document.getElementById("position_name_res").textContent = "Yes, " + $('#position_name').val() + " is found.";
+                                }else{
+                                    document.getElementById("position_name_res").textContent = "Sorry, " + $('#position_name').val() + " already exists.";
+                                }
                                 pos_sa_position_name = 'detected';
                             }else if (v == "undetected"){
-                                document.getElementById("position_name_res").textContent = "Great, " + $('#position_name').val() + " is registered in database.";
+                                if ($('#operation').val() == 'move'){
+                                    document.getElementById("position_name_res").textContent = "Sorry, " + $('#position_name').val() + " is not found.";
+                                }else{
+                                    document.getElementById("position_name_res").textContent = "Great, " + $('#position_name').val() + " is registered in database.";
+                                }
                                 pos_sa_position_name = 'undetected'
                             }else{
                                 document.getElementById("position_name_res").textContent = "Please double check if you entered the correct operation."
