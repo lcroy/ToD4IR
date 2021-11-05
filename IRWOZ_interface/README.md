@@ -1,29 +1,19 @@
-# ToD4IR - Task-Oriented Dialogue System for Industrial Robots
+# IRWOZ Interface for dialogue corpus collection.
 
 ## Introduction
+We leverage Wizard-of-Oz approach to collect the dialogue corpus for IRWOZ. It currently supports four domains. 
 
-This repository showecase building task-oriented dialogue system,Max, with the focus on industrial robots,
-e.g., [Mobile Industrial Robot](https://www.mobile-industrial-robots.com/en/), 
-[Frank Emika](https://www.franka.de/). To enhance the user experience and improve the user engagement, human-to-human
-conversation strategies are introduced to generate near human response to provide a more natural and flexible conversation
-environment.
+## Instruction of running the interface
+### install
+The interface is designed and developed based on [Flask](https://flask.palletsprojects.com/en/2.0.x/) framework.
+To run it on your local computer, you need to install required libraries from [doc](./doc).
 
-## IRWOZ
-Industrial Robots Domain Wizard-of-Oz dataset (IRWOZ), a fully-labeled dialogue dataset of human-human conversations spanning 
-over four domains (Product Assembly, Transportation, Mapping, Relocation). At a size of xxx dialogues, it aims to provide simulated dialogues between
-shop floor worker and industrial robots to support language-assisted Human Robot Interaction (HRI) in 
-industrial setup. To the best of our knowledge, IRWOZ is the first annotated task-oriented corpora for 
-manufacturing domain.
+### Run
+```python
+python app.py
+```
+### Simulate Conversation
+The data collection process requires one participant to perform a role of industrial robot (i.e., the *wizard*), while
+the other one acting as a *shop floor worker*. You need to open two web pages after you run the application. You need to
+enable the *User mode* on the web page if your role is the *shop floor worker*.
 
-### Data Structure
-To maintain a high scalability, IRWOZ has a similar data structure of the most popular 
-Multi-Domain Wizard-of-Oz dataset ([MultiWOZ](https://github.com/budzianowski/multiwoz)). 
-Each dialogue consists of a domain, multiple user&system utterances and belief state as well as system act. 
-
-The belief state have two sections: DB_request and T_inform. DB_request refers to slots that need to be
-used for query the database. T_inform includes slots which relate to the task. Each of them includes 
-required (req) and optional (opt) sections. "req" contains all the slots must be obtained during the
-dialogue while the slots in "opt" are the optional. The system act contains all the DB search results and status of the required slots. 
-
-### Real Time Robotics database
-IRDB.db is a sqlite3 database. It includes tables, area_location, employee, product, inventory, that supports response generation. 
