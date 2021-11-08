@@ -40,8 +40,8 @@ def train(dataset, model, output_path, log_path):
     train_dataset, val_dataset = random_split(dataset, [train_size, val_size])
     print(len(train_dataset), len(val_dataset))
     # set up the training arguments
-    training_args = TrainingArguments(output_dir=output_path, overwrite_output_dir=True, num_train_epochs=100,
-                                      logging_steps=100, save_steps=5000,
+    training_args = TrainingArguments(output_dir=output_path, overwrite_output_dir=True, num_train_epochs=10,
+                                      logging_steps=100, save_steps=50,
                                       per_device_train_batch_size=1, per_device_eval_batch_size=1,
                                       warmup_steps=100, weight_decay=0.01, logging_dir='./logs',
                                       logging_strategy='epoch', evaluation_strategy="epoch")
@@ -57,10 +57,10 @@ def train(dataset, model, output_path, log_path):
 def main():
     cfg = Config()
     # initial gpt-neo model and tokenizer
-    tokenizer = GPT2Tokenizer.from_pretrained("gpt2-large", bos_token='<|endoftext|>',
+    tokenizer = GPT2Tokenizer.from_pretrained("gpt2", bos_token='<|endoftext|>',
                                               eos_token='<|endoftext|>', pad_token='<|pad|>')
     tokenizer.save_pretrained(cfg.model_gpt2_checkpoint_path)
-    model = GPT2LMHeadModel.from_pretrained("gpt2-large")
+    model = GPT2LMHeadModel.from_pretrained("gpt2")
     model.resize_token_embeddings(len(tokenizer))
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

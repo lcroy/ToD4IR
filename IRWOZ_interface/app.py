@@ -49,6 +49,7 @@ def get_end_conv():
         dialogue[dialogue_name] = {}
         dialogue[dialogue_name]["domain"] = domain_set
         dialogue[dialogue_name]["turn"] = turn
+        turn = []
         print(dialogue)
         # write to json file
         filename = cfg.dataset_path_gen_IRWOZ
