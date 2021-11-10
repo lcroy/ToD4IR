@@ -160,6 +160,7 @@ def query_position(db_file, position_name, operation):
 # Tables: object
 #=================================================================
 def query_object(db_file, object_name):
+    print(object_name)
     conn = create_connection(db_file)
     if conn != None:
         cur = conn.cursor()
@@ -256,7 +257,7 @@ def db_search(cfg, context_pred_belief):
             if (position_name == 'not_mentioned'):
                 results = 'position_name=null'
             else:
-                db_results, _ = query_position_name(cfg.dataset_path_production_db, position_name)
+                db_results = query_position_name(cfg.dataset_path_production_db, position_name)
                 results = 'position_name=' + db_results
 
         elif domain == 'relocation':
@@ -269,7 +270,8 @@ def db_search(cfg, context_pred_belief):
             if (object_name == 'not_mentioned'):
                 results = 'object_name=null'
             else:
-                db_results, _ = query_object(cfg.dataset_path_production_db, object_name)
+                print(object_name)
+                db_results = query_object(cfg.dataset_path_production_db, object_name)
                 results = 'object_name=' + db_results
 
     # t_req slots
