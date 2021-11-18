@@ -179,6 +179,7 @@ def query_object(db_file, object_name):
 # extract the belief state and searching database
 # Return the searching results from database
 #=================================================================
+
 def db_search(cfg, context_pred_belief):
 
     loc_db_req = context_pred_belief.find('<|DB_req|>')
@@ -198,6 +199,16 @@ def db_search(cfg, context_pred_belief):
             db_req = context_pred_belief[loc_db_req + 10:loc_eob]
 
         db_req = [x for x in list(dict.fromkeys(db_req.split(' '))) if x]
+        # reorganize the slots
+        db_req_temp = db_req[1:]
+        for i in range(len(db_req_temp)):
+            if db_req_temp[i].find("=") <= 0:
+                db_req_temp[i-1] = db_req_temp[i-1] + " " + db_req_temp[i]
+                db_req_temp[i] = "None"
+
+        db_req[1:] = list(filter(("None").__ne__, db_req_temp))
+
+
 
     # get t_req slots
     if loc_t_req > 0:
@@ -207,6 +218,14 @@ def db_search(cfg, context_pred_belief):
             t_req = context_pred_belief[loc_t_req + 9:loc_eob]
 
         t_req = [x for x in list(dict.fromkeys(t_req.split(' '))) if x]
+        # reorganize the slots
+        t_req_temp = t_req[1:]
+        for i in range(len(t_req_temp)):
+            if t_req_temp[i].find("=") <= 0:
+                t_req_temp[i - 1] = t_req_temp[i - 1] + " " + t_req_temp[i]
+                t_req_temp[i] = "None"
+
+        t_req[1:] = list(filter(("None").__ne__, t_req_temp))
 
     results = ''
     # db_req slots
@@ -253,7 +272,7 @@ def db_search(cfg, context_pred_belief):
             for item in db_req[1:]:
                 key, value = item[0:item.find('=')], item[item.find('=') + 1:]
                 if key == 'position_name':
-                    producttype = value
+                    position_name = value
             if (position_name == 'not_mentioned'):
                 results = 'position_name=null'
             else:
