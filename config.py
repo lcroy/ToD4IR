@@ -22,9 +22,16 @@ class Config:
         self.dataset_path_IR_val_delex = os.path.join(self.dataset_path,
                                                   'Industrial-robots/train.context.belief.sysact.tres.sres.delex')
         self.dataset_path_production_db = os.path.join(self.dataset_path, 'db/IRDB.db')
-        # for testing
-        self.dataset_path_decoded_file = os.path.join(self.dataset_path, 'Industrial-robots/decoded_file')
-        self.dataset_path_test_file = os.path.join(self.dataset_path, 'Industrial-robots/test_file.json')
+        # Training file path
+        self.dataset_path_train_file = os.path.join(self.dataset_path, 'Industrial-robots/train_file.txt')
+        # Validation file path
+        self.dataset_path_val_file = os.path.join(self.dataset_path, 'Industrial-robots/val_file.txt')
+        # Test file path
+        self.dataset_path_test_file = os.path.join(self.dataset_path, 'Industrial-robots/test_file.txt')
+        # decoded file based on the test file
+        self.dataset_path_decoded_file = os.path.join(self.dataset_path, 'Industrial-robots/decoded_file.txt')
+
+
         # generated from IRWOZ interface
         self.dataset_path_gen_IRWOZ = os.path.join(self.dataset_path, 'Industrial-robots/gen_dialogue.json')
 

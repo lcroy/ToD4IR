@@ -2,6 +2,7 @@ import json
 from tqdm import tqdm
 from config import Config
 from utils.normalize_text import normalize
+from torch.utils.data import Dataset, random_split
 
 from transformers import GPT2Tokenizer
 gpt2_tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
@@ -223,6 +224,38 @@ def pre_delex_IRWoZ_data(raw_data, pre_delex_data):
             with open(pre_delex_data, 'at', encoding='utf-8') as f:
                 f.write('{} {} {}\n'.format(gpt2_tokenizer._bos_token, text, gpt2_tokenizer._bos_token))
 
+def gen_train_val_test(dataset_path, train_file_path, val_file_path, test_file_path):
+    # load the dataset
+    with open(dataset_path, encoding="utf-8") as f:
+        lines = [line for line in f.read().splitlines() if (len(line) > 0 and not line.isspace())]
+
+    # get 60% training, 20% validation and 20% test
+    total_num_lines = len(lines)
+    train_size = int(0.7 * total_num_lines)
+    temp_size = total_num_lines - train_size
+    val_size = int(0.6 * temp_size)
+    test_size = temp_size - val_size
+
+    train_dataset, val_dataset, test_dataset = random_split(lines, [train_size, val_size, test_size])
+
+    # generate train file
+    train_file = open(train_file_path, mode='w', encoding='utf-8')
+    for row in train_dataset:
+        train_file.write(row + "\n")
+    train_file.close()
+
+    # generate validation file
+    val_file = open(val_file_path, mode='w', encoding='utf-8')
+    for row in val_dataset:
+        val_file.write(row + "\n")
+    val_file.close()
+
+    # generate test file
+    test_file = open(test_file_path, mode='w', encoding='utf-8')
+    for row in test_dataset:
+        test_file.write(row + "\n")
+    test_file.close()
+
 
 def main():
     cfg = Config()
@@ -232,6 +265,9 @@ def main():
 
     # format the raw dialogues to delex data
     delex_IRWoZ_data(cfg.dataset_path_IR, cfg.dataset_path_IR_delex)
+
+    # generate training, validation and test data
+    gen_train_val_test(cfg.dataset_path_IR_delex, cfg.dataset_path_train_file, cfg.dataset_path_val_file, cfg.dataset_path_test_file)
 
 
 if __name__ == "__main__":

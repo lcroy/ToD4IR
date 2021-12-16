@@ -34,13 +34,13 @@ class IROWData(Dataset):
         return self.input_ids[idx], self.attn_masks[idx]
 
 
-def train(dataset, model, output_path, log_path):
-    # split the dataset to training and validation
-    total_num_dataset = len(dataset)
-    train_size = int(0.8 * total_num_dataset)
-    val_size = total_num_dataset - train_size
-    train_dataset, val_dataset = random_split(dataset, [train_size, val_size])
-    print(len(train_dataset), len(val_dataset))
+def train(train_dataset, val_dataset, model, output_path, log_path):
+    # # split the dataset to training and validation
+    # total_num_dataset = len(dataset)
+    # train_size = int(0.8 * total_num_dataset)
+    # val_size = total_num_dataset - train_size
+    # train_dataset, val_dataset = random_split(dataset, [train_size, val_size])
+    # print(len(train_dataset), len(val_dataset))
 
     # set up the training arguments
     training_args = TrainingArguments(output_dir=output_path, overwrite_output_dir=True, num_train_epochs=30,
@@ -69,27 +69,38 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
 
-    # load the dataset
-    with open(cfg.dataset_path_IR_delex, encoding="utf-8") as f:
-        lines = [line for line in f.read().splitlines() if (len(line) > 0 and not line.isspace())]
+    # load the training dataset
+    with open(cfg.dataset_path_train_file, encoding="utf-8") as f:
+        train_lines = [line for line in f.read().splitlines() if (len(line) > 0 and not line.isspace())]
 
-    # get 20% test
-    total_num_lines = len(lines)
-    test_size = int(0.2 * total_num_lines)
-    train_val_size = total_num_lines - test_size
-    train_val_dataset, test_dataset = random_split(lines, [train_val_size, test_size])
+    # load the validation dataset
+    with open(cfg.dataset_path_val_file, encoding="utf-8") as f:
+        val_lines = [line for line in f.read().splitlines() if (len(line) > 0 and not line.isspace())]
 
-    # generate test dataset
-    test_file = open(cfg.dataset_path_test_file, mode='w', encoding='utf-8')
-    for row in test_dataset:
-        test_file.write(row + "\n")
-    test_file.close()
+    # # load the dataset
+    # with open(cfg.dataset_path_IR_delex, encoding="utf-8") as f:
+    #     lines = [line for line in f.read().splitlines() if (len(line) > 0 and not line.isspace())]
+    #
+    # # get 20% test
+    # total_num_lines = len(lines)
+    # test_size = int(0.2 * total_num_lines)
+    # train_val_size = total_num_lines - test_size
+    # train_val_dataset, test_dataset = random_split(lines, [train_val_size, test_size])
+    #
+    # # generate test dataset
+    # test_file = open(cfg.dataset_path_test_file, mode='w', encoding='utf-8')
+    # for row in test_dataset:
+    #     test_file.write(row + "\n")
+    # test_file.close()
 
-    # formate the datset
-    dataset = IROWData(train_val_dataset, tokenizer, cfg.max_length)
+    # formate the training datset
+    train_dataset = IROWData(train_lines, tokenizer, cfg.max_length)
+
+    # formate the validation datset
+    val_dataset = IROWData(val_lines, tokenizer, cfg.max_length)
 
     # Training and evaluation
-    train(dataset, model, cfg.model_gpt2_checkpoint_path, cfg.model_gpt_neo_log_path)
+    train(train_dataset, val_dataset, model, cfg.model_gpt2_checkpoint_path, cfg.model_gpt_neo_log_path)
 
 
 if __name__ == "__main__":
