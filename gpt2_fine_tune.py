@@ -11,6 +11,8 @@ from torch.nn.parallel import DistributedDataParallel
 
 logger = logging.getLogger(__name__)
 
+cfg = Config()
+
 torch.manual_seed(22)
 
 
@@ -39,9 +41,10 @@ def train(dataset, model, output_path, log_path):
     val_size = total_num_dataset - train_size
     train_dataset, val_dataset = random_split(dataset, [train_size, val_size])
     print(len(train_dataset), len(val_dataset))
+
     # set up the training arguments
-    training_args = TrainingArguments(output_dir=output_path, overwrite_output_dir=True, num_train_epochs=10,
-                                      logging_steps=100, save_steps=50,
+    training_args = TrainingArguments(output_dir=output_path, overwrite_output_dir=True, num_train_epochs=30,
+                                      logging_steps=100, save_steps=6000,
                                       per_device_train_batch_size=1, per_device_eval_batch_size=1,
                                       warmup_steps=100, weight_decay=0.01, logging_dir='./logs',
                                       logging_strategy='epoch', evaluation_strategy="epoch")
@@ -69,8 +72,21 @@ def main():
     # load the dataset
     with open(cfg.dataset_path_IR_delex, encoding="utf-8") as f:
         lines = [line for line in f.read().splitlines() if (len(line) > 0 and not line.isspace())]
+
+    # get 20% test
+    total_num_lines = len(lines)
+    test_size = int(0.2 * total_num_lines)
+    train_val_size = total_num_lines - test_size
+    train_val_dataset, test_dataset = random_split(lines, [train_val_size, test_size])
+
+    # generate test dataset
+    test_file = open(cfg.dataset_path_test_file, mode='w', encoding='utf-8')
+    for row in test_dataset:
+        test_file.write(row + "\n")
+    test_file.close()
+
     # formate the datset
-    dataset = IROWData(lines, tokenizer, cfg.max_length)
+    dataset = IROWData(train_val_dataset, tokenizer, cfg.max_length)
 
     # Training and evaluation
     train(dataset, model, cfg.model_gpt2_checkpoint_path, cfg.model_gpt_neo_log_path)

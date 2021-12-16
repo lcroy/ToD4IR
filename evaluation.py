@@ -9,7 +9,7 @@ cfg = Config()
 
 class BLEUScorer(object):
     ## BLEU score calculator via GentScorer interface
-    ## it calculates the BLEU-4 by taking the entire corpus in
+    ## it calculates the BLEU 1 - 4 by taking the entire corpus in
     ## Calulate based multiple candidates against multiple references
     def score(self, hypothesis, corpus, n=1):
         # containers
@@ -213,7 +213,7 @@ def evaluate_generated_dialogue(gen_dialogue, ref_dialogue):
         gen_loc_endoftext = gen_dialogue[i].find('<|endoftext|>')
 
         gen_res = gen_dialogue[i][gen_loc_boTres + 11:gen_loc_eoTres-1] + " " + gen_dialogue[i][gen_loc_boSres + 11:gen_loc_eoSres-1]
-        gen_res = normalize(gen_res.replace("<|endoftext",""))
+        gen_res = normalize(gen_res.replace("<|endoftext>",""))
         model_turns.append([gen_res])
 
         # lexical test file response (replace all [slot] to belief state)
