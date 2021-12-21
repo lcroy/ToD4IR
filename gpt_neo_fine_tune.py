@@ -11,9 +11,6 @@ import torch.distributed
 from torch.utils.data.distributed import DistributedSampler
 from torch.nn.parallel import DistributedDataParallel
 
-# we train it on 4 gpus
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
-
 logger = logging.getLogger(__name__)
 
 torch.manual_seed(22)
@@ -46,10 +43,10 @@ def train(dataset, model, output_path, log_path):
     print(len(train_dataset), len(val_dataset))
     # set up the training arguments
     training_args = TrainingArguments(output_dir=output_path, overwrite_output_dir=True, num_train_epochs=50,
-                                      logging_steps=10, save_strategy='epoch',
+                                      logging_steps=10, save_steps=5000,
                                       per_device_train_batch_size=1, per_device_eval_batch_size=1,
                                       warmup_steps=100, weight_decay=0.01, logging_dir='./logs',
-                                      logging_strategy='epoch', evaluation_strategy="epoch")
+                                      logging_strategy='epoch', evaluation_strategy="epoch", )
 
     trainer = Trainer(model=model, args=training_args, train_dataset=train_dataset,
                       eval_dataset=val_dataset,
@@ -62,10 +59,10 @@ def train(dataset, model, output_path, log_path):
 def main():
     cfg = Config()
     # initial gpt-neo model and tokenizer
-    tokenizer = GPT2Tokenizer.from_pretrained("EleutherAI/gpt-neo-1.3B", bos_token='<|endoftext|>',
+    tokenizer = GPT2Tokenizer.from_pretrained("EleutherAI/gpt-neo-2.7B", bos_token='<|endoftext|>',
                                               eos_token='<|endoftext|>', pad_token='<|pad|>')
     tokenizer.save_pretrained(cfg.model_gpt_neo_checkpoint_path)
-    model = GPTNeoForCausalLM.from_pretrained("EleutherAI/gpt-neo-1.3B")
+    model = GPTNeoForCausalLM.from_pretrained("EleutherAI/gpt-neo-2.7B")
     model.resize_token_embeddings(len(tokenizer))
 
     # train parallel on 4 gpus

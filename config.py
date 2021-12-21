@@ -11,6 +11,7 @@ class Config:
         self.model_gpt_neo_tokenizer_path = os.path.join(self.model_path, 'gpt_neo_checkpoint')
         self.model_gpt_neo_log_path = os.path.join(self.project_path, 'logs')
         self.model_gpt2_checkpoint_path = os.path.join(self.model_path, 'gpt2_checkpoint')
+        self.model_gpt2_log_path = os.path.join(self.project_path, 'gpt2_logs')
 
         # data
         # for model training

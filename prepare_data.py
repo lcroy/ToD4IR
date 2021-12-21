@@ -231,9 +231,9 @@ def gen_train_val_test(dataset_path, train_file_path, val_file_path, test_file_p
 
     # get 60% training, 20% validation and 20% test
     total_num_lines = len(lines)
-    train_size = int(0.7 * total_num_lines)
+    train_size = int(0.4 * total_num_lines)
     temp_size = total_num_lines - train_size
-    val_size = int(0.6 * temp_size)
+    val_size = int(0.3 * temp_size)
     test_size = temp_size - val_size
 
     train_dataset, val_dataset, test_dataset = random_split(lines, [train_size, val_size, test_size])

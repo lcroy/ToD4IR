@@ -43,10 +43,10 @@ def train(train_dataset, val_dataset, model, output_path, log_path):
     # print(len(train_dataset), len(val_dataset))
 
     # set up the training arguments
-    training_args = TrainingArguments(output_dir=output_path, overwrite_output_dir=True, num_train_epochs=30,
-                                      logging_steps=100, save_steps=6000,
+    training_args = TrainingArguments(output_dir=output_path, overwrite_output_dir=True, num_train_epochs=20,
+                                      logging_steps=100, save_steps=5000,
                                       per_device_train_batch_size=1, per_device_eval_batch_size=1,
-                                      warmup_steps=100, weight_decay=0.01, logging_dir='./logs',
+                                      warmup_steps=100, weight_decay=0.01, logging_dir='./gpt2_logs',
                                       logging_strategy='epoch', evaluation_strategy="epoch")
 
     trainer = Trainer(model=model, args=training_args, train_dataset=train_dataset,
@@ -100,7 +100,7 @@ def main():
     val_dataset = IROWData(val_lines, tokenizer, cfg.max_length)
 
     # Training and evaluation
-    train(train_dataset, val_dataset, model, cfg.model_gpt2_checkpoint_path, cfg.model_gpt_neo_log_path)
+    train(train_dataset, val_dataset, model, cfg.model_gpt2_checkpoint_path, cfg.model_gpt2_log_path)
 
 
 if __name__ == "__main__":

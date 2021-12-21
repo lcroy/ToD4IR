@@ -2,7 +2,7 @@ import random
 import torch
 from transformers import GPT2Tokenizer, GPT2LMHeadModel, OpenAIGPTLMHeadModel, OpenAIGPTTokenizer
 from config import Config
-# from utils.speech_service import *
+from utils.speech_service import *
 from utils.dbsearch import *
 from utils.normalize_text import normalize
 
@@ -25,8 +25,8 @@ def do_generation():
     dialogue = '<|endoftext|> <|boc|> '
     while True:
         # get user input
-        # text_to_speech_microsoft("speak something")
-        # text = speech_to_text_microsoft().strip()
+        text_to_speech_microsoft("speak something")
+        text = speech_to_text_microsoft().strip()
         # text = 'I want you to help me to deliver it to the lab. <|eoc|>'
         text = input("User: ")
         if len(text) > 0:
@@ -35,7 +35,7 @@ def do_generation():
             # end of the current dialogue and go to next one
             if any(key in text for key in cfg.stop_words):
                 dialogue = '<|endoftext|> <|boc|> '
-                # text_to_speech_microsoft(random.choice(cfg.max_end_dialogue))
+                text_to_speech_microsoft(random.choice(cfg.max_end_dialogue))
                 continue
 
             # add the user utterance to the previous context the "<|eoc|>" location
@@ -166,7 +166,7 @@ def do_generation():
                     response = t_res + " " + r_res
 
                 dialogue = new_dialogue + ' <|eoc|>'
-                # text_to_speech_microsoft(response)
+                text_to_speech_microsoft(response)
                 print("Max: " + response)
 
 

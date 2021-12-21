@@ -1,5 +1,5 @@
 import torch
-from transformers import GPT2Tokenizer, GPT2LMHeadModel
+from transformers import GPT2Tokenizer, GPT2LMHeadModel,GPTNeoForCausalLM
 from config import Config
 # from utils.speech_service import *
 from utils.dbsearch import *
@@ -11,10 +11,14 @@ cfg = Config()
 logger = logging.getLogger(__name__)
 
 def decoder(lines):
+    # gpt 2
     model = GPT2LMHeadModel.from_pretrained(cfg.model_gpt2_checkpoint_path)
-    # get tokenizer
     tokenizer = GPT2Tokenizer.from_pretrained(cfg.model_gpt2_checkpoint_path)
 
+    # gpt neo
+    # model = GPTNeoForCausalLM.from_pretrained(cfg.model_gpt_neo_checkpoint_path)
+    # tokenizer = GPT2Tokenizer.from_pretrained(cfg.model_gpt_neo_tokenizer_path)
+    # model.resize_token_embeddings(len(tokenizer))
     model.eval()
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
