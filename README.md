@@ -32,7 +32,3 @@ Some other packages can be installed by running the following command.
 ```
 pip install -r requirements.txt
 ```
-## Usage
-This section explains how to preprocess IRWOZ dataset, train the model, generate belief/action/response and evaluate model.
-### Preprocessing:
-
