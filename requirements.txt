@@ -3,3 +3,5 @@ spicy
 boto3
 ipdb
 simplejson
+nltk
+pytorch-transformers
